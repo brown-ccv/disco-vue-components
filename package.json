@@ -2,6 +2,11 @@
   "name": "@brown-ccv/disco-components",
   "version": "1.0.0",
   "description": "",
+  "license" : "MIT",
+  "author": {
+    "name": "Fernando Gelin",
+    "email": "fernando_gelin@brown.edu"
+  },
   "main": "dist/disco-components.ssr.js",
   "browser": "dist/disco-components.esm.js",
   "module": "dist/disco-components.esm.js",
