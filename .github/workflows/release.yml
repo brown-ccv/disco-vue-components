@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build Storybook
-        run: npm run storybook:build
+        run: npm run storybook:ci
       - name: Deploy to GH Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v1
