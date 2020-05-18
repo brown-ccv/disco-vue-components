@@ -1,0 +1,54 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import BrownLogo from '../components/logos/BrownLogo.vue';
+import CCVLogo from '../components/logos/CCVLogo.vue';
+
+<Meta title="Elements|Logos" component={BrownLogo, CCVLogo} />
+
+# Logos
+
+<Props of={BrownLogo} />
+
+### Brown and CCV logos components:
+```jsx
+<BrownLogo />
+```
+```jsx
+<CCVLogo />
+```
+
+Logo components take the prop `size` and accepts the following values:
+`'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'`.
+
+<Preview >
+    <Story name="Brown">
+        {{
+            components: {BrownLogo},
+            template: `
+            <div>
+                <BrownLogo size="xxs" />
+                <BrownLogo size="xs" />
+                <BrownLogo size="s" />
+                <BrownLogo size="m" />
+                <BrownLogo size="l" />
+                <BrownLogo size="xl" />
+                <BrownLogo size="xxl" />
+            </div>
+            `
+        }}
+    </Story>
+    <Story name="CCV">
+        {{
+            components: {CCVLogo},
+            template: `
+            <div>
+                <CCVLogo size="xxs" />
+                <CCVLogo size="xs" />
+                <CCVLogo size="s" />
+                <CCVLogo size="m" />
+                <CCVLogo size="l" />
+                <CCVLogo size="xl" />
+                <CCVLogo size="xxl" />
+            </div>`
+        }}
+    </Story>
+</Preview>

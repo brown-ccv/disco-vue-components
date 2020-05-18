@@ -1,0 +1,36 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import Typography from '../components/typography/Typography.vue';
+import Sizing from '../components/typography/Sizing.vue';
+
+<Meta title="Style Guide|Typography"/>
+
+# Typography
+
+CCV uses the University Theme sans-serif typeface Circular. 
+There are two variations: Circular Book and Circular Bold. The monospace font uses the system font stack
+which defaults to the system font of a particular operating system.
+`<h>` html elements use Circular Bold, while `<p>` use Circular Book and `<code>`, of course, use monospace.
+There's no need to set the font family yourself. 
+
+
+Text elements inherit other variables (padding, margin, line-height, size, etc) from Bulma. 
+Any text should be within a parent tag with the class `.content` for those variables to work.
+
+
+Html text elements have their sizes set when its parent parent has the
+`.content` class.
+
+<Preview>
+  <Story name="Typefaces">
+    {{
+        components: { Typography },
+        template: '<Typography />'
+    }}
+  </Story>
+    <Story name="Size">
+    {{
+        components: { Sizing },
+        template: '<Sizing />'
+    }}
+  </Story>
+</Preview>

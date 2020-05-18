@@ -1,0 +1,28 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import DHero from '../components/d-hero.vue';
+
+<Meta title="Elements|Hero" component={DHero} />
+
+# Hero
+
+<Props of={DHero} />
+
+### DHero component
+```jsx
+<DHero />
+```
+
+<Preview >
+    <Story name="Hero">
+        {{
+            components: {DHero},
+            template: `
+            <div>
+                <DHero title="Disco Design System" subtitle="Powering CCV's websites and applications"/>
+                <DHero title="Disco Design System" subtitle="Powering CCV's websites and applications" variant="link"/>
+                <DHero title="Disco Design System" subtitle="Powering CCV's websites and applications" variant="light"/>
+            </div>
+            `
+        }}
+    </Story>
+</Preview>

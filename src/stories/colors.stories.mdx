@@ -1,0 +1,85 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import ColorPalette from '../components/colors/ColorPalette.vue';
+import { yellows, greens, colors, greys } from './colors';
+
+<Meta title="Style Guide|Colors" component={ColorPalette} />
+
+# Colors
+
+CCV uses the Brown University theme for colors. 
+CCV's main colors are yellow and green and have varitations to improve accessibility in light and dark modes.
+We created CSS variables to make the use of colors simple and standard. 
+Each color swatch below contains the color, the hsl (hue, saturation, lightness), and the CSS variable.
+In addition to CSS variables, this theme provides helper classes for background and text color. It's important that
+you only use CSS variables or helper classes and never hardcode a color code in your element in order to guarantee the colors 
+will change based on the user's mode preference (light or dark mode).
+
+### Examples:
+> using CCS variables:
+```scss
+background-color: var(--color-primary);
+```
+
+> using helper classes:
+<!-- note: sass as language because scss was treating . in a weird way. -->
+```sass 
+css-selector {
+    @extend .has-background-primary;
+}
+```
+
+# CCV Main Colors
+
+<Preview>
+  <Story name="CCV Yellows">
+    {{
+        components: { ColorPalette },
+        template: '<ColorPalette :colors="yellows"/>',
+        data() {
+            return {
+                yellows
+            }
+        }
+    }}
+  </Story>
+  <Story name="CCV Greens">
+    {{
+        components: { ColorPalette },
+        template: '<ColorPalette :colors="greens"/>',
+        data() {
+            return {
+                greens
+            }
+        }
+    }}
+  </Story>
+</Preview>
+
+# Named colors and gray scale
+
+These color names are inherited from Bulma. The colors are adapted to fit the Brown University Theme, accessibility, and dark/light mode.
+
+<Preview>
+  <Story name="Named Colors">
+    {{
+        components: { ColorPalette },
+        template: '<ColorPalette :colors="colors"/>',
+        data() {
+            return {
+                colors
+            }
+        }
+    }}
+  </Story>
+  <Story name="Grey Scale">
+    {{
+        components: { ColorPalette },
+        template: '<ColorPalette :colors="greys"/>',
+        data() {
+            return {
+                greys
+            }
+        }
+    }}
+  </Story>
+</Preview>

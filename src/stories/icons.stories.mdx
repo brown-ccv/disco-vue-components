@@ -1,0 +1,42 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import DIcon from '../components/d-icon.vue';
+import { icons } from './icons';
+
+<Meta title="Elements|Icons" component={DIcon} />
+
+# Icons
+
+<Props of={DIcon} />
+
+### University Theme Icons
+
+Brown provides an icon font. We converted it to SVG and created a Icon component. 
+ > To use it:
+```jsx
+<DIcon name='icon-name' />
+```
+
+### Available icons: 
+<Preview>
+    <Story name="Icon">
+        {{
+            components: {DIcon},
+            template: `
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                ${icons.map(icon => `
+                <div style="display: flex; flex-direction: column; align-content: center; justify-content: center; margin: 1rem;">
+                    <DIcon name=${icon} />
+                    <code style="margin-top: 1rem;">${icon}</code>
+                </div>`).join("")}
+            </div>
+            `
+        }}
+    </Story>
+</Preview>
+
+### FontAwesome
+
+The icon library provided by Brown's University Theme is limited.
+To expand the icons available, CCV has a Font Awesome license that includes all free and pro icons. To use FontAwesome with Vue, follow
+the instructions [here](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs). 
+If you want to use the pro icons, you can ask Fernando or Mary for a license key.
