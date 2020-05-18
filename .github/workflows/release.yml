@@ -15,7 +15,9 @@ jobs:
         with:
           node-version: 12
       - name: Install dependencies
-        run: yarn install
+        run: |
+          npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN }}
+          yarn install
       - name: Build
         run: yarn build
       - name: Release
@@ -34,7 +36,9 @@ jobs:
         with:
           node-version: 12
       - name: Install dependencies
-        run: yarn install
+        run: |
+          npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN }}
+          yarn install
       - name: Build Storybook
         run: yarn storybook:ci
       - name: Deploy to GH Pages
