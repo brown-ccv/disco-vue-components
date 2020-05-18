@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import '../node_modules/disco-styles/css/disco.css';
+import '../node_modules/@brown-ccv/disco-styles/css/disco.css';
 
 Vue.config.productionTip = false;
 

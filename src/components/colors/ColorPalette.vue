@@ -19,5 +19,5 @@ export default {
 
 <style
   lang="css"
-  src="../../../node_modules/disco-styles/css/disco.css"
+  src="../../../node_modules/@brown-ccv/disco-styles/css/disco.css"
 ></style>
