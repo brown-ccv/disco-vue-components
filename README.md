@@ -1,4 +1,4 @@
-# vue-storybook
+# Vue Component Library for CCV with Disco Design System.
 
 ## Project setup
 ```
