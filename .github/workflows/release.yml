@@ -41,11 +41,8 @@ jobs:
           yarn install
       - name: Build Storybook
         run: yarn storybook:build
-      - name: Deploy to GH Pages
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: gh-pages
-          build_dir: storybook-static
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
+      - name: Deploy to Firebase
+        env: 
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          yarn deploy 
