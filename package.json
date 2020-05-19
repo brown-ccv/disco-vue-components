@@ -2,7 +2,7 @@
   "name": "@brown-ccv/disco-components",
   "version": "1.0.0",
   "description": "",
-  "license" : "MIT",
+  "license": "MIT",
   "author": {
     "name": "Fernando Gelin",
     "email": "fernando_gelin@brown.edu"
@@ -27,8 +27,8 @@
     "commit": "git-cz",
     "release": "semantic-release",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook -s ./public",
-    "storybook:ci": "vue-cli-service storybook:build -c config/storybook -s ./public",
-    "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook -s ./public"
+    "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook -s ./public",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "@brown-ccv/disco-styles": "^1.0.0",
@@ -64,6 +64,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.2.2",
+    "firebase-tools": "^8.3.0",
     "geckodriver": "^1.19.1",
     "git-cz": "^4.3.1",
     "lint-staged": "^9.5.0",

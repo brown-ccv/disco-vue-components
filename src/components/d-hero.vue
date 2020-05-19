@@ -1,5 +1,8 @@
 <template>
-  <section class="d-hero is-medium is-bold" v-bind:class="'is-' + variant">
+  <section
+    class="d-hero is-medium is-bold"
+    v-bind:class="['is-' + variant, { 'is-full-height': fullHeight }]"
+  >
     <div class="hero-body">
       <div class="container">
         <h1 class="d-title">
@@ -24,6 +27,10 @@ export default {
       type: String,
       required: true
     },
+    fullHeight: {
+      type: Boolean,
+      default: false
+    },
     variant: {
       type: String,
       default: 'warning',
@@ -46,3 +53,9 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.is-full-height {
+  height: 100vh;
+  padding-top: 10rem;
+}
+</style>
