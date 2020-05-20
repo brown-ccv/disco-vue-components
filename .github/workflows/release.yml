@@ -18,6 +18,8 @@ jobs:
         run: |
           npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN }}
           yarn install
+      - name: Test
+        run: yarn test:unit
       - name: Build
         run: yarn build
       - name: Release
@@ -39,6 +41,8 @@ jobs:
         run: |
           npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN }}
           yarn install
+      - name: Test
+        run: yarn test:unit
       - name: Build Storybook
         run: yarn storybook:build
       - name: Deploy to Firebase
