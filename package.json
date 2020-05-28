@@ -16,8 +16,10 @@
     "src/**/*.vue"
   ],
   "scripts": {
+    "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
+    "e2e": "vue-cli-service test:e2e --url http://localhost:6006/",
+    "test:e2e": "start-server-and-test storybook:serve http://localhost:6006 e2e",
     "lint": "vue-cli-service lint",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
@@ -77,6 +79,7 @@
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "semantic-release": "^17.0.7",
+    "start-server-and-test": "^1.11.0",
     "vue": "^2.6.11",
     "vue-cli-plugin-cz": "^1.2.2",
     "vue-cli-plugin-storybook": "^1.2.2",

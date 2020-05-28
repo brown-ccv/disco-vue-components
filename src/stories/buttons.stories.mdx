@@ -2,7 +2,6 @@ import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
 import DButton from '../components/d-button.vue';
 import DIcon from '../components/d-icon.vue';
 import { action } from "@storybook/addon-actions";
-import { withA11y } from '@storybook/addon-a11y';
 
 <Meta title="Elements|Buttons" component={DButton} />
 
@@ -29,7 +28,6 @@ import { withA11y } from '@storybook/addon-a11y';
     {{
         components: { DButton, DIcon },
         methods: { action: action("clicked") },
-        decorators: [withA11y],
         template: `
         <div>
             <div>
