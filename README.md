@@ -46,7 +46,7 @@ yarn lint
 
 Branch off `master`. Use `yarn commit` to commit changes. Submit a PR.
 
-New components can be accepted to `master` after going trough code review. Test coverage should be `100%` for all components in `master`, so make that happen before you open a PR. 
+New components can be accepted into `master` after going through code review. Test coverage should be `100%` for all components in `master`, so make that happen before you open a PR. 
 
 ### GitHub Actions and Semantic Release
 
