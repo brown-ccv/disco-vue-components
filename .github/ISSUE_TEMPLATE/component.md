@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+- [ ] New Component
+- [ ] From CCV Website (add a screenshot below)
+
 **Component  Name**
 Ex: `D-Name`
 
