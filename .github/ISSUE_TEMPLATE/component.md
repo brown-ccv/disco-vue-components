@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**Component  Name**
+Ex: `D-Name`
+
 **Props**
 - name:
   type:
