@@ -10,11 +10,6 @@ module.exports = {
       .waitForElementVisible('@canvas')
       .assert.elementPresent('@iframe');
 
-    // browser
-    //   .frame('storybook-preview-iframe')
-    //   .assert.elementPresent('#root')
-    //   .assert.elementPresent('.d-button');
-
     browser
       .frame('storybook-preview-iframe')
       .assert.elementPresent('#root')
