@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BrownLogo from '@/assets/logos/brown-logo.svg';
+import BrownLogo from '@/assets/logos/brown-logo.vue';
 
 export default {
   components: {
@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import 'bulma';
 .xxs {
   height: $size-4;
