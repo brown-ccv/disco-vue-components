@@ -47,20 +47,4 @@ export default {
 .xxl {
   height: $size-1 * 3;
 }
-
-.ccv-logo {
-  margin-left: $size-5;
-  z-index: 100;
-}
-.c1 {
-  fill: var(--color-yellow);
-}
-
-.c2 {
-  fill: var(--color-green);
-}
-
-.v {
-  fill: var(--color-yellow);
-}
 </style>

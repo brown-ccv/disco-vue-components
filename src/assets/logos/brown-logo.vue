@@ -412,3 +412,30 @@
     </g>
   </svg>
 </template>
+
+<style lang="scss" scoped>
+@import 'bulma';
+.brown-logo {
+  margin-left: $size-5;
+  .st0 {
+    display: none;
+  }
+  .st1 {
+    display: inline;
+    stroke: #000000;
+    stroke-width: 0.75;
+    stroke-miterlimit: 10;
+  }
+  .st2 {
+    stroke: #000000;
+    stroke-width: 0.75;
+    stroke-miterlimit: 10;
+  }
+  .st3 {
+    fill: #ffffff;
+  }
+  .st4 {
+    fill: #ed1c24;
+  }
+}
+</style>
