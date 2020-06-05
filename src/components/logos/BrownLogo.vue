@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import 'bulma';
 .xxs {
   height: $size-4;

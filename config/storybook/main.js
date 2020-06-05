@@ -19,6 +19,7 @@ module.exports = {
     },
     '@storybook/addon-knobs/register',
     '@storybook/addon-links',
-    '@storybook/addon-notes'
+    '@storybook/addon-notes',
+    '@storybook/addon-a11y/register'
   ]
 };

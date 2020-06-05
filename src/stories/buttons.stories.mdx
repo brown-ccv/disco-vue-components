@@ -1,9 +1,10 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { withA11y } from '@storybook/addon-a11y';
 import DButton from '../components/d-button.vue';
 import DIcon from '../components/d-icon.vue';
 import { action } from "@storybook/addon-actions";
 
-<Meta title="Elements|Buttons" component={DButton} />
+<Meta title="Elements|Buttons" component={DButton} decorators={[withA11y]} />
 
 # Buttons
 <Props of={DButton} />
