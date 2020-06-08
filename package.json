@@ -1,5 +1,5 @@
 {
-  "name": "@brown-ccv/disco-components",
+  "name": "@brown-ccv/disco-vue-components",
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
@@ -7,10 +7,10 @@
     "name": "Fernando Gelin",
     "email": "fernando_gelin@brown.edu"
   },
-  "main": "dist/disco-components.ssr.js",
-  "browser": "dist/disco-components.esm.js",
-  "module": "dist/disco-components.esm.js",
-  "unpkg": "dist/disco-components.min.js",
+  "main": "dist/disco-vue-components.ssr.js",
+  "browser": "dist/disco-vue-components.esm.js",
+  "module": "dist/disco-vue-components.esm.js",
+  "unpkg": "dist/disco-vue-components.min.js",
   "files": [
     "dist/*",
     "src/**/*.vue"
