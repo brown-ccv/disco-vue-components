@@ -33,7 +33,7 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
-    "@brown-ccv/disco-styles": "^1.0.0",
+    "@brown-ccv/disco-styles": "^1.1.0",
     "bulma": "^0.8.2",
     "vue-bulma": "0.0.35",
     "vue-svg-loader": "^0.16.0"
