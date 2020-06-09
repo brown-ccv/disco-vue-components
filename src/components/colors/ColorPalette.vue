@@ -18,6 +18,6 @@ export default {
 </script>
 
 <style
-  lang="css"
-  src="../../../node_modules/@brown-ccv/disco-styles/css/disco.css"
+  lang="scss"
+  src="../../../node_modules/@brown-ccv/disco-styles/scss/disco.scss"
 ></style>

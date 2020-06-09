@@ -69,11 +69,11 @@ npm login --registry=https://npm.pkg.github.com --scope=@brown-ccv
 
 Then, simply add the package:
 ```
-npm install @brown-ccv/disco-components
+npm install @brown-ccv/disco-vue-components
 ```
 or
 ```
-yarn add @brown-ccv/disco-components
+yarn add @brown-ccv/disco-vue-components
 ```
 
 Note that, to install `@brown-ccv` packages that are not public in CI, you need to authenticate with npm using a GitHub Personal Access Token, for example:

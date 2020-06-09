@@ -22,3 +22,5 @@ yarn-error.log*
 *.sw?
 
 coverage
+tests/e2e/reports
+chromedriver.log

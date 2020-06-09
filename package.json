@@ -1,5 +1,5 @@
 {
-  "name": "@brown-ccv/disco-components",
+  "name": "@brown-ccv/disco-vue-components",
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
@@ -7,10 +7,10 @@
     "name": "Fernando Gelin",
     "email": "fernando_gelin@brown.edu"
   },
-  "main": "dist/disco-components.ssr.js",
-  "browser": "dist/disco-components.esm.js",
-  "module": "dist/disco-components.esm.js",
-  "unpkg": "dist/disco-components.min.js",
+  "main": "dist/disco-vue-components.ssr.js",
+  "browser": "dist/disco-vue-components.esm.js",
+  "module": "dist/disco-vue-components.esm.js",
+  "unpkg": "dist/disco-vue-components.min.js",
   "files": [
     "dist/*",
     "src/**/*.vue"
@@ -33,7 +33,7 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
-    "@brown-ccv/disco-styles": "^1.0.0",
+    "@brown-ccv/disco-styles": "^2.0.0",
     "bulma": "^0.8.2",
     "vue-bulma": "0.0.35",
     "vue-svg-loader": "^0.16.0"
@@ -44,11 +44,14 @@
     "@rollup/plugin-alias": "^2.2.0",
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-replace": "^2.3.2",
+    "@storybook/addon-a11y": "^5.3.19",
     "@storybook/addon-actions": ">=5.3.0",
     "@storybook/addon-docs": ">=5.3.0",
-    "@storybook/addon-knobs": ">=5.3.0",
+    "@storybook/addon-knobs": "^5.3.19",
     "@storybook/addon-links": ">=5.3.0",
     "@storybook/addon-notes": ">=5.3.0",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/theming": "^5.3.19",
     "@storybook/vue": ">=5.3.0",
     "@vue/cli-plugin-babel": "^4.3.1",
     "@vue/cli-plugin-e2e-nightwatch": "^4.3.0",
@@ -60,7 +63,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.1.0",
-    "chromedriver": "81",
+    "chromedriver": "^83.0.0",
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
     "eslint": "^6.7.2",
@@ -71,6 +74,7 @@
     "git-cz": "^4.3.1",
     "lint-staged": "^9.5.0",
     "minimist": "^1.2.5",
+    "nightwatch-accessibility": "^1.8.0",
     "prettier": "^1.19.1",
     "rollup": "^2.7.3",
     "rollup-plugin-babel": "^4.4.0",

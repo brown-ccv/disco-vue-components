@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CCVLogo from '@/assets/logos/ccv-logo.svg';
+import CCVLogo from '@/assets/logos/ccv-logo.vue';
 
 export default {
   components: {
@@ -23,44 +23,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-@import 'bulma';
-.xxs {
-  height: $size-4;
-}
-.xs {
-  height: $size-3;
-}
-.s {
-  height: $size-2;
-}
-.m {
-  height: $size-1;
-}
-.l {
-  height: $size-1 * 1.5;
-}
-.xl {
-  height: $size-1 * 2;
-}
-.xxl {
-  height: $size-1 * 3;
-}
-
-.ccv-logo {
-  margin-left: $size-5;
-  z-index: 100;
-}
-.c1 {
-  fill: var(--color-yellow);
-}
-
-.c2 {
-  fill: var(--color-green);
-}
-
-.v {
-  fill: var(--color-yellow);
-}
-</style>
