@@ -104,9 +104,7 @@
   </svg>
 </template>
 <style lang="scss" scoped>
-@import 'bulma';
 .ccv-logo {
-  margin-left: $size-5;
   z-index: 100;
 }
 .c1 {

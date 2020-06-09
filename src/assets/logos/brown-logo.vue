@@ -414,9 +414,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import 'bulma';
 .brown-logo {
-  margin-left: $size-5;
   .st0 {
     display: none;
   }
