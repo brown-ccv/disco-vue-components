@@ -1,0 +1,39 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { withA11y } from '@storybook/addon-a11y';
+import DModal from '../components/d-modal.vue';
+import DButton from '../components/d-button.vue';
+import { action } from "@storybook/addon-actions";
+
+<Meta title="Elements|Modal" component={DModal} />
+
+# Modal
+<Props of={DModal} />
+
+# DModal component
+```jsx
+<DButton name="Show Modal" @click="showModal = true" />
+<DModal v-if="showModal" title="Modal Title" @close="showModal = false" />
+```
+
+<Preview>
+  <Story name="Modal" decorators={[withA11y]}>
+    {{
+      components: { DModal, DButton },
+      methods: { action: action("clicked") },
+      data() {
+          return {
+              showModal: false
+          }
+      },
+      template: `
+      <div>
+        <div>
+          <h1> Modal with title </h1>
+          <DButton name="Show Modal" @click="showModal = true" />
+          <DModal v-if="showModal" title="Modal Title" @close="showModal = false" />
+        </div>
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
