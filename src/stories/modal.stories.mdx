@@ -23,23 +23,16 @@ import { action } from "@storybook/addon-actions";
       data() {
           return {
               modals: [
-                { title: 'Modal with Title', content: null, footer: false, show: false},
-                { title: 'Modal with Title and Content', content: { component: "Modal", triggeredBy: "Button" }, footer: false, show: false},
-                { title: 'Modal with Title, Content and Footer', content: { component: "Modal", triggeredBy: "Button" }, footer: true, show: false}
+                { closeButtonText: 'Close', closeOptions: 'both', show: false }
               ]
           }
       },
       template: `
       <div>
         <div v-for="modal  in modals">
-          <h1 style="margin-bottom: 1rem;"> {{ modal.title }}</h1>
+          <h1 style="margin-bottom: 1rem;"> Modal </h1>
           <DButton name="Show Modal" @click="modal.show = !modal.show" />
-          <DModal v-if="modal.show" :title="modal.title" :footer="modal.footer" :content="modal.content" @close="modal.show = !modal.show" > 
-            <template #footer>
-              <DButton name="Save changes" variant="success" @click="modal.show = !modal.show"/>
-              <DButton name="Cancel" @click="modal.show = !modal.show"/>
-            </template>
-          </DModal>
+          <DModal v-if="modal.show" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" />
         </div>
       </div>
       `

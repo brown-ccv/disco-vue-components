@@ -3,21 +3,24 @@
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">{{ title }}</p>
-        <button class="delete" aria-label="close" @click="onClose"></button>
+        <button
+          v-if="closeOptions == 'header' || closeOptions == 'both'"
+          class="delete"
+          aria-label="close"
+          @click="onClose"
+        ></button>
       </header>
       <section v-if="content" class="modal-card-body">
-        <div class="text-left">
-          <span v-for="(value, key) in content" v-bind:key="'modal' + key"
-            ><b class="text-warning"> {{ key | camelToTitle }}: </b>
-            <a v-if="is_url(value)" id="url" :href="value">{{ value }}</a
-            ><span v-else>{{ value }}</span> <br
-          /></span>
-        </div>
         <slot name="content"></slot>
       </section>
-      <footer v-if="footer" class="modal-card-foot">
-        <slot name="footer"></slot>
+      <footer class="modal-card-foot">
+        <button
+          v-if="closeOptions == 'footer' || closeOptions == 'both'"
+          class="button"
+          @click="onClose"
+        >
+          {{ closeButtonText }}
+        </button>
       </footer>
     </div>
   </div>
@@ -26,17 +29,16 @@
 <script>
 export default {
   props: {
-    title: {
+    closeButtonText: {
       type: String,
-      required: true
-    },
-    content: {
-      type: Object,
       required: false
     },
-    footer: {
-      type: Boolean,
-      required: false
+    closeOptions: {
+      type: String,
+      required: false,
+      validator: function(value) {
+        return ['header', 'footer', 'both'].indexOf(value) !== -1;
+      }
     }
   },
   methods: {
