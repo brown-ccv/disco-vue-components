@@ -71,7 +71,7 @@ if (!argv.format || argv.format === 'es') {
     ...baseConfig,
     external,
     output: {
-      file: 'dist/disco-components.esm.js',
+      file: 'dist/disco-vue-components.esm.js',
       format: 'esm',
       exports: 'named'
     },
@@ -105,7 +105,7 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       compact: true,
-      file: 'dist/disco-components.ssr.js',
+      file: 'dist/disco-vue-components.ssr.js',
       format: 'cjs',
       name: 'DiscoComponents',
       exports: 'named',
@@ -134,7 +134,7 @@ if (!argv.format || argv.format === 'iife') {
     external,
     output: {
       compact: true,
-      file: 'dist/disco-components.min.js',
+      file: 'dist/disco-vue-components.min.js',
       format: 'iife',
       name: 'DiscoComponents',
       exports: 'named',
