@@ -6,7 +6,7 @@
         <p class="modal-card-title">{{ title }}</p>
         <button class="delete" aria-label="close" @click="onClose"></button>
       </header>
-      <section class="modal-card-body">
+      <section v-if="content" class="modal-card-body">
         <div class="text-left">
           <span v-for="(value, key) in content" v-bind:key="'modal' + key"
             ><b class="text-warning"> {{ key | camelToTitle }}: </b>
@@ -16,7 +16,7 @@
         </div>
         <slot name="content"></slot>
       </section>
-      <footer class="modal-card-foot">
+      <footer v-if="footer" class="modal-card-foot">
         <slot name="footer"></slot>
       </footer>
     </div>
@@ -32,6 +32,10 @@ export default {
     },
     content: {
       type: Object,
+      required: false
+    },
+    footer: {
+      type: Boolean,
       required: false
     }
   },
