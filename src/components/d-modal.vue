@@ -2,7 +2,7 @@
   <div class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-card">
-      <header class="modal-card-head">
+      <header class="modal-card-head" style="justify-content:flex-end;">
         <button
           v-if="closeOptions == 'header' || closeOptions == 'both'"
           class="delete"
@@ -10,10 +10,13 @@
           @click="onClose"
         ></button>
       </header>
-      <section v-if="content" class="modal-card-body">
-        <slot name="content"></slot>
-      </section>
-      <footer class="modal-card-foot">
+      <div
+        class="modal-card-body"
+        style="display: flex; justify-content: center;"
+      >
+        <slot name="content"> </slot>
+      </div>
+      <footer class="modal-card-foot" style="justify-content:flex-end;">
         <button
           v-if="closeOptions == 'footer' || closeOptions == 'both'"
           class="button"
