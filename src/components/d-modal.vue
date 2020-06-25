@@ -2,29 +2,35 @@
   <div role="dialog" class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-card" v-bind:class="['is-width-' + width]">
-      <section
+      <!-- <section
         class="section pt-1 pb-1"
         v-bind:class="['has-background-' + colorbar]"
-      />
-      <header v-bind:class="['has-background-' + variant]">
+      /> -->
+      <header
+        class="modal-card-head pulled-right no-border-radius has-height-5"
+        v-bind:class="['has-background-' + colorbar]"
+      >
         <button
           v-if="closeOptions == 'header' || closeOptions == 'both'"
-          class="delete is-pulled-right"
+          class="delete"
           aria-label="close"
           @click="onClose"
         ></button>
       </header>
       <div
-        class="has-text-centered px-3 py-1"
+        class="modal-card-body px-3 pt-4 pb-3"
         v-bind:class="['has-background-' + variant]"
       >
         <slot name="content"> </slot>
       </div>
-      <footer class="px-2 pb-2" v-bind:class="['has-background-' + variant]">
+      <footer
+        class="modal-card-footer no-border-radius px-2 pb-2"
+        v-bind:class="['has-background-' + variant]"
+      >
         <button
           v-if="closeOptions == 'footer' || closeOptions == 'both'"
-          class="button is-inverted is-outlined"
-          v-bind:class="['is-' + width, 'is-' + variant]"
+          class="button is-inverted is-outlined is-normal"
+          v-bind:class="['is-' + colorbar]"
           @click="onClose"
         >
           {{ closeButtonText }}
@@ -107,9 +113,18 @@ export default {
   width: 40vh;
 }
 .is-width-medium {
-  width: 60vh;
+  width: 70vh;
 }
 .is-width-large {
-  width: 90vh;
+  width: 100vh;
+}
+.pulled-right {
+  justify-content: flex-end;
+}
+.no-border-radius {
+  border-radius: 0px;
+}
+.has-height-5 {
+  height: 5px;
 }
 </style>
