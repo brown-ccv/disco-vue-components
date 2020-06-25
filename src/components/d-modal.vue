@@ -1,25 +1,30 @@
 <template>
-  <div class="modal is-active">
+  <div role="dialog" class="modal is-active">
     <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head" style="justify-content:flex-end;">
+    <div class="modal-card" v-bind:class="['is-width-' + width]">
+      <section
+        class="section pt-1 pb-1"
+        v-bind:class="['has-background-' + colorbar]"
+      />
+      <header v-bind:class="['has-background-' + variant]">
         <button
           v-if="closeOptions == 'header' || closeOptions == 'both'"
-          class="delete"
+          class="delete is-pulled-right"
           aria-label="close"
           @click="onClose"
         ></button>
       </header>
       <div
-        class="modal-card-body"
-        style="display: flex; justify-content: center;"
+        class="has-text-centered px-3 py-1"
+        v-bind:class="['has-background-' + variant]"
       >
         <slot name="content"> </slot>
       </div>
-      <footer class="modal-card-foot" style="justify-content:flex-end;">
+      <footer class="px-2 pb-2" v-bind:class="['has-background-' + variant]">
         <button
           v-if="closeOptions == 'footer' || closeOptions == 'both'"
-          class="button"
+          class="button is-inverted is-outlined"
+          v-bind:class="['is-' + width, 'is-' + variant]"
           @click="onClose"
         >
           {{ closeButtonText }}
@@ -32,6 +37,14 @@
 <script>
 export default {
   props: {
+    width: {
+      type: String,
+      required: false,
+      default: 'small',
+      validator: function(value) {
+        return ['small', 'medium', 'large'].indexOf(value) !== -1;
+      }
+    },
     closeButtonText: {
       type: String,
       required: false
@@ -42,23 +55,61 @@ export default {
       validator: function(value) {
         return ['header', 'footer', 'both'].indexOf(value) !== -1;
       }
+    },
+    variant: {
+      type: String,
+      default: 'warning',
+      validator: function(value) {
+        // The value must match one of these strings
+        return (
+          [
+            'primary',
+            'success',
+            'danger',
+            'warning',
+            'info',
+            'link',
+            'dark',
+            'light'
+          ].indexOf(value) !== -1
+        );
+      }
+    },
+    colorbar: {
+      type: String,
+      default: 'danger',
+      validator: function(value) {
+        // The value must match one of these strings
+        return (
+          [
+            'primary',
+            'success',
+            'danger',
+            'warning',
+            'info',
+            'link',
+            'dark',
+            'light'
+          ].indexOf(value) !== -1
+        );
+      }
     }
   },
   methods: {
     onClose() {
       this.$emit('close');
-    },
-    is_url(str) {
-      var regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
-      return regexp.test(str);
-    }
-  },
-  filters: {
-    camelToTitle: item => {
-      return item
-        .replace(/([A-Z])/g, ' $1')
-        .replace(/^./, str => str.toUpperCase());
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+.is-width-small {
+  width: 40vh;
+}
+.is-width-medium {
+  width: 60vh;
+}
+.is-width-large {
+  width: 90vh;
+}
+</style>
