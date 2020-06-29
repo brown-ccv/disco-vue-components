@@ -4,7 +4,10 @@
     <div class="modal-background"></div>
 
     <!-- main modal area -->
-    <div class="modal-card" v-bind:class="['is-width-' + width]" style="style">
+    <div
+      class="modal-card"
+      v-bind:class="['is-width-' + width, 'has-border-top-' + colorbar]"
+    >
       <!-- header -->
       <header v-bind:class="['has-background-' + variant]">
         <button
@@ -123,5 +126,14 @@ export default {
 }
 .is-width-large {
   width: 100vh;
+}
+$variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
+  'light';
+
+@each $variant in $variants {
+  $color: --color-#{$variant};
+  .has-border-top-#{$variant} {
+    border-top: 5px solid var($color);
+  }
 }
 </style>
