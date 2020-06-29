@@ -31,21 +31,24 @@
         class="modal-card-footer no-border-radius px-2 pb-2"
         v-bind:class="['has-background-' + variant]"
       >
-        <button
+        <d-button
           v-if="closeOptions == 'footer' || closeOptions == 'both'"
-          class="button is-inverted is-outlined is-normal"
-          v-bind:class="['is-' + colorbar]"
+          :name="closeButtonText"
+          :variant="colorbar"
           @click="onClose"
         >
-          {{ closeButtonText }}
-        </button>
+        </d-button>
       </footer>
     </div>
   </div>
 </template>
 
 <script>
+import DButton from '@/components/d-button.vue';
 export default {
+  components: {
+    'd-button': DButton
+  },
   props: {
     width: {
       type: String,
