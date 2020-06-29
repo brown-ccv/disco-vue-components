@@ -1,28 +1,29 @@
 <template>
   <div role="dialog" class="modal is-active">
+    <!-- area surrounding modal -->
     <div class="modal-background"></div>
-    <div class="modal-card" v-bind:class="['is-width-' + width]">
-      <!-- <section
-        class="section pt-1 pb-1"
-        v-bind:class="['has-background-' + colorbar]"
-      /> -->
-      <header
-        class="modal-card-head pulled-right no-border-radius has-height-5"
-        v-bind:class="['has-background-' + colorbar]"
-      >
+
+    <!-- main modal area -->
+    <div class="modal-card" v-bind:class="['is-width-' + width]" style="style">
+      <!-- header -->
+      <header v-bind:class="['has-background-' + variant]">
         <button
           v-if="closeOptions == 'header' || closeOptions == 'both'"
-          class="delete"
+          class="delete is-pulled-right"
           aria-label="close"
           @click="onClose"
         ></button>
       </header>
+
+      <!-- modal content -->
       <div
         class="modal-card-body px-3 pt-4 pb-3"
         v-bind:class="['has-background-' + variant]"
       >
         <slot name="content"> </slot>
       </div>
+
+      <!-- modal footer with close button -->
       <footer
         class="modal-card-footer no-border-radius px-2 pb-2"
         v-bind:class="['has-background-' + variant]"
@@ -105,6 +106,11 @@ export default {
     onClose() {
       this.$emit('close');
     }
+  },
+  computed: {
+    style() {
+      return 'border-top: ' + '4px ' + 'solid ' + this.colorbar;
+    }
   }
 };
 </script>
@@ -117,14 +123,5 @@ export default {
 }
 .is-width-large {
   width: 100vh;
-}
-.pulled-right {
-  justify-content: flex-end;
-}
-.no-border-radius {
-  border-radius: 0px;
-}
-.has-height-5 {
-  height: 5px;
 }
 </style>

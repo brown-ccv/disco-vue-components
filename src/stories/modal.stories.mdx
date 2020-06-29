@@ -16,119 +16,49 @@ import { action } from "@storybook/addon-actions";
 ```
 
 <Preview>
-  <Story name="Modal with content" decorators={[withA11y]}>
+  <Story name="Modal" decorators={[withA11y]}>
     {{
       components: { DModal, DButton },
       methods: { action: action("clicked") },
       data() {
           return {
-              modalImageColors: [
-                { closeOptions: 'header', variant: 'light', show: false },
-                { closeOptions: 'header', variant: 'light', colorbar: 'success', show: false },
-                { closeOptions: 'header', variant: 'light', colorbar: 'info', show: false },
-                { closeOptions: 'header', variant: 'primary', colorbar: 'warning', show: false },
-                { closeOptions: 'header', variant: 'warning', colorbar: 'danger', show: false }
-              ],
-              modalTextColors: [
-                { closeOptions: 'header', variant: 'light', show: false },
-                { closeOptions: 'header', variant: 'light', colorbar: 'success', show: false },
-                { closeOptions: 'header', variant: 'light', colorbar: 'info', show: false },
-                { closeOptions: 'header', variant: 'warning', colorbar: 'danger', show: false }
-              ],
-              modalSizes: [
-                { closeOptions: 'header', variant: 'light', width: 'small', show: false },
-                { closeOptions: 'header', variant: 'light', width: 'medium', show: false },
-                { closeOptions: 'header', variant: 'warning', width: 'large', show: false }
-              ],
-              modalDesign: [
-                { closeButtonText: 'Close', closeOptions: 'both', variant: 'light', width: 'medium', show: false }
-              ],
-              modalCard: [
-                { closeButtonText: 'Close', closeOptions: 'both', variant: 'light', width: 'medium', show: false }
-              ]
-          }
-      },
-      template: `
-      <div>
-        <div>
-            <h1 style="margin-bottom: 1rem;"> Image Modal colors</h1>
-          <span v-for="modal  in modalImageColors">
-            <DButton name="Show Modal" @click="modal.show = !modal.show" />
-            <DModal v-if="modal.show" :variant="modal.variant" :colorbar="modal.colorbar" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
-              <template #content>
-                <img src="https://via.placeholder.com/150">
-              </template>
-            </DModal> 
-          </span>
-        </div>
-        <div style="margin-top: 2rem;">
-            <h1 style="margin-bottom: 1rem;"> Text Modal colors</h1>
-          <span v-for="modal  in modalTextColors">
-            <DButton name="Show Modal" @click="modal.show = !modal.show" />
-            <DModal v-if="modal.show" :variant="modal.variant" :colorbar="modal.colorbar" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
-              <template #content>
-                <div class="content">
-                  <h1>Level One</h1>
-                  <p>
-                      This is simple text. This is simple text. 
-                      This is simple text. This is simple text.
-                  </p>
-                </div>
-              </template>
-            </DModal> 
-          </span>
-        </div>
-        <div style="margin-top: 2rem;">
-            <h1 style="margin-bottom: 1rem;"> Modal widths</h1>
-          <span v-for="modal  in modalSizes">
-            <DButton name="Show Modal" @click="modal.show = !modal.show" />
-            <DModal v-if="modal.show" :variant="modal.variant" :width="modal.width" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
-              <template #content>
-                <div class = "content">
-                  <h1>Level One</h1>
-                  <p>
-                      This is simple text. This is simple text. 
-                      This is simple text. This is simple text.
-                  </p>
-                </div>
-              </template>
-            </DModal> 
-          </span>
-        </div>
-        <div style="margin-top: 2rem;">
-            <h1 style="margin-bottom: 1rem;"> Modal Form</h1>
-          <span v-for="modal  in modalDesign">
-            <DButton name="Show Modal" @click="modal.show = !modal.show" />
-            <DModal v-if="modal.show" :variant="modal.variant" :width="modal.width" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
-              <template #content>
-                <form class="has-text-centered">
-                  <p>
-                    <label for="firstName">First Name</label>
-                    <input id="firstName" type="text" />
-                  </p>
-                  <p>
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" type="text"/>
-                  </p>
-                  <p>
-                    <label for="interests">Interests</label>
-                    <textarea id="interests"></textarea>
-                  </p>
-                  <p>
-                    <input type="checkbox" id="autoLogin"/>
-                    <label for="autoLogin">Auto-login?</label>
-                  </p>
-              </form>
-              </template>
-            </DModal> 
-          </span>
-        </div>
-        <div style="margin-top: 2rem;">
-            <h1 style="margin-bottom: 1rem;"> Modal Card</h1>
-          <span v-for="modal  in modalCard">
-            <DButton name="Show Modal" @click="modal.show = !modal.show" />
-            <DModal v-if="modal.show" :variant="modal.variant" :width="modal.width" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
-              <template #content>
+            modalImageColors: [
+              { name: 'Image Modal', buttoncolor: 'light', closeOptions: 'header', variant: 'light', colorbar: 'danger', show: false, template: `<img src='https://via.placeholder.com/150'>` },
+              { name:'Text Modal', buttoncolor: 'warning', closeOptions: 'header', variant: 'warning', width: 'medium', colorbar: 'danger', show: false, template: `
+              <div class="content">
+                <h1>Modal Component</h1>
+                <p>
+                  <ul>
+                    <li>Triggered by button. </li>
+                    <li>Customizable top color bar, background color and content. </li>
+                    <li>Two options for close buttons </li>
+                  </ul>
+                </p>
+              </div>`},
+              { name: 'Small Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'small', show: false, template: `<img src='https://via.placeholder.com/150'>` },
+              { name: 'Medium Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'medium', show: false, template: `
+              <div class="content">
+                <h1>Modal Component</h1>
+                <p>
+                  <ul>
+                    <li>Triggered by button. </li>
+                    <li>Customizable top color bar, background color and content. </li>
+                    <li>Two options for close buttons </li>
+                  </ul>
+                </p>
+              </div>` },
+              { name: 'Large Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'large', show: false, template: `
+              <div class="content">
+                <h1>Modal Component</h1>
+                <p>
+                  <ul>
+                    <li>Triggered by button. </li>
+                    <li>Customizable top color bar, background color and content. </li>
+                    <li>Two options for close buttons </li>
+                  </ul>
+                </p>
+              </div>` },
+              { name: 'Card Modal', buttoncolor: 'info', closeButtonText: 'Close', closeOptions: 'both', variant: 'light', width: 'medium', show: false, template: `
                 <div class="card">
                   <div class="card-image">
                     <figure class="image is-4by3">
@@ -155,7 +85,19 @@ import { action } from "@storybook/addon-actions";
                       <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                     </div>
                   </div>
-                </div>
+                </div>` }
+            ]
+          }
+      },
+      template: `
+      <div>
+        <div>
+            <h1 style="margin-bottom: 1rem;"> Modals </h1>
+          <span v-for="modal  in modalImageColors">
+            <DButton :name="modal.name" :variant="modal.buttoncolor" @click="modal.show = !modal.show" />
+            <DModal v-if="modal.show" :variant="modal.variant" :colorbar="modal.colorbar" :width="modal.width" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
+              <template #content>
+                <span v-html="modal.template"></span>
               </template>
             </DModal> 
           </span>
