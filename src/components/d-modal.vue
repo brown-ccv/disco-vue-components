@@ -1,5 +1,5 @@
 <template>
-  <div role="dialog" class="modal is-active">
+  <div role="dialog" class="d-modal modal is-active">
     <!-- area surrounding modal -->
     <div class="modal-background"></div>
 
@@ -9,7 +9,7 @@
       v-bind:class="['is-width-' + width, 'has-border-top-' + colorbar]"
     >
       <!-- header -->
-      <header v-bind:class="['has-background-' + variant]">
+      <header id="header" v-bind:class="['has-background-' + variant]">
         <button
           v-if="closeOptions == 'header' || closeOptions == 'both'"
           class="delete is-pulled-right"
@@ -28,11 +28,13 @@
 
       <!-- modal footer with close button -->
       <footer
-        class="modal-card-footer no-border-radius px-2 pb-2"
+        id="footer"
+        class="px-2 pb-2"
         v-bind:class="['has-background-' + variant]"
       >
         <d-button
           v-if="closeOptions == 'footer' || closeOptions == 'both'"
+          id="closebutton"
           :name="closeButtonText"
           :variant="colorbar"
           @click="onClose"
@@ -65,6 +67,7 @@ export default {
     closeOptions: {
       type: String,
       required: false,
+      default: 'header',
       validator: function(value) {
         return ['header', 'footer', 'both'].indexOf(value) !== -1;
       }
@@ -111,11 +114,6 @@ export default {
   methods: {
     onClose() {
       this.$emit('close');
-    }
-  },
-  computed: {
-    style() {
-      return 'border-top: ' + '4px ' + 'solid ' + this.colorbar;
     }
   }
 };
