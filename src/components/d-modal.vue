@@ -1,5 +1,5 @@
 <template>
-  <div role="dialog" class="d-modal modal is-active">
+  <div aria-live="polite" role="dialog" class="d-modal modal is-active">
     <!-- area surrounding modal -->
     <div class="modal-background"></div>
 
