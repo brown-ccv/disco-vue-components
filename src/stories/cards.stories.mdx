@@ -1,0 +1,34 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import DCard from '../components/d-card.vue';
+
+<Meta title="Elements|Card" component={DCard} />
+
+# Hero
+
+<Props of={DCard} />
+
+### DCard component
+
+```jsx
+<DCard />
+```
+
+<Preview>
+  <Story name="Card">
+    {{
+      components: {DCard},
+      template: `
+      <div style="display: flex; align-items: center;">
+        <DCard title="Standard" buttonLabel="Read More">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco 
+          </p>
+        </DCard>
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
