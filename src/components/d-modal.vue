@@ -6,12 +6,15 @@
     <!-- main modal area -->
     <div
       class="modal-card"
-      v-bind:class="['is-width-' + width, 'has-border-top-' + colorbar]"
+      v-bind:class="[
+        'is-width-' + width,
+        'has-border-top-' + colorbar,
+        'has-background-' + variant
+      ]"
     >
       <!-- header -->
-      <header id="header" v-bind:class="['has-background-' + variant]">
+      <header v-if="closeOptions == 'header' || closeOptions == 'both'">
         <button
-          v-if="closeOptions == 'header' || closeOptions == 'both'"
           class="delete is-pulled-right"
           aria-label="close"
           @click="onClose"
@@ -19,21 +22,16 @@
       </header>
 
       <!-- modal content -->
-      <div
-        class="modal-card-body px-3 pt-4 pb-3"
-        v-bind:class="['has-background-' + variant]"
-      >
+      <div class="modal-card-body" v-bind:class="['has-background-' + variant]">
         <slot name="content"> </slot>
       </div>
 
       <!-- modal footer with close button -->
       <footer
-        id="footer"
+        v-if="closeOptions == 'footer' || closeOptions == 'both'"
         class="px-2 pb-2"
-        v-bind:class="['has-background-' + variant]"
       >
         <d-button
-          v-if="closeOptions == 'footer' || closeOptions == 'both'"
           id="closebutton"
           :name="closeButtonText"
           :variant="colorbar"
@@ -55,14 +53,15 @@ export default {
     width: {
       type: String,
       required: false,
-      default: 'small',
+      default: 'medium',
       validator: function(value) {
         return ['small', 'medium', 'large'].indexOf(value) !== -1;
       }
     },
     closeButtonText: {
       type: String,
-      required: false
+      required: false,
+      default: 'Close'
     },
     closeOptions: {
       type: String,
@@ -74,7 +73,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'warning',
+      default: 'primary',
       validator: function(value) {
         // The value must match one of these strings
         return (
