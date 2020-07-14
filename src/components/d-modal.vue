@@ -5,6 +5,7 @@
 
     <!-- main modal area -->
     <div
+      data-testid="modal-card"
       class="modal-card"
       v-bind:class="[
         'is-width-' + width,
@@ -13,7 +14,10 @@
       ]"
     >
       <!-- header -->
-      <header v-if="closeOptions == 'header' || closeOptions == 'both'">
+      <header
+        data-testid="modal-header"
+        v-if="closeOptions == 'header' || closeOptions == 'both'"
+      >
         <button
           class="delete is-pulled-right"
           aria-label="close"
@@ -22,16 +26,24 @@
       </header>
 
       <!-- modal content -->
-      <div class="modal-card-body" v-bind:class="['has-background-' + variant]">
+      <!-- need to add background variant again here 
+      to override the background of modal-card-body -->
+      <div
+        data-testid="modal-content"
+        class="modal-card-body"
+        v-bind:class="['has-background-' + variant]"
+      >
         <slot name="content"> </slot>
       </div>
 
       <!-- modal footer with close button -->
       <footer
+        data-testid="modal-footer"
         v-if="closeOptions == 'footer' || closeOptions == 'both'"
         class="px-2 pb-2"
       >
         <d-button
+          aria-label="close"
           id="closebutton"
           :name="closeButtonText"
           :variant="colorbar"

@@ -1,14 +1,16 @@
 import { render, fireEvent } from '@testing-library/vue';
 import DModal from '@/components/d-modal.vue';
+import '@testing-library/jest-dom';
 
 // Behavior Driven Tests
 
-test('has d-modal class', () => {
-  const { container } = render(DModal);
-  expect(container.querySelector('.d-modal')).not.toBe(null);
+test('has dialog role and d-modal class', () => {
+  const { getByRole } = render(DModal);
+  // getByRole('dialog');
+  expect(getByRole('dialog')).toHaveClass('d-modal');
 });
 
-test('renders correct background variant for modal header when props.variant is passed', () => {
+test('renders correct background variant for modal card when props.variant is passed', () => {
   const variants = [
     'primary',
     'success',
@@ -19,15 +21,15 @@ test('renders correct background variant for modal header when props.variant is 
     'dark',
     'light'
   ];
+  var variantsHTML;
   variants.map(variant => {
-    const { container } = render(DModal, {
+    const { getAllByTestId } = render(DModal, {
       props: { variant }
     });
-    expect(
-      container
-        .querySelector('#header')
-        ._prevClass.includes(`has-background-${variant}`)
-    ).toBe(true);
+    variantsHTML = getAllByTestId('modal-card');
+  });
+  variantsHTML.map(function(variantHTML, i) {
+    expect(variantHTML).toHaveClass(`has-background-${variants[i]}`);
   });
 });
 
@@ -42,97 +44,78 @@ test('renders correct background variant for modal content when props.variant is
     'dark',
     'light'
   ];
+  var variantsHTML;
   variants.map(variant => {
-    const { container } = render(DModal, {
+    const { getAllByTestId } = render(DModal, {
       props: { variant }
     });
-    expect(
-      container
-        .querySelector('.modal-card-body')
-        ._prevClass.includes(`has-background-${variant}`)
-    ).toBe(true);
+    variantsHTML = getAllByTestId('modal-content');
   });
-});
-
-test('renders correct background variant for modal footer when props.variant is passed', () => {
-  const variants = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light'
-  ];
-  variants.map(variant => {
-    const { container } = render(DModal, {
-      props: { variant }
-    });
-    expect(
-      container
-        .querySelector('#footer')
-        ._prevClass.includes(`has-background-${variant}`)
-    ).toBe(true);
+  variantsHTML.map(function(variantHTML, i) {
+    expect(variantHTML).toHaveClass(`has-background-${variants[i]}`);
   });
 });
 
 test('renders correct width when props.width is passed', () => {
   const widths = ['small', 'medium', 'large'];
+  var widthsHTML;
   widths.map(width => {
-    const { container } = render(DModal, {
+    const { getAllByTestId } = render(DModal, {
       props: { width }
     });
-    const element = container.querySelector('.modal-card');
-    expect(element._prevClass.includes(`is-width-${width}`)).toBe(true);
+    widthsHTML = getAllByTestId('modal-card');
+  });
+  widthsHTML.map(function(widthHTML, i) {
+    expect(widthHTML).toHaveClass(`is-width-${widths[i]}`);
   });
 });
 
-test('renders close button correctly when props.closeOptions is passed', () => {
-  const closeOption = ['header', 'footer', 'both'];
-  const closeButtonText = 'Close';
-  closeOption.map(closeOptions => {
-    const options = { props: { closeOptions, closeButtonText } };
-    const { container } = render(DModal, options);
-    if (closeOptions === 'header') {
-      expect(container.querySelector('.delete')).not.toBe(null);
-      expect(container.querySelector('#closebutton')).toBe(null);
-    } else if (closeOptions === 'footer') {
-      expect(container.querySelector('.delete')).toBe(null);
-      expect(container.querySelector('#closebutton')).not.toBe(null);
-    } else {
-      expect(container.querySelector('.delete')).not.toBe(null);
-      expect(container.querySelector('#closebutton')).not.toBe(null);
-    }
-  });
+test('renders close button in header when props.closeOptions is header', () => {
+  const closeOptions = 'header';
+  const { queryByTestId } = render(DModal, { props: { closeOptions } });
+  expect(queryByTestId('modal-header')).not.toBe(null);
+  expect(queryByTestId('modal-footer')).toBe(null);
+});
+
+test('renders close button in footer when props.closeOptions is footer', () => {
+  const closeOptions = 'footer';
+  const { queryByTestId } = render(DModal, { props: { closeOptions } });
+  expect(queryByTestId('modal-header')).toBe(null);
+  expect(queryByTestId('modal-footer')).not.toBe(null);
+});
+
+test('renders close button in header and footer when props.closeOptions is both', () => {
+  const closeOptions = 'both';
+  const { queryByTestId } = render(DModal, { props: { closeOptions } });
+  expect(queryByTestId('modal-header')).not.toBe(null);
+  expect(queryByTestId('modal-footer')).not.toBe(null);
 });
 
 test('renders close button text correctly when props.closeButtonText is passed', () => {
   const closeButtonText = 'Close';
   const closeOptions = 'footer';
-  const { container } = render(DModal, {
+  const { getByText } = render(DModal, {
     props: { closeButtonText, closeOptions }
   });
-  expect(container.querySelector('#closebutton').__vue__._props.name).toMatch(
-    closeButtonText
-  );
+  getByText(closeButtonText.toUpperCase());
 });
 
 test('test for click event on close button', async () => {
   const closeButtonText = 'Close';
   const closeOptions = 'footer';
-  const { container } = render(DModal, {
+  const { getByLabelText, getByRole } = render(DModal, {
     props: { closeButtonText, closeOptions }
   });
-  const button = container.querySelector('#closebutton');
+  const button = getByLabelText('close');
   await fireEvent.click(button);
+  console.log(getByRole('dialog'));
 });
 
-test('test for click event on close button on the header', async () => {
-  const closeOptions = 'header';
-  const { container } = render(DModal, {
-    props: { closeOptions }
-  });
-  const button = container.querySelector('.delete');
-  await fireEvent.click(button);
-});
+// test('test for click event on close button on the header', async () => {
+//   const closeOptions = 'header';
+//   const { container } = render(DModal, {
+//     props: { closeOptions }
+//   });
+//   const button = container.querySelector('.delete');
+//   await fireEvent.click(button);
+// });
