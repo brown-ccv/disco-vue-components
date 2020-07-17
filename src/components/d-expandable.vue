@@ -67,7 +67,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        utils.variantValidator(value);
+        return utils.variantValidator(value);
       }
     }
   },
