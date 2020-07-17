@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import * as utils from '@/utils.js';
+
 export default {
   filters: {
     uppercase(str) {
@@ -43,20 +45,8 @@ export default {
     variant: {
       type: String,
       default: 'primary',
-      validator: function(value) {
-        // The value must match one of these strings
-        return (
-          [
-            'primary',
-            'success',
-            'danger',
-            'warning',
-            'info',
-            'link',
-            'dark',
-            'light'
-          ].indexOf(value) !== -1
-        );
+      validator(value) {
+        utils.variantValidator(value);
       }
     },
     icon: {

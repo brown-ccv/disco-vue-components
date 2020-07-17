@@ -1,0 +1,65 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { withA11y } from '@storybook/addon-a11y';
+import DExpandable from '../components/d-expandable.vue';
+import * as utils from '../utils.js';
+import { action } from "@storybook/addon-actions";
+
+<Meta title="Elements|Expandables" component={DExpandable} />
+
+# Expandables
+<Props of={DExpandable} />
+
+# DExpandable component
+```jsx
+<DExpandable title="expandable">text</DExpandable>
+```
+
+
+<Preview>
+  <Story name="Expandables" decorators={[withA11y]}>
+    {{
+        components: { DExpandable },
+        methods: {
+                setClicked(id) {
+                    this.clickedId = this.clickedId === id ? null : id;
+                },
+                setActive(id, value) {
+                    if (value) {
+                        this.activeId = id;
+                    } else {
+                        this.activeId = null;
+                    }
+                }
+            },
+        data() {
+            return {
+                variants: utils.COLOR_VARIANTS,
+                clickedId: null,
+                activeId: null
+            }
+        },
+        template: `
+        <div>
+            <div style="margin-top: 2rem;">
+                <h1 style="margin-bottom: 1rem;">Colors</h1>
+                <ul>
+                    <DExpandable
+                        v-for="variant in variants"
+                        :key="variant"
+                        title="Expandable"
+                        :isExpanded="clickedId === variant"
+                        :isHovered="activeId === variant"
+                        @header-click="setClicked(variant)"
+                        @header-active="setActive(variant, true)"
+                        @header-inactive="setActive(variant, false)"
+                        :variant="variant"
+                    >
+                        <p>Hello, world!</p>
+                    </DExpandable>
+                </ul>
+            </div>
+        </div>
+        `
+    }}
+  </Story>
+</Preview>
