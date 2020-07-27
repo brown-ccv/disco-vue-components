@@ -1,0 +1,26 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import DTOC from '../components/d-tableofcontents.vue';
+
+<Meta title="Elements|Table of Contents" component={DTOC} />
+
+# Table of Contents
+
+<Props of={DTOC} />
+
+# DTOC component
+```jsx
+<DTOC />
+```
+
+<Preview >
+    <Story name="Table of Contents">
+        {{
+            components: {DTOC},
+            template: `
+            <div>
+                <DTOC :data="[{name:'About', icon:'fax'}, {name: 'People', icon:'carrot-right'}]" name="newtable"/>
+            </div>
+            `
+        }}
+    </Story>
+</Preview>
