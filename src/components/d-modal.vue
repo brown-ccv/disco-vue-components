@@ -57,6 +57,9 @@
 
 <script>
 import DButton from '@/components/d-button.vue';
+
+import * as utils from '@/utils.js';
+
 export default {
   components: {
     'd-button': DButton
@@ -86,39 +89,15 @@ export default {
     variant: {
       type: String,
       default: 'primary',
-      validator: function(value) {
-        // The value must match one of these strings
-        return (
-          [
-            'primary',
-            'success',
-            'danger',
-            'warning',
-            'info',
-            'link',
-            'dark',
-            'light'
-          ].indexOf(value) !== -1
-        );
+      validator(value) {
+        return utils.variantValidator(value);
       }
     },
     colorbar: {
       type: String,
       default: 'danger',
-      validator: function(value) {
-        // The value must match one of these strings
-        return (
-          [
-            'primary',
-            'success',
-            'danger',
-            'warning',
-            'info',
-            'link',
-            'dark',
-            'light'
-          ].indexOf(value) !== -1
-        );
+      validator(value) {
+        return utils.variantValidator(value);
       }
     }
   },

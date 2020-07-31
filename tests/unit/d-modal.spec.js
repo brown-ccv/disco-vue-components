@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
 import DModal from '@/components/d-modal.vue';
 import '@testing-library/jest-dom';
 
@@ -6,7 +6,6 @@ import '@testing-library/jest-dom';
 
 test('has dialog role and d-modal class', () => {
   const { getByRole } = render(DModal);
-  // getByRole('dialog');
   expect(getByRole('dialog')).toHaveClass('d-modal');
 });
 
@@ -99,23 +98,3 @@ test('renders close button text correctly when props.closeButtonText is passed',
   });
   getByText(closeButtonText.toUpperCase());
 });
-
-test('test for click event on close button', async () => {
-  const closeButtonText = 'Close';
-  const closeOptions = 'footer';
-  const { getByLabelText, getByRole } = render(DModal, {
-    props: { closeButtonText, closeOptions }
-  });
-  const button = getByLabelText('close');
-  await fireEvent.click(button);
-  console.log(getByRole('dialog'));
-});
-
-// test('test for click event on close button on the header', async () => {
-//   const closeOptions = 'header';
-//   const { container } = render(DModal, {
-//     props: { closeOptions }
-//   });
-//   const button = container.querySelector('.delete');
-//   await fireEvent.click(button);
-// });
