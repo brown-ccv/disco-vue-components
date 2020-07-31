@@ -31,7 +31,7 @@
       <div
         data-testid="modal-content"
         class="modal-card-body"
-        v-bind:class="['has-background-' + variant]"
+        v-bind:class="[textColor, 'has-background-' + variant]"
       >
         <slot name="content"> </slot>
       </div>
@@ -104,6 +104,15 @@ export default {
   methods: {
     onClose() {
       this.$emit('close');
+    }
+  },
+  computed: {
+    textColor() {
+      let color =
+        ['danger', 'dark', 'link'].indexOf(this.variant) !== -1
+          ? 'has-text-light'
+          : 'has-text-dark';
+      return color;
     }
   }
 };
