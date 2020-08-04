@@ -4,17 +4,19 @@
       <table :name="name" class="d-toc">
         <tbody>
           <tr v-for="(entry, index) in data" :key="index">
-            <div class="box component">
-              <td class="component-icon">
-                <d-icon :name="entry.icon"></d-icon>
-              </td>
-              <td class="component-title fs-20">
-                <strong>{{ entry['name'] }}</strong>
-              </td>
-              <td class="component-number fs-20" align="right">
-                <h1>{{ index + 1 }}</h1>
-              </td>
-            </div>
+            <a :href="entry.link">
+              <div class="box component">
+                <td class="component-icon">
+                  <d-icon :name="entry.icon"></d-icon>
+                </td>
+                <td class="component-title fs-20">
+                  <strong>{{ entry['name'] }}</strong>
+                </td>
+                <td class="component-number fs-20" align="right">
+                  <h1>{{ index + 1 }}</h1>
+                </td>
+              </div>
+            </a>
           </tr>
         </tbody>
       </table>
@@ -24,7 +26,6 @@
 
 <script>
 import DIcon from '@/components/d-icon.vue';
-console.log('here');
 export default {
   components: {
     'd-icon': DIcon
@@ -38,30 +39,12 @@ export default {
       type: String
     }
   }
-  // computed: {
-  //   textColor() {
-  //     let color =
-  //       ['danger', 'dark', 'link'].indexOf(this.variant) !== -1
-  //         ? 'has-text-light'
-  //         : 'has-text-dark';
-  //     if (this.outlined) {
-  //       color = `has-text-${this.variant}`;
-  //     }
-  //     return color;
-  //   }
-  // },
-  // methods: {
-  //   onClick() {
-  //     this.$emit('click');
-  //   }
-  // }
 };
 </script>
 
 <style lang="scss" scoped>
 .box {
   background-color: white !important;
-  //width: 50%;
   display: inline-block;
 }
 .component {
