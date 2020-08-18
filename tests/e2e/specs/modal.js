@@ -13,13 +13,22 @@ module.exports = {
     browser
       .frame('storybook-preview-iframe')
       .assert.elementPresent('#root')
-      .assert.elementPresent('.d-button')
+      .assert.not.elementPresent('.d-modal')
       .click('.d-button')
       .assert.elementPresent('.d-modal')
       .initAccessibility()
       .assert.accessibility('.d-modal', {
         verbose: true
-      });
+      })
+      .assert.elementPresent('.delete')
+      .click('.delete')
+      .assert.not.elementPresent('.d-modal')
+      .assert.elementPresent('.is-info')
+      .click('.is-info')
+      .assert.elementPresent('.d-modal')
+      .assert.elementPresent('#closebutton')
+      .click('#closebutton')
+      .assert.not.elementPresent('.d-modal');
 
     browser.end();
   }
