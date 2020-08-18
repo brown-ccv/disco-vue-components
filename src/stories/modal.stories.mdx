@@ -23,8 +23,8 @@ import { action } from "@storybook/addon-actions";
       data() {
           return {
             modalImageColors: [
-              { name: 'Image Modal', buttoncolor: 'success', closeOptions: 'header', variant: 'light', width: 'small', colorbar: 'danger', show: false, template: `<img alt="Placeholder Image" src='https://via.placeholder.com/150'>` },
-              { name:'Text Modal', buttoncolor: 'warning', closeOptions: 'header', variant: 'link', width: 'medium', colorbar: 'danger', show: false, template: `
+              { id: 'image', name: 'Image Modal', buttoncolor: 'success', closeOptions: 'header', variant: 'light', width: 'small', colorbar: 'danger', show: false, template: `<img alt="Placeholder Image" src='https://via.placeholder.com/150'>` },
+              { id: '', name:'Text Modal', buttoncolor: 'warning', closeOptions: 'header', variant: 'link', width: 'medium', colorbar: 'danger', show: false, template: `
               <div class="content">
                 <h1 class="has-text-light">Modal Component</h1>
                 <p>
@@ -35,8 +35,8 @@ import { action } from "@storybook/addon-actions";
                   </ul>
                 </p>
               </div>`},
-              { name: 'Small Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'small', show: false, template: `<img alt="Placeholder Image" src='https://via.placeholder.com/150'>` },
-              { name: 'Medium Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'medium', show: false, template: `
+              { id: 'small', name: 'Small Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'small', show: false, template: `<img alt="Placeholder Image" src='https://via.placeholder.com/150'>` },
+              { id: 'medium', name: 'Medium Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'medium', show: false, template: `
               <div class="content">
                 <h1>Modal Component</h1>
                 <p>
@@ -47,7 +47,7 @@ import { action } from "@storybook/addon-actions";
                   </ul>
                 </p>
               </div>` },
-              { name: 'Large Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'large', show: false, template: `
+              { id: 'large', name: 'Large Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'large', show: false, template: `
               <div class="content">
                 <h1>Modal Component</h1>
                 <p>
@@ -58,7 +58,7 @@ import { action } from "@storybook/addon-actions";
                   </ul>
                 </p>
               </div>` },
-              { name: 'Card Modal', buttoncolor: 'info', closeButtonText: 'Close', closeOptions: 'both', variant: 'light', width: 'medium', show: false, template: `
+              { id: 'card', name: 'Card Modal', buttoncolor: 'info', closeButtonText: 'Close', closeOptions: 'both', variant: 'light', width: 'medium', show: false, template: `
                 <div class="card">
                   <div class="card-image">
                     <figure class="image is-4by3">
@@ -94,7 +94,7 @@ import { action } from "@storybook/addon-actions";
         <div>
             <h1 style="margin-bottom: 1rem;"> Modals </h1>
           <span v-for="modal  in modalImageColors">
-            <DButton :name="modal.name" :variant="modal.buttoncolor" @click="modal.show = !modal.show" />
+            <DButton :id="modal.id" :name="modal.name" :variant="modal.buttoncolor" @click="modal.show = !modal.show" />
             <DModal v-if="modal.show" :variant="modal.variant" :colorbar="modal.colorbar" :width="modal.width" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
               <template #content>
                 <span v-html="modal.template"></span>

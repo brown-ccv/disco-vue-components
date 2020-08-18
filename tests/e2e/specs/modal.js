@@ -2,7 +2,7 @@
 // https://nightwatchjs.org/guide
 
 module.exports = {
-  Modal: function(browser) {
+  beforeEach(browser, done) {
     let page = browser.page.page();
 
     page
@@ -13,23 +13,37 @@ module.exports = {
     browser
       .frame('storybook-preview-iframe')
       .assert.elementPresent('#root')
-      .assert.not.elementPresent('.d-modal')
+      .assert.elementPresent('.d-button');
+
+    done();
+  },
+  'Modal not present': function(browser) {
+    browser.assert.not.elementPresent('.d-modal');
+  },
+  'Modal Open and Accessibility check': function(browser) {
+    browser
       .click('.d-button')
       .assert.elementPresent('.d-modal')
       .initAccessibility()
       .assert.accessibility('.d-modal', {
         verbose: true
-      })
+      });
+  },
+  'Modal Close Check on header': function(browser) {
+    browser
+      .click('.d-button')
+      .assert.elementPresent('.d-modal')
       .assert.elementPresent('.delete')
       .click('.delete')
-      .assert.not.elementPresent('.d-modal')
-      .assert.elementPresent('.is-info')
-      .click('.is-info')
+      .assert.not.elementPresent('.d-modal');
+  },
+  'Modal Close Check on footer': function(browser) {
+    browser.assert
+      .elementPresent('#card')
+      .click('#card')
       .assert.elementPresent('.d-modal')
       .assert.elementPresent('#closebutton')
       .click('#closebutton')
       .assert.not.elementPresent('.d-modal');
-
-    browser.end();
   }
 };
