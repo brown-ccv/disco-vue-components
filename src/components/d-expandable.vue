@@ -32,6 +32,7 @@
 
     <div
       v-show="isExpanded"
+      data-testid="content"
       class="d-expandable-content px-4 py-3 is-size-6"
       v-bind:class="[borderColor]"
     >
