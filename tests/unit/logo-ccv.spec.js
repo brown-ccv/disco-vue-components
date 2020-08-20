@@ -1,22 +1,27 @@
-import { shallowMount } from '@vue/test-utils';
+import { render } from '@testing-library/vue';
 import CCVLogo from '@/components/logos/CCVLogo.vue';
+import '@testing-library/jest-dom';
 
-describe('CCVLogo.vue', () => {
-  const wrapper = shallowMount(CCVLogo);
+test('has ccv-logo class', () => {
+  const { getByRole } = render(CCVLogo);
+  expect(getByRole('img', { hidden: true })).toHaveClass('ccv-logo');
+});
 
-  it('has brown-logo class', () => {
-    expect(wrapper.find('.ccv-logo')).toBeTruthy();
-  });
+test('has default size class', () => {
+  const { getByRole } = render(CCVLogo);
+  expect(getByRole('img', { hidden: true })).toHaveClass('l');
+});
 
-  it('has default size class', () => {
-    expect(wrapper.find('.l')).toBeTruthy();
-  });
-
+test('has default size class', () => {
   const sizes = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];
+  var sizesHTML;
   sizes.map(size => {
-    const wrapper = shallowMount(CCVLogo, {
-      propsData: { size }
+    const { getAllByRole } = render(CCVLogo, {
+      props: { size }
     });
-    expect(wrapper.find(`.${size}`)).toBeTruthy();
+    sizesHTML = getAllByRole('img', { hidden: true });
+  });
+  sizesHTML.map(function(sizeHTML, i) {
+    expect(sizeHTML).toHaveClass(`${sizes[i]}`);
   });
 });

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BrownLogo v-bind:class="size" />
+    <BrownLogo role="img" aria-hidden="true" v-bind:class="size" />
   </div>
 </template>
 

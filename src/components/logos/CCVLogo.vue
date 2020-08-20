@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CCVLogo v-bind:class="size" />
+    <CCVLogo role="img" aria-hidden="true" v-bind:class="size" />
   </div>
 </template>
 

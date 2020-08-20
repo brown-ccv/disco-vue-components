@@ -2,6 +2,7 @@
   <button
     :type="type"
     :name="name"
+    data-testid="button"
     class="d-button"
     v-bind:class="[
       'is-' + size,
