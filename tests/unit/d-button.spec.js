@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
 import DButton from '@/components/d-button.vue';
 import '@testing-library/jest-dom';
 
@@ -105,7 +105,7 @@ test('renders correct dark text color when light props.variant is passed', () =>
   });
 });
 
-test('renders correct variant when props.variant is passed', () => {
+test('renders correct text color when props.variant and props.outlined is passed', () => {
   const name = 'button';
   const outlined = true;
   const variants = [
@@ -129,13 +129,4 @@ test('renders correct variant when props.variant is passed', () => {
     expect(variantHTML).toHaveClass(`has-text-${variants[i]}`);
     expect(variantHTML).toHaveClass('is-outlined');
   });
-});
-
-test('renders correct type when props.type is not passed', () => {
-  const name = 'button';
-  const type = 'button';
-  const { getByTestId } = render(DButton, {
-    props: { name, type }
-  });
-  fireEvent.click(getByTestId('button'));
 });

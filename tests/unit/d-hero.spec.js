@@ -12,7 +12,7 @@ test('has d-hero class', () => {
   expect(getByRole('banner')).toHaveClass('d-hero');
 });
 
-test('renders correct title and subtitle when props.title and subtile are passed', () => {
+test('renders d-title and d-subtitle classes', () => {
   const title = 'Hero Title';
   const subtitle = 'Subtitle';
 
@@ -60,7 +60,7 @@ test('renders correct variant when props.variant is passed', () => {
   });
 });
 
-test('renders correct title and subtitle when props.title and subtile are passed', () => {
+test('renders full height when props.fullHight is passed', () => {
   const title = 'Hero Title';
   const subtitle = 'Subtitle';
   const fullHeight = true;

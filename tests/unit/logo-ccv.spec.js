@@ -12,7 +12,7 @@ test('has default size class', () => {
   expect(getByRole('img', { hidden: true })).toHaveClass('l');
 });
 
-test('has default size class', () => {
+test('renders correct size when props.size is passed', () => {
   const sizes = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];
   var sizesHTML;
   sizes.map(size => {

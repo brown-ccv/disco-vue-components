@@ -10,7 +10,7 @@ test('has icon class', () => {
   expect(getByRole('img', { hidden: true })).toHaveClass('icon');
 });
 
-test('has icon class', () => {
+test('renders default height and width', () => {
   const name = 'instagram';
   const { getByRole } = render(DIcon, {
     props: { name }
@@ -19,7 +19,7 @@ test('has icon class', () => {
   expect(getByRole('img', { hidden: true })).toHaveAttribute('height', '24');
 });
 
-test('has icon class', () => {
+test('renders height and width when props are passed', () => {
   const name = 'instagram';
   const width = '50';
   const height = '50';
