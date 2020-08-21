@@ -1,11 +1,11 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DButton from '../components/d-button.vue';
 import DIcon from '../components/d-icon.vue';
-import { action } from "@storybook/addon-actions";
+import { action } from '@storybook/addon-actions';
 import { COLOR_VARIANTS, SIZES } from '../utils';
 
 <Meta 
-    title="Elements/Buttons" 
+    title='Elements/Buttons' 
     component={DButton}
     argTypes={{
         variant: { control: { type: 'select', options: COLOR_VARIANTS } },
@@ -14,18 +14,18 @@ import { COLOR_VARIANTS, SIZES } from '../utils';
 />
 
 # Buttons
-<ArgsTable story="Buttons"/>
+<ArgsTable story='Buttons'/>
 
 # DButton component
 ```jsx
-<DButton name="button"/>
+<DButton name='button'/>
 ```
 
 ```jsx
-<DButton name="button">
+<DButton name='button'>
     <template v-slot:icon-right>
-        <span class="icon">
-            <DIcon name="carrot-right" />
+        <span class='icon'>
+            <DIcon name='carrot-right' />
         <span>
     </template>
 </DButton>
@@ -33,19 +33,19 @@ import { COLOR_VARIANTS, SIZES } from '../utils';
 
 export const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  methods: { action: action("clicked") },
+  methods: { action: action('clicked') },
   components: { DButton, DIcon },
-  template: `<DButton @click="action" :name="name" :variant="variant" :outlined="outlined" :size="size">
+  template: `<DButton @click='action' :name='name' :variant='variant' :outlined='outlined' :size='size'>
                 <template v-slot:icon-right>
-                    <span class="icon">
-                        <DIcon name="carrot-right" />
+                    <span class='icon'>
+                        <DIcon name='carrot-right' />
                     </span>
                 </template>
             </DButton>`
 });
 
 <Canvas>
-  <Story name="Buttons" args={{name: 'button', variant: 'warning', outlined: false, size: 'small'}} >
+  <Story name='Buttons' args={{name: 'button', variant: 'warning', outlined: false, size: 'small'}} >
     {Template.bind({})}
   </Story>
 </Canvas>
