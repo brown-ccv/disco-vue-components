@@ -1,21 +1,28 @@
 <template>
   <section
-    v-bind:class="['is-width-' + size, 'has-border-top-' + colorbar, 'is-card']"
+    class="is-card"
+    v-bind:class="['is-width-' + size, 'has-border-top-' + colorbar]"
   >
     <header v-bind:class="['header-rule']">
       <h2 class="d-subtitle">{{ title }}</h2>
     </header>
-    <div>
-      <slot />
+    <div class="card-content">
+      <slot name="content" />
     </div>
-    <footer v-if="buttonLabel">
-      <button>{{ buttonLabel }}</button>
+    <footer class="px-2 pb-3" v-if="buttonLabel">
+      <d-button :name="buttonLabel" :variant="colorbar"></d-button>
     </footer>
   </section>
 </template>
 
 <script>
+import DButton from '@/components/d-button.vue';
+import * as utils from '@/utils.js';
+
 export default {
+  components: {
+    'd-button': DButton
+  },
   props: {
     title: {
       type: String,
@@ -35,19 +42,21 @@ export default {
     },
     variant: {
       type: String,
-      default: 'warning',
-      validator: value => {
-        [
-          'primary',
-          'success',
-          'danger',
-          'warning',
-          'info',
-          'link',
-          'dark',
-          'light'
-        ].indexOf(value) !== -1;
+      default: 'primary',
+      validator(value) {
+        return utils.variantValidator(value);
       }
+    },
+    colorbar: {
+      type: String,
+      default: 'danger',
+      validator(value) {
+        return utils.variantValidator(value);
+      }
+    },
+    buttonLabel: {
+      type: String,
+      required: false
     }
   }
 };
