@@ -10,7 +10,7 @@
       v-bind:class="[
         'is-width-' + width,
         'has-border-top-' + colorbar,
-        'has-background-' + variant
+        'has-background-' + variant,
       ]"
     >
       <!-- header -->
@@ -62,49 +62,49 @@ import * as utils from '@/utils.js';
 
 export default {
   components: {
-    'd-button': DButton
+    'd-button': DButton,
   },
   props: {
     width: {
       type: String,
       required: false,
       default: 'medium',
-      validator: function(value) {
+      validator: function (value) {
         return ['small', 'medium', 'large'].indexOf(value) !== -1;
-      }
+      },
     },
     closeButtonText: {
       type: String,
       required: false,
-      default: 'Close'
+      default: 'Close',
     },
     closeOptions: {
       type: String,
       required: false,
       default: 'header',
-      validator: function(value) {
+      validator: function (value) {
         return ['header', 'footer', 'both'].indexOf(value) !== -1;
-      }
+      },
     },
     variant: {
       type: String,
       default: 'primary',
       validator(value) {
         return utils.variantValidator(value);
-      }
+      },
     },
     colorbar: {
       type: String,
       default: 'danger',
       validator(value) {
         return utils.variantValidator(value);
-      }
-    }
+      },
+    },
   },
   methods: {
     onClose() {
       this.$emit('close');
-    }
+    },
   },
   computed: {
     textColor() {
@@ -113,11 +113,14 @@ export default {
           ? 'has-text-light'
           : 'has-text-dark';
       return color;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
+.delete {
+  border-radius: 0 !important;
+}
 .is-width-small {
   width: 40vh;
 }

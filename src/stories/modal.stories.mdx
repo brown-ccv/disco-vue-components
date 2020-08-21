@@ -4,13 +4,13 @@ import DModal from '../components/d-modal.vue';
 import DButton from '../components/d-button.vue';
 import { action } from "@storybook/addon-actions";
 
-<Meta title="Elements|Modal" component={DModal} />
+<Meta title="Elements/Modal" component={DModal} />
 
 # Modal
 <Props of={DModal} />
 
 # DModal component
-```jsx
+```html
 <DButton name="Show Modal" @click="showModal = true" />
 <DModal v-if="showModal" title="Modal Title" @close="showModal = false" />
 ```
