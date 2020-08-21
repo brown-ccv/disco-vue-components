@@ -7,7 +7,7 @@
       'is-' + size,
       'is-' + variant,
       textColor,
-      { 'is-outlined': outlined }
+      { 'is-outlined': outlined },
     ]"
     @click="onClick"
   >
@@ -22,28 +22,28 @@ export default {
   filters: {
     uppercase(str) {
       return str.toUpperCase();
-    }
+    },
   },
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     type: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     size: {
       type: String,
       required: false,
-      validator: function(value) {
+      validator: function (value) {
         return ['small', 'normal', 'medium', 'large'].indexOf(value) !== -1;
-      }
+      },
     },
     variant: {
       type: String,
       default: 'primary',
-      validator: function(value) {
+      validator: function (value) {
         // The value must match one of these strings
         return (
           [
@@ -54,19 +54,15 @@ export default {
             'info',
             'link',
             'dark',
-            'light'
+            'light',
           ].indexOf(value) !== -1
         );
-      }
-    },
-    icon: {
-      type: Boolean,
-      default: true
+      },
     },
     outlined: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     textColor() {
@@ -78,12 +74,12 @@ export default {
         color = `has-text-${this.variant}`;
       }
       return color;
-    }
+    },
   },
   methods: {
     onClick() {
       this.$emit('click');
-    }
-  }
+    },
+  },
 };
 </script>

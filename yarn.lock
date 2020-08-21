@@ -2804,6 +2804,20 @@
     util-deprecate "^1.0.2"
     uuid "^8.0.0"
 
+"@storybook/addon-controls@^6.0.16":
+  version "6.0.16"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.16.tgz#c7fc765a01cc3a0de397f8b55bfeda3f328e5495"
+  integrity sha512-RgBOply9o3PYoWI7TNKef2AQixw7l620pT1fCJbXykp/lu17eqKaIa5KYHRE9vEajun5RuEQxGnSzQOV3OZAsA==
+  dependencies:
+    "@storybook/addons" "6.0.16"
+    "@storybook/api" "6.0.16"
+    "@storybook/client-api" "6.0.16"
+    "@storybook/components" "6.0.16"
+    "@storybook/node-logger" "6.0.16"
+    "@storybook/theming" "6.0.16"
+    core-js "^3.0.1"
+    ts-dedent "^1.1.1"
+
 "@storybook/addon-docs@>=6.0.16":
   version "6.0.16"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-6.0.16.tgz#b24983a63c6c9469a418bb1478606626aff42dff"
@@ -2909,6 +2923,23 @@
     memoizerific "^1.11.3"
     prop-types "^15.7.2"
     util-deprecate "^1.0.2"
+
+"@storybook/addon-viewport@^6.0.16":
+  version "6.0.16"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-6.0.16.tgz#574cc0a3f991ce405ba4a3540132fb05edf488f6"
+  integrity sha512-3vk6lBZrKJrK9rwxglLT1p579WkLvoJxgW5ddpvSsu31NPAKfDufkDqOZOQGyMmcgIFzZJEc9eKjoTcLiHxppw==
+  dependencies:
+    "@storybook/addons" "6.0.16"
+    "@storybook/api" "6.0.16"
+    "@storybook/client-logger" "6.0.16"
+    "@storybook/components" "6.0.16"
+    "@storybook/core-events" "6.0.16"
+    "@storybook/theming" "6.0.16"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    memoizerific "^1.11.3"
+    prop-types "^15.7.2"
+    regenerator-runtime "^0.13.3"
 
 "@storybook/addons@5.3.19":
   version "5.3.19"
@@ -5213,6 +5244,11 @@ babel-helper-to-multiple-sequence-expressions@^0.5.0:
   resolved "https://registry.yarnpkg.com/babel-helper-to-multiple-sequence-expressions/-/babel-helper-to-multiple-sequence-expressions-0.5.0.tgz#a3f924e3561882d42fcf48907aa98f7979a4588d"
   integrity sha512-m2CvfDW4+1qfDdsrtf4dwOslQC3yhbgyBFptncp4wvtdrDHqueW7slsYv4gArie056phvQFhT2nRcGS4bnm6mA==
 
+babel-helper-vue-jsx-merge-props@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-2.0.3.tgz#22aebd3b33902328e513293a8e4992b384f9f1b6"
+  integrity sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==
+
 babel-jest@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-24.9.0.tgz#3fc327cb8467b89d14d7bc70e315104a783ccd54"
@@ -5309,6 +5345,20 @@ babel-plugin-jest-hoist@^24.9.0:
   integrity sha512-2EMA2P8Vp7lG0RAzr4HXqtYwacfMErOuv1U3wrvxHX6rD1sV6xS3WXG3r8TRQ2r6w8OhvSdWt+z41hQNwNm3Xw==
   dependencies:
     "@types/babel__traverse" "^7.0.6"
+
+babel-plugin-jsx-event-modifiers@^2.0.2:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-event-modifiers/-/babel-plugin-jsx-event-modifiers-2.0.5.tgz#93e6ebb5d7553bb08f9fedbf7a0bee3af09a0472"
+  integrity sha512-tWGnCk0whZ+nZcj9tYLw4+y08tPJXqaEjIxRJZS6DkUUae72Kz4BsoGpxt/Kow7mmgQJpvFCw8IPLSNh5rkZCg==
+
+babel-plugin-jsx-v-model@^2.0.1:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-v-model/-/babel-plugin-jsx-v-model-2.0.3.tgz#c396416b99cb1af782087315ae1d3e62e070f47d"
+  integrity sha512-SIx3Y3XxwGEz56Q1atwr5GaZsxJ2IRYmn5dl38LFkaTAvjnbNQxsZHO+ylJPsd+Hmv+ixJBYYFEekPBTHwiGfQ==
+  dependencies:
+    babel-plugin-syntax-jsx "^6.18.0"
+    html-tags "^2.0.0"
+    svg-tags "^1.0.0"
 
 babel-plugin-macros@^2.0.0, babel-plugin-macros@^2.8.0:
   version "2.8.0"
@@ -5477,6 +5527,13 @@ babel-plugin-transform-undefined-to-void@^6.9.4:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-undefined-to-void/-/babel-plugin-transform-undefined-to-void-6.9.4.tgz#be241ca81404030678b748717322b89d0c8fe280"
   integrity sha1-viQcqBQEAwZ4t0hxcyK4nQyP4oA=
 
+babel-plugin-transform-vue-jsx@^3.5.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-vue-jsx/-/babel-plugin-transform-vue-jsx-3.7.0.tgz#d40492e6692a36b594f7e9a1928f43e969740960"
+  integrity sha512-W39X07/n3oJMQd8tALBO+440NraGSF//Lo1ydd/9Nme3+QiRGFBb1Q39T9iixh0jZPPbfv3so18tNoIgLatymw==
+  dependencies:
+    esutils "^2.0.2"
+
 babel-preset-jest@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-24.9.0.tgz#192b521e2217fb1d1f67cf73f70c336650ad3cdc"
@@ -5513,6 +5570,17 @@ babel-preset-jest@^24.9.0:
     babel-plugin-transform-simplify-comparison-operators "^6.9.4"
     babel-plugin-transform-undefined-to-void "^6.9.4"
     lodash "^4.17.11"
+
+babel-preset-vue@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/babel-preset-vue/-/babel-preset-vue-2.0.2.tgz#cfadf1bd736125397481b5f8525ced0049a0c71f"
+  integrity sha1-z63xvXNhJTl0gbX4UlztAEmgxx8=
+  dependencies:
+    babel-helper-vue-jsx-merge-props "^2.0.2"
+    babel-plugin-jsx-event-modifiers "^2.0.2"
+    babel-plugin-jsx-v-model "^2.0.1"
+    babel-plugin-syntax-jsx "^6.18.0"
+    babel-plugin-transform-vue-jsx "^3.5.0"
 
 babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
   version "6.26.0"
