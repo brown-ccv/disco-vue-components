@@ -2,21 +2,13 @@ import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DButton from '../components/d-button.vue';
 import DIcon from '../components/d-icon.vue';
 import { action } from "@storybook/addon-actions";
+import {COLOR_VARIANTS} from '../utils';
 
 <Meta 
     title="Elements/Buttons" 
     component={DButton}
     argTypes={{
-        variant: {control: {type: 'select', options: [
-            'primary',
-            'success',
-            'danger',
-            'warning',
-            'info',
-            'link',
-            'dark',
-            'light'
-          ]}},
+        variant: {control: {type: 'select', options: COLOR_VARIANTS}},
         size: {control: {type: 'select', options: ['small', 'medium', 'large']}}
     }}
 />
