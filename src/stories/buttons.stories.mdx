@@ -2,14 +2,14 @@ import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DButton from '../components/d-button.vue';
 import DIcon from '../components/d-icon.vue';
 import { action } from "@storybook/addon-actions";
-import {COLOR_VARIANTS} from '../utils';
+import { COLOR_VARIANTS, SIZES } from '../utils';
 
 <Meta 
     title="Elements/Buttons" 
     component={DButton}
     argTypes={{
-        variant: {control: {type: 'select', options: COLOR_VARIANTS}},
-        size: {control: {type: 'select', options: ['small', 'medium', 'large']}}
+        variant: { control: { type: 'select', options: COLOR_VARIANTS } },
+        size: { control: { type: 'select', options: SIZES } }
     }}
 />
 
@@ -39,7 +39,7 @@ export const Template = (args, { argTypes }) => ({
                 <template v-slot:icon-right>
                     <span class="icon">
                         <DIcon name="carrot-right" />
-                    <span>
+                    </span>
                 </template>
             </DButton>`
 });

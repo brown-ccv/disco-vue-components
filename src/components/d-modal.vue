@@ -1,5 +1,5 @@
 <template>
-  <div aria-live="polite" role="dialog" class="d-modal modal is-active">
+  <dialog aria-live="polite" role="dialog" class="d-dialog modal is-active">
     <!-- area surrounding modal -->
     <div class="modal-background"></div>
 
@@ -9,7 +9,7 @@
       class="modal-card"
       v-bind:class="[
         'is-width-' + width,
-        'has-border-top-' + colorbar,
+        'has-border-top-' + accent,
         'has-background-' + variant,
       ]"
     >
@@ -46,13 +46,13 @@
           aria-label="close"
           id="closebutton"
           :name="closeButtonText"
-          :variant="colorbar"
+          :variant="accent"
           @click="onClose"
         >
         </d-button>
       </footer>
     </div>
-  </div>
+  </dialog>
 </template>
 
 <script>
@@ -67,7 +67,6 @@ export default {
   props: {
     width: {
       type: String,
-      required: false,
       default: 'medium',
       validator: function (value) {
         return ['small', 'medium', 'large'].indexOf(value) !== -1;
@@ -75,12 +74,10 @@ export default {
     },
     closeButtonText: {
       type: String,
-      required: false,
       default: 'Close',
     },
     closeOptions: {
       type: String,
-      required: false,
       default: 'header',
       validator: function (value) {
         return ['header', 'footer', 'both'].indexOf(value) !== -1;
@@ -93,7 +90,7 @@ export default {
         return utils.variantValidator(value);
       },
     },
-    colorbar: {
+    accent: {
       type: String,
       default: 'danger',
       validator(value) {
@@ -118,17 +115,21 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.d-dialog {
+  width: 100vw;
+}
+
 .delete {
   border-radius: 0 !important;
 }
 .is-width-small {
-  width: 40vh;
+  width: 40ex;
 }
 .is-width-medium {
-  width: 70vh;
+  width: 70ex;
 }
 .is-width-large {
-  width: 100vh;
+  width: 100ex;
 }
 $variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
   'light';

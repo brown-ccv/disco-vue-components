@@ -9,7 +9,9 @@ export const COLOR_VARIANTS = [
   'light',
 ];
 
-export const SIZE_VARIANTS = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];
+export const SIZES_ABBR = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];
+
+export const SIZES = ['small', 'medium', 'large'];
 
 export const variantValidator = (variant) => {
   return COLOR_VARIANTS.indexOf(variant) !== -1;

@@ -1,13 +1,21 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import { withA11y } from '@storybook/addon-a11y';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DModal from '../components/d-modal.vue';
 import DButton from '../components/d-button.vue';
-import { action } from "@storybook/addon-actions";
+import { COLOR_VARIANTS, SIZES } from '../utils';
 
-<Meta title="Elements/Modal" component={DModal} />
+<Meta 
+  title="Elements/Modal" 
+  component={DModal} 
+  argTypes={{
+    variant: { control: { type: 'select', options: COLOR_VARIANTS } },
+    accent: { control: { type: 'select', options: COLOR_VARIANTS } },
+    width: { control: { type: 'select', options: SIZES } },
+    closeOptions: { control: { type: 'select', options: ['header', 'footer', 'both']}}
+  }}
+/>
 
 # Modal
-<Props of={DModal} />
+<ArgsTable story="Modal" />
 
 # DModal component
 ```html
@@ -15,95 +23,32 @@ import { action } from "@storybook/addon-actions";
 <DModal v-if="showModal" title="Modal Title" @close="showModal = false" />
 ```
 
-<Preview>
-  <Story name="Modal" decorators={[withA11y]}>
-    {{
-      components: { DModal, DButton },
-      methods: { action: action("clicked") },
-      data() {
-          return {
-            modalImageColors: [
-              { id: 'image', name: 'Image Modal', buttoncolor: 'success', closeOptions: 'header', variant: 'light', width: 'small', colorbar: 'danger', show: false, template: `<img alt="Placeholder Image" src='https://via.placeholder.com/150'>` },
-              { id: '', name:'Text Modal', buttoncolor: 'warning', closeOptions: 'header', variant: 'link', width: 'medium', colorbar: 'danger', show: false, template: `
-              <div class="content">
-                <h1 class="has-text-light">Modal Component</h1>
-                <p>
-                  <ul>
-                    <li>Triggered by button. </li>
-                    <li>Customizable top color bar, background color and content. </li>
-                    <li>Two options for close buttons </li>
-                  </ul>
-                </p>
-              </div>`},
-              { id: 'small', name: 'Small Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'small', show: false, template: `<img alt="Placeholder Image" src='https://via.placeholder.com/150'>` },
-              { id: 'medium', name: 'Medium Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'medium', show: false, template: `
-              <div class="content">
-                <h1>Modal Component</h1>
-                <p>
-                  <ul>
-                    <li>Triggered by button. </li>
-                    <li>Customizable top color bar, background color and content. </li>
-                    <li>Two options for close buttons </li>
-                  </ul>
-                </p>
-              </div>` },
-              { id: 'large', name: 'Large Modal', buttoncolor: 'primary', closeOptions: 'header', variant: 'light', width: 'large', show: false, template: `
-              <div class="content">
-                <h1>Modal Component</h1>
-                <p>
-                  <ul>
-                    <li>Triggered by button. </li>
-                    <li>Customizable top color bar, background color and content. </li>
-                    <li>Two options for close buttons </li>
-                  </ul>
-                </p>
-              </div>` },
-              { id: 'card', name: 'Card Modal', buttoncolor: 'info', closeButtonText: 'Close', closeOptions: 'both', variant: 'light', width: 'medium', show: false, template: `
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img alt="Placeholder Image" src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-48x48">
-                          <img alt="Placeholder Image" src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">John Smith</p>
-                        <p class="subtitle is-6">@johnsmith</p>
-                      </div>
-                    </div>
-                    <div class="content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Phasellus nec iaculis mauris. <a href="#">@bulmaio</a>.
-                      <a href="#">#css</a> <a href="#">#responsive</a>
-                      <br>
-                      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                    </div>
-                  </div>
-                </div>` }
-            ]
-          }
-      },
-      template: `
-      <div>
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DModal, DButton },
+  data() {
+    return {
+      show: true
+    }
+  },
+  template: `
         <div>
-            <h1 style="margin-bottom: 1rem;"> Modals </h1>
-          <span v-for="modal  in modalImageColors">
-            <DButton :id="modal.id" :name="modal.name" :variant="modal.buttoncolor" @click="modal.show = !modal.show" />
-            <DModal v-if="modal.show" :variant="modal.variant" :colorbar="modal.colorbar" :width="modal.width" :close-button-text="modal.closeButtonText" :close-options="modal.closeOptions" @close="modal.show = !modal.show" >
-              <template #content>
-                <span v-html="modal.template"></span>
-              </template>
-            </DModal> 
-          </span>
+          <DButton name="Show Modal" @click="show = true" variant="link"/>
+          <DModal v-if="show" :variant="variant" :accent="accent" :width="width" :closeOptions="closeOptions" @close="show = !show">
+            <template #content>
+              <div class="content">
+                <h1>Lorem ipsum</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </template>
+          </DModal> 
         </div>
-      </div>
-      `
-    }}
+        `
+});
+
+<Canvas>
+  <Story name="Modal" args={{variant: 'light', accent: 'warning', width: 'small', closeOptions: 'both' }}>
+    {Template.bind({})}
   </Story>
-</Preview>
+</Canvas>
+

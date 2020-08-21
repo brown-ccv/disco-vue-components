@@ -1,13 +1,13 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import BrownLogo from '../components/logos/BrownLogo.vue';
 import CCVLogo from '../components/logos/CCVLogo.vue';
-import {SIZE_VARIANTS} from '../utils';
+import { SIZES_ABBR } from '../utils';
 
 <Meta 
     title="Elements/Logos" 
     component={BrownLogo, CCVLogo}
     argTypes={{
-        size: {control: {type: 'select', options: SIZE_VARIANTS}}
+        size: {control: {type: 'select', options: SIZES_ABBR}}
     }}
 />
 
