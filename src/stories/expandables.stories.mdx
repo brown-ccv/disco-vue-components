@@ -1,65 +1,90 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import { withA11y } from '@storybook/addon-a11y';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DExpandable from '../components/d-expandable.vue';
-import * as utils from '../utils.js';
-import { action } from "@storybook/addon-actions";
+import { COLOR_VARIANTS } from '../utils';
 
-<Meta title="Elements/Expandables" component={DExpandable} />
+<Meta 
+    title="Elements/Expandables" 
+    component={DExpandable} 
+    argTypes={{
+      variant: { control: { type: 'select', options: COLOR_VARIANTS } }
+    }}
+/>
 
 # Expandables
-<Props of={DExpandable} />
+<ArgsTable story="Expandable" />
 
 # DExpandable component
-```jsx
+```html
 <DExpandable title="expandable">text</DExpandable>
 ```
 
+# Multiple expandables combined
+```html
+<div>
+  <DExpandable
+    key="expandabble-example-1"
+    title="Expandable"
+    :isExpanded="clickedId === 'expandabble-example-1'"
+    :isHovered="activeId === 'expandabble-example-1'"
+    @header-click="setClicked('expandabble-example-1')"
+    @header-active="setActive('expandabble-example-1', true)"
+    @header-inactive="setActive('expandabble-example-1', false)"
+    :variant="variant">
+    <p>Hello, world!</p>
+  </DExpandable>
+  <DExpandable
+    key="expandabble-example-2"
+    title="Expandable"
+    :isExpanded="clickedId === 'expandabble-example-2'"
+    :isHovered="activeId === 'expandabble-example-2'"
+    @header-click="setClicked('expandabble-example-2')"
+    @header-active="setActive('expandabble-example-2', true)"
+    @header-inactive="setActive('expandabble-example-2', false)"
+    :variant="variant">
+    <p>Hello, world!</p>
+  </DExpandable>
+</div>
+```
 
-<Preview>
-  <Story name="Expandables" decorators={[withA11y]}>
-    {{
-        components: { DExpandable },
-        methods: {
-                setClicked(id) {
-                    this.clickedId = this.clickedId === id ? null : id;
-                },
-                setActive(id, value) {
-                    if (value) {
-                        this.activeId = id;
-                    } else {
-                        this.activeId = null;
-                    }
-                }
-            },
-        data() {
-            return {
-                variants: utils.COLOR_VARIANTS,
-                clickedId: null,
-                activeId: null
-            }
-        },
-        template: `
-        <div>
-            <div style="margin-top: 2rem;">
-                <h1 style="margin-bottom: 1rem;">Colors</h1>
-                <ul>
-                    <DExpandable
-                        v-for="variant in variants"
-                        :key="variant"
-                        title="Expandable"
-                        :isExpanded="clickedId === variant"
-                        :isHovered="activeId === variant"
-                        @header-click="setClicked(variant)"
-                        @header-active="setActive(variant, true)"
-                        @header-inactive="setActive(variant, false)"
-                        :variant="variant"
-                    >
-                        <p>Hello, world!</p>
-                    </DExpandable>
-                </ul>
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  methods: {
+    setClicked(id) {
+        this.clickedId = this.clickedId === id ? null : id;
+    },
+    setActive(id, value) {
+        if (value) {
+            this.activeId = id;
+        } else {
+            this.activeId = null;
+        }
+    }
+  },
+  data() {
+    return {
+        clickedId: null,
+        activeId: null
+    }
+  },
+  components: { DExpandable },
+  template: `<div>
+              <DExpandable
+                key="expandabble-example-1"
+                title="Expandable"
+                :isExpanded="isExpanded"
+                :isHovered="isHovered"
+                @header-click="setClicked('expandabble-example-1')"
+                @header-active="setActive('expandabble-example-1', true)"
+                @header-inactive="setActive('expandabble-example-1', false)"
+                :variant="variant">
+                <p>Hello, world!</p>
+              </DExpandable>
             </div>
-        </div>
-        `
-    }}
+            `
+});
+
+<Canvas>
+  <Story name="Expandables" args={{variant: 'primary', isExpanded: false, isHovered: false}}>
+    {Template.bind({})}
   </Story>
-</Preview>
+</Canvas>

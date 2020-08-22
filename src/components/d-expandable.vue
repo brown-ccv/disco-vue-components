@@ -1,5 +1,5 @@
 <template>
-  <li class="d-expandable mx-2 my-2">
+  <span class="d-expandable mx-2 my-2">
     <header
       class="level is-mobile d-expandable-header mb-0 px-0 py-2"
       v-bind:class="[textColor]"
@@ -38,7 +38,7 @@
     >
       <slot></slot>
     </div>
-  </li>
+  </span>
 </template>
 
 <script>
