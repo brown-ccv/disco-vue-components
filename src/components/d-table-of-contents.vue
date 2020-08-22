@@ -28,17 +28,17 @@
 import DIcon from '@/components/d-icon.vue';
 export default {
   components: {
-    'd-icon': DIcon
+    'd-icon': DIcon,
   },
   props: {
     data: {
       type: Array,
-      required: true
+      required: true,
     },
     name: {
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
 };
 </script>
 
