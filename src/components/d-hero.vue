@@ -1,14 +1,15 @@
 <template>
   <section
+    role="banner"
     class="d-hero is-medium is-bold"
     v-bind:class="['is-' + variant, { 'is-full-height': fullHeight }]"
   >
     <div class="hero-body">
       <div class="container">
-        <h1 class="d-title">
+        <h1 role="heading" aria-level="1" class="d-title">
           {{ title }}
         </h1>
-        <h2 class="d-subtitle">
+        <h2 data-testid="subtitle" class="d-subtitle">
           {{ subtitle }}
         </h2>
       </div>

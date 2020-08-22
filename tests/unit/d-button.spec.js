@@ -1,119 +1,132 @@
-import { shallowMount } from '@vue/test-utils';
+import { render } from '@testing-library/vue';
 import DButton from '@/components/d-button.vue';
+import '@testing-library/jest-dom';
 
-describe('d-button.vue', () => {
-  it('has d-button class', () => {
-    const name = 'button';
-    const wrapper = shallowMount(DButton, {
-      propsData: { name }
-    });
-    expect(wrapper.classes()).toContain('d-button');
+test('has d-button class', () => {
+  const name = 'Button';
+  const { getByTestId } = render(DButton, {
+    props: { name },
   });
+  expect(getByTestId('button')).toHaveClass('d-button');
+});
 
-  it('renders props.name when passed', () => {
-    const name = 'button';
-    const wrapper = shallowMount(DButton, {
-      propsData: { name }
-    });
-    expect(wrapper.text()).toMatch(name.toUpperCase());
+test('renders props.name when passed', () => {
+  const name = 'Button';
+  const { getByText } = render(DButton, {
+    props: { name },
   });
+  expect(getByText(name.toUpperCase())).not.toBe(null);
+});
 
-  it('renders correct type when props.type is not passed', () => {
-    const name = 'button';
-    const type = 'button';
-    const wrapper = shallowMount(DButton, {
-      propsData: { name, type }
-    });
-    expect(wrapper.attributes().type).toBe(type);
+test('renders correct type when props.type is not passed', () => {
+  const name = 'button';
+  const type = 'button';
+  const { getByTestId } = render(DButton, {
+    props: { name, type },
   });
+  expect(getByTestId('button')).toHaveAttribute('type', 'button');
+});
 
-  it('renders correct type when props.type is passed', () => {
-    const name = 'button';
-    const type = 'submit';
-    const wrapper = shallowMount(DButton, {
-      propsData: { name, type }
-    });
-    expect(wrapper.attributes().type).toBe(type);
+test('renders correct type when props.type is not passed', () => {
+  const name = 'button';
+  const type = 'submit';
+  const { getByTestId } = render(DButton, {
+    props: { name, type },
   });
+  expect(getByTestId('button')).toHaveAttribute('type', 'submit');
+});
 
-  it('renders correct size when props.size is passed', () => {
-    const name = 'button';
-    const sizes = ['small', 'normal', 'medium', 'large'];
-    sizes.map(size => {
-      const wrapper = shallowMount(DButton, {
-        propsData: { name, size }
-      });
-      expect(wrapper.classes()).toContain(`is-${size}`);
+test('renders correct size when props.size is passed', () => {
+  const name = 'button';
+  const sizes = ['small', 'normal', 'medium', 'large'];
+  var sizesHTML;
+  sizes.map((size) => {
+    const { getAllByTestId } = render(DButton, {
+      props: { name, size },
     });
+    sizesHTML = getAllByTestId('button');
   });
-
-  it('renders correct variant when props.variant is passed', () => {
-    const name = 'button';
-    const variants = [
-      'primary',
-      'success',
-      'danger',
-      'warning',
-      'info',
-      'link',
-      'dark',
-      'light'
-    ];
-    variants.map(variant => {
-      const wrapper = shallowMount(DButton, {
-        propsData: { name, variant }
-      });
-      expect(wrapper.classes()).toContain(`is-${variant}`);
-    });
+  sizesHTML.map(function (sizeHTML, i) {
+    expect(sizeHTML).toHaveClass(`is-${sizes[i]}`);
   });
+});
 
-  it('renders correct text color when props.variant is passed', () => {
-    const name = 'button';
-    const darkVariants = ['danger', 'link', 'dark'];
-    darkVariants.map(variant => {
-      const wrapper = shallowMount(DButton, {
-        propsData: { name, variant }
-      });
-      expect(wrapper.classes()).toContain('has-text-light');
+test('renders correct variant when props.variant is passed', () => {
+  const name = 'button';
+  const variants = [
+    'primary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'link',
+    'dark',
+    'light',
+  ];
+  var variantsHTML;
+  variants.map((variant) => {
+    const { getAllByTestId } = render(DButton, {
+      props: { name, variant },
     });
-
-    const lightVariants = ['primary', 'success', 'warning', 'info', 'light'];
-    lightVariants.map(variant => {
-      const wrapper = shallowMount(DButton, {
-        propsData: { name, variant }
-      });
-      expect(wrapper.classes()).toContain('has-text-dark');
-    });
+    variantsHTML = getAllByTestId('button');
   });
-
-  it('renders correct text color when props.variant and props.outlined is passed', () => {
-    const name = 'button';
-    const outlined = true;
-    const variants = [
-      'primary',
-      'success',
-      'danger',
-      'warning',
-      'info',
-      'link',
-      'dark',
-      'light'
-    ];
-    variants.map(variant => {
-      const wrapper = shallowMount(DButton, {
-        propsData: { name, variant, outlined }
-      });
-      expect(wrapper.classes()).toContain('is-outlined');
-      expect(wrapper.classes()).toContain(`has-text-${variant}`);
-    });
+  variantsHTML.map(function (variantHTML, i) {
+    expect(variantHTML).toHaveClass(`is-${variants[i]}`);
   });
+});
 
-  it('can be clicked', () => {
-    const name = 'button';
-    const type = 'button';
-    const wrapper = shallowMount(DButton, {
-      propsData: { name, type }
+test('renders correct light text color when dark props.variant is passed', () => {
+  const name = 'button';
+  const darkVariants = ['danger', 'link', 'dark'];
+  var darkVariantsHTML;
+  darkVariants.map((variant) => {
+    const { getAllByTestId } = render(DButton, {
+      props: { name, variant },
     });
-    wrapper.trigger('click');
+    darkVariantsHTML = getAllByTestId('button');
+  });
+  darkVariantsHTML.map(function (darkVariantHTML) {
+    expect(darkVariantHTML).toHaveClass('has-text-light');
+  });
+});
+
+test('renders correct dark text color when light props.variant is passed', () => {
+  const name = 'button';
+  const lightVariants = ['primary', 'success', 'warning', 'info', 'light'];
+  var lightVariantsHTML;
+  lightVariants.map((variant) => {
+    const { getAllByTestId } = render(DButton, {
+      props: { name, variant },
+    });
+    lightVariantsHTML = getAllByTestId('button');
+  });
+  lightVariantsHTML.map(function (lightVariantHTML) {
+    expect(lightVariantHTML).toHaveClass('has-text-dark');
+  });
+});
+
+test('renders correct text color when props.variant and props.outlined is passed', () => {
+  const name = 'button';
+  const outlined = true;
+  const variants = [
+    'primary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'link',
+    'dark',
+    'light',
+  ];
+  var variantsHTML;
+  variants.map((variant) => {
+    const { getAllByTestId } = render(DButton, {
+      props: { name, variant, outlined },
+    });
+    variantsHTML = getAllByTestId('button');
+  });
+  variantsHTML.map(function (variantHTML, i) {
+    expect(variantHTML).toHaveClass(`has-text-${variants[i]}`);
+    expect(variantHTML).toHaveClass('is-outlined');
   });
 });
