@@ -40,6 +40,9 @@ export default {
 }
 .d-toc {
   width: 60vw;
+  @include mobile {
+    width: 90vw;
+  }
 }
 .toc-content {
   display: grid;

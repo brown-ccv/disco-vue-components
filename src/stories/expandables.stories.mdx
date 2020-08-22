@@ -87,4 +87,18 @@ export const Template = (args, { argTypes }) => ({
   <Story name="Expandables" args={{variant: 'primary', isExpanded: false, isHovered: false}}>
     {Template.bind({})}
   </Story>
+    <Story name="Summary/Details">
+    {{
+      template: `
+      <details>
+        <summary>
+          Expandable
+        </summary>
+        <div class="d-expandable-content px-4 py-3 is-size-6 has-border-left-primary">
+          <p>Hello, World!</p>
+        </div>
+      </details>
+      `
+    }}
+  </Story>
 </Canvas>
