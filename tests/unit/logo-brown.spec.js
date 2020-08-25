@@ -1,22 +1,27 @@
-import { shallowMount } from '@vue/test-utils';
+import { render } from '@testing-library/vue';
 import BrownLogo from '@/components/logos/BrownLogo.vue';
+import '@testing-library/jest-dom';
 
-describe('BrownLogo.vue', () => {
-  const wrapper = shallowMount(BrownLogo);
+test('has brown-logo class', () => {
+  const { getByRole } = render(BrownLogo);
+  expect(getByRole('img', { hidden: true })).toHaveClass('brown-logo');
+});
 
-  it('has brown-logo class', () => {
-    expect(wrapper.find('.brown-logo')).toBeTruthy();
-  });
+test('has default size class', () => {
+  const { getByRole } = render(BrownLogo);
+  expect(getByRole('img', { hidden: true })).toHaveClass('l');
+});
 
-  it('has default size class', () => {
-    expect(wrapper.find('.l')).toBeTruthy();
-  });
-
+test('renders correct size when props.size is passed', () => {
   const sizes = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];
-  sizes.map(size => {
-    const wrapper = shallowMount(BrownLogo, {
-      propsData: { size }
+  var sizesHTML;
+  sizes.map((size) => {
+    const { getAllByRole } = render(BrownLogo, {
+      props: { size },
     });
-    expect(wrapper.find(`.${size}`)).toBeTruthy();
+    sizesHTML = getAllByRole('img', { hidden: true });
+  });
+  sizesHTML.map(function (sizeHTML, i) {
+    expect(sizeHTML).toHaveClass(`${sizes[i]}`);
   });
 });

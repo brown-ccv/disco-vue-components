@@ -2,12 +2,13 @@
   <button
     :type="type"
     :name="name"
+    data-testid="button"
     class="d-button"
     v-bind:class="[
       'is-' + size,
       'is-' + variant,
       textColor,
-      { 'is-outlined': outlined }
+      { 'is-outlined': outlined },
     ]"
     @click="onClick"
   >
@@ -18,55 +19,45 @@
 </template>
 
 <script>
+import * as utils from '@/utils.js';
+
 export default {
   filters: {
     uppercase(str) {
       return str.toUpperCase();
-    }
+    },
   },
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     type: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     size: {
       type: String,
       required: false,
-      validator: function(value) {
+      validator: function (value) {
         return ['small', 'normal', 'medium', 'large'].indexOf(value) !== -1;
-      }
+      },
     },
     variant: {
       type: String,
       default: 'primary',
-      validator: function(value) {
-        // The value must match one of these strings
-        return (
-          [
-            'primary',
-            'success',
-            'danger',
-            'warning',
-            'info',
-            'link',
-            'dark',
-            'light'
-          ].indexOf(value) !== -1
-        );
-      }
+      validator(value) {
+        return utils.variantValidator(value);
+      },
     },
     icon: {
       type: Boolean,
-      default: true
+      default: true,
     },
     outlined: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     textColor() {
@@ -78,12 +69,12 @@ export default {
         color = `has-text-${this.variant}`;
       }
       return color;
-    }
+    },
   },
   methods: {
     onClick() {
       this.$emit('click');
-    }
-  }
+    },
+  },
 };
 </script>

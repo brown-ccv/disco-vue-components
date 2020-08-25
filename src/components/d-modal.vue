@@ -1,5 +1,5 @@
 <template>
-  <div aria-live="polite" role="dialog" class="d-modal modal is-active">
+  <dialog aria-live="polite" role="dialog" class="d-dialog modal is-active">
     <!-- area surrounding modal -->
     <div class="modal-background"></div>
 
@@ -9,8 +9,8 @@
       class="modal-card"
       v-bind:class="[
         'is-width-' + width,
-        'has-border-top-' + colorbar,
-        'has-background-' + variant
+        'has-border-top-' + accent,
+        'has-background-' + variant,
       ]"
     >
       <!-- header -->
@@ -46,13 +46,13 @@
           aria-label="close"
           id="closebutton"
           :name="closeButtonText"
-          :variant="colorbar"
+          :variant="accent"
           @click="onClose"
         >
         </d-button>
       </footer>
     </div>
-  </div>
+  </dialog>
 </template>
 
 <script>
@@ -62,49 +62,46 @@ import * as utils from '@/utils.js';
 
 export default {
   components: {
-    'd-button': DButton
+    'd-button': DButton,
   },
   props: {
     width: {
       type: String,
-      required: false,
       default: 'medium',
-      validator: function(value) {
+      validator: function (value) {
         return ['small', 'medium', 'large'].indexOf(value) !== -1;
-      }
+      },
     },
     closeButtonText: {
       type: String,
-      required: false,
-      default: 'Close'
+      default: 'Close',
     },
     closeOptions: {
       type: String,
-      required: false,
       default: 'header',
-      validator: function(value) {
+      validator: function (value) {
         return ['header', 'footer', 'both'].indexOf(value) !== -1;
-      }
+      },
     },
     variant: {
       type: String,
       default: 'primary',
       validator(value) {
         return utils.variantValidator(value);
-      }
+      },
     },
-    colorbar: {
+    accent: {
       type: String,
       default: 'danger',
       validator(value) {
         return utils.variantValidator(value);
-      }
-    }
+      },
+    },
   },
   methods: {
     onClose() {
       this.$emit('close');
-    }
+    },
   },
   computed: {
     textColor() {
@@ -113,20 +110,34 @@ export default {
           ? 'has-text-light'
           : 'has-text-dark';
       return color;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
+@import 'bulma';
+.d-dialog {
+  width: 100vw;
+}
+.delete {
+  border-radius: 0 !important;
+}
 .is-width-small {
-  width: 40vh;
+  width: 40vw;
+  @include mobile {
+    width: 60vw;
+  }
 }
 .is-width-medium {
-  width: 70vh;
+  width: 60vw;
+  @include mobile {
+    width: 75vw;
+  }
 }
 .is-width-large {
-  width: 100vh;
+  width: 90vw;
 }
+
 $variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
   'light';
 
