@@ -1,12 +1,19 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import BrownLogo from '../components/logos/BrownLogo.vue';
 import CCVLogo from '../components/logos/CCVLogo.vue';
+import { SIZES_ABBR } from '../utils';
 
-<Meta title="Elements|Logos" component={BrownLogo, CCVLogo} />
+<Meta 
+    title="Elements/Logos" 
+    component={BrownLogo, CCVLogo}
+    argTypes={{
+        size: {control: {type: 'select', options: SIZES_ABBR}}
+    }}
+/>
 
 # Logos
 
-<Props of={BrownLogo} />
+<ArgsTable story="Brown" />
 
 ### Brown and CCV logos components:
 ```jsx
@@ -19,36 +26,26 @@ import CCVLogo from '../components/logos/CCVLogo.vue';
 Logo components take the prop `size` and accepts the following values:
 `'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'`.
 
-<Preview >
-    <Story name="Brown">
-        {{
-            components: {BrownLogo},
-            template: `
-            <div>
-                <BrownLogo size="xxs" />
-                <BrownLogo size="xs" />
-                <BrownLogo size="s" />
-                <BrownLogo size="m" />
-                <BrownLogo size="l" />
-                <BrownLogo size="xl" />
-                <BrownLogo size="xxl" />
-            </div>
-            `
-        }}
+
+export const Template1 = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { BrownLogo },
+  template: `<BrownLogo :size="size"/>`
+});
+
+export const Template2 = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { CCVLogo },
+  template: `<CCVLogo :size="size"/>`
+});
+
+
+<Canvas >
+    <Story name="Brown" args={{size: 'l'}}>
+        {Template1.bind({})}
     </Story>
-    <Story name="CCV">
-        {{
-            components: {CCVLogo},
-            template: `
-            <div>
-                <CCVLogo size="xxs" />
-                <CCVLogo size="xs" />
-                <CCVLogo size="s" />
-                <CCVLogo size="m" />
-                <CCVLogo size="l" />
-                <CCVLogo size="xl" />
-                <CCVLogo size="xxl" />
-            </div>`
-        }}
+    <Story name="CCV" args={{size: 'm'}}>
+        {Template2.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
