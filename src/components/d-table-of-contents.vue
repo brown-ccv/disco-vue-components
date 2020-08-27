@@ -2,12 +2,12 @@
   <div class="d-toc-container">
     <ul :name="name" class="d-toc">
       <li v-for="(entry, index) in data" :key="index">
-        <a :href="entry.link" class="toc-content">
-          <d-icon class="toc-icon" :name="entry.icon"></d-icon>
-          <span class="toc-start fs-20">
+        <a :href="entry.link" class="d-toc-content">
+          <d-icon class="d-toc-icon" :name="entry.icon"></d-icon>
+          <span class="d-toc-start fs-20">
             {{ entry['name'] }}
           </span>
-          <span class="toc-end fs-20">{{ index + 1 }}</span>
+          <span class="d-toc-end fs-20">{{ index + 1 }}</span>
         </a>
       </li>
     </ul>
@@ -44,7 +44,7 @@ export default {
     width: 90vw;
   }
 }
-.toc-content {
+.d-toc-content {
   display: grid;
   grid-template-columns: 1fr 10fr 10fr 1fr;
   grid-template-rows: auto;
@@ -54,13 +54,13 @@ export default {
     background-color: $light;
   }
 }
-.toc-start {
+.d-toc-start {
   grid-area: start;
 }
-.toc-end {
+.d-toc-end {
   grid-area: end;
 }
-.toc-icon {
+.d-toc-icon {
   grid-area: icon;
 }
 </style>
