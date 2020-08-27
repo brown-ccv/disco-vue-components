@@ -2,8 +2,9 @@
   <section
     class="is-card"
     v-bind:class="[
-      'is-width-' + size,
-      'has-border-top-' + accent,
+      'is-width-' + width,
+      'has-border-top-' + colorbar,
+      textColor,
       'has-background-' + variant,
     ]"
   >
@@ -13,20 +14,16 @@
     <div class="card-content">
       <slot name="content" />
     </div>
-    <footer class="px-2 pb-3" v-if="buttonLabel">
-      <d-button :name="buttonLabel" :variant="accent"></d-button>
+    <footer class="px-2 pb-2">
+      <slot name="footer" />
     </footer>
   </section>
 </template>
 
 <script>
-import DButton from '@/components/d-button.vue';
 import * as utils from '@/utils.js';
 
 export default {
-  components: {
-    'd-button': DButton,
-  },
   props: {
     title: {
       type: String,
@@ -36,15 +33,14 @@ export default {
       type: Boolean,
       default: false,
     },
-    size: {
+    width: {
       type: String,
-      required: false,
-      default: 'small',
-      validator: (value) => {
-        ['small', 'medium', 'large'].indexOf(value) !== -1;
+      default: 'medium',
+      validator: function (value) {
+        return ['small', 'medium', 'large'].indexOf(value) !== -1;
       },
     },
-    accent: {
+    colorbar: {
       type: String,
       default: 'danger',
       validator(value) {
@@ -58,9 +54,14 @@ export default {
         return utils.variantValidator(value);
       },
     },
-    buttonLabel: {
-      type: String,
-      required: false,
+  },
+  computed: {
+    textColor() {
+      let color =
+        ['danger', 'dark', 'link'].indexOf(this.variant) !== -1
+          ? 'has-text-light'
+          : 'has-text-dark';
+      return color;
     },
   },
 };

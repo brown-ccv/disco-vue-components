@@ -1,63 +1,49 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DButton from '../components/d-button.vue';
 import DCard from '../components/d-card.vue';
+import { COLOR_VARIANTS, SIZES } from '../utils';
 
-<Meta title="Elements|Card" component={DCard} />
+<Meta 
+  title="Elements/Card" 
+  component={DCard} 
+  argTypes={{
+    variant: { control: { type: 'select', options: COLOR_VARIANTS } },
+    colorbar: { control: { type: 'select', options: COLOR_VARIANTS } },
+    width: { control: { type: 'select', options: SIZES } }
+  }}
+/>
 
-# Hero
-
-<Props of={DCard} />
+# Card
+<ArgsTable story="Card" />
 
 ### DCard component
 
-```jsx
-<DCard />
+
+```html
+<DCard title="Card Title" />
 ```
 
-<Preview>
-  <Story name="Card">
-    {{
-      components: {DCard},
-      template: `
-      <div style="margin: 1rem;">
-        <h1 style="margin-bottom: 1rem;">Card Sizes</h1>
-        <div class="columns">
-          <div class="column">
-            <DCard title="Standard" buttonLabel="Read More">
-              <template slot="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor 
-              </p>
-              </template>
-            </DCard>
-          </div>
-          <div class="column">
-            <DCard title="Standard" size="medium" buttonLabel="Read More">
-              <template slot="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco 
-              </p>
-              </template>
-            </DCard>
-          </div>
-          <div class="column">
-            <DCard title="Standard" size="large" buttonLabel="Read More">
-              <template slot="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco 
-              </p>
-              </template>
-            </DCard>
-          </div>
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DCard, DButton },
+  template: `
+        <div>
+          <DCard :title='title' :variant="variant" :colorbar="colorbar" :width="width">
+            <template #content>
+              <div class="content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </template>
+            <template #footer>
+              <DButton name="Read more" :variant="colorbar"></DButton>
+            </template>
+          </DCard> 
         </div>
-      </div>
-      `
-    }}
+        `
+});
+
+<Canvas>
+  <Story name="Card" args={{title: 'Card Title', variant: 'light', colorbar: 'warning', width: 'small'}}>
+    {Template.bind({})}
   </Story>
-</Preview>
+</Canvas>
