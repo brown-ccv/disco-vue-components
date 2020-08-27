@@ -1,7 +1,11 @@
 <template>
   <section
     class="is-card"
-    v-bind:class="['is-width-' + size, 'has-border-top-' + colorbar]"
+    v-bind:class="[
+      'is-width-' + size,
+      'has-border-top-' + accent,
+      'has-background-' + variant,
+    ]"
   >
     <header v-bind:class="['header-rule']">
       <h2 class="d-subtitle">{{ title }}</h2>
@@ -10,7 +14,7 @@
       <slot name="content" />
     </div>
     <footer class="px-2 pb-3" v-if="buttonLabel">
-      <d-button :name="buttonLabel" :variant="colorbar"></d-button>
+      <d-button :name="buttonLabel" :variant="accent"></d-button>
     </footer>
   </section>
 </template>
@@ -21,44 +25,44 @@ import * as utils from '@/utils.js';
 
 export default {
   components: {
-    'd-button': DButton
+    'd-button': DButton,
   },
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     border: {
       type: Boolean,
-      default: false
+      default: false,
     },
     size: {
       type: String,
       required: false,
       default: 'small',
-      validator: value => {
+      validator: (value) => {
         ['small', 'medium', 'large'].indexOf(value) !== -1;
-      }
+      },
+    },
+    accent: {
+      type: String,
+      default: 'danger',
+      validator(value) {
+        return utils.variantValidator(value);
+      },
     },
     variant: {
       type: String,
       default: 'primary',
       validator(value) {
         return utils.variantValidator(value);
-      }
-    },
-    colorbar: {
-      type: String,
-      default: 'danger',
-      validator(value) {
-        return utils.variantValidator(value);
-      }
+      },
     },
     buttonLabel: {
       type: String,
-      required: false
-    }
-  }
+      required: false,
+    },
+  },
 };
 </script>
 
