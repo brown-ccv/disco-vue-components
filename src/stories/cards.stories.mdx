@@ -8,7 +8,7 @@ import { COLOR_VARIANTS, SIZES } from '../utils';
   component={DCard} 
   argTypes={{
     variant: { control: { type: 'select', options: COLOR_VARIANTS } },
-    colorbar: { control: { type: 'select', options: COLOR_VARIANTS } },
+    accent: { control: { type: 'select', options: COLOR_VARIANTS } },
     width: { control: { type: 'select', options: SIZES } }
   }}
 />
@@ -28,14 +28,14 @@ export const Template = (args, { argTypes }) => ({
   components: { DCard, DButton },
   template: `
         <div>
-          <DCard :title='title' :variant="variant" :colorbar="colorbar" :width="width">
+          <DCard :title='title' :variant="variant" :accent="accent" :width="width" :border="border">
             <template #content>
               <div class="content">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               </div>
             </template>
             <template #footer>
-              <DButton name="Read more" :variant="colorbar"></DButton>
+              <DButton name="Read more" :variant="accent"></DButton>
             </template>
           </DCard> 
         </div>
@@ -43,7 +43,7 @@ export const Template = (args, { argTypes }) => ({
 });
 
 <Canvas>
-  <Story name="Card" args={{title: 'Card Title', variant: 'light', colorbar: 'warning', width: 'small'}}>
+  <Story name="Card" args={{title: 'Card Title', variant: 'light', accent: 'warning', width: 'small', border: false}}>
     {Template.bind({})}
   </Story>
 </Canvas>

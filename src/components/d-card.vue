@@ -1,14 +1,15 @@
 <template>
   <section
     class="is-card"
+    role="card"
     v-bind:class="[
       'is-width-' + width,
-      'has-border-top-' + colorbar,
+      borderColor,
       textColor,
       'has-background-' + variant,
     ]"
   >
-    <header v-bind:class="['header-rule']">
+    <header v-bind:class="[headerRule]">
       <h2 class="d-subtitle">{{ title }}</h2>
     </header>
     <div class="card-content">
@@ -40,7 +41,7 @@ export default {
         return ['small', 'medium', 'large'].indexOf(value) !== -1;
       },
     },
-    colorbar: {
+    accent: {
       type: String,
       default: 'danger',
       validator(value) {
@@ -63,6 +64,15 @@ export default {
           : 'has-text-dark';
       return color;
     },
+    borderColor() {
+      let bordercolor = this.border
+        ? 'has-border-' + this.accent
+        : 'has-border-top-' + this.accent;
+      return bordercolor;
+    },
+    headerRule() {
+      return this.border ? 'has-header-rule-' + this.accent : 'header-rule';
+    },
   },
 };
 </script>
@@ -74,17 +84,6 @@ export default {
   text-align: center;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px 0px;
-}
-
-.header-rule::after {
-  display: block;
-  width: 50px;
-  height: 2px;
-  background-color: #ccc6b8;
-  content: '';
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .is-width-small {
@@ -99,6 +98,17 @@ export default {
   width: 100vh;
 }
 
+.header-rule::after {
+  display: block;
+  width: 50px;
+  height: 2px;
+  background-color: #ccc6b8;
+  content: '';
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 $variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
   'light';
 
@@ -106,6 +116,27 @@ $variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
   $color: --color-#{$variant};
   .has-border-top-#{$variant} {
     border-top: 5px solid var($color);
+  }
+}
+
+@each $variant in $variants {
+  $color: --color-#{$variant};
+  .has-border-#{$variant} {
+    border: 2px solid var($color);
+  }
+}
+
+@each $variant in $variants {
+  $color: --color-#{$variant};
+  .has-header-rule-#{$variant}::after {
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: var($color);
+    content: '';
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 </style>
