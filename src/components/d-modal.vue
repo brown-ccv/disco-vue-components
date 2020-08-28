@@ -115,22 +115,29 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import 'bulma';
 .d-dialog {
   width: 100vw;
 }
-
 .delete {
   border-radius: 0 !important;
 }
 .is-width-small {
-  width: 40ex;
+  width: 40vw;
+  @include mobile {
+    width: 60vw;
+  }
 }
 .is-width-medium {
-  width: 70ex;
+  width: 60vw;
+  @include mobile {
+    width: 75vw;
+  }
 }
 .is-width-large {
-  width: 100ex;
+  width: 90vw;
 }
+
 $variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
   'light';
 
