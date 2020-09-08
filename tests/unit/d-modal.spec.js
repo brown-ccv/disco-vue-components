@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 
 test('has dialog role and d-modal class', () => {
   const { getByRole } = render(DModal);
-  expect(getByRole('dialog')).toHaveClass('d-modal');
+  expect(getByRole('dialog', { hidden: true })).toHaveClass('d-dialog');
 });
 
 test('renders correct background variant for modal card when props.variant is passed', () => {
@@ -18,16 +18,16 @@ test('renders correct background variant for modal card when props.variant is pa
     'info',
     'link',
     'dark',
-    'light'
+    'light',
   ];
   var variantsHTML;
-  variants.map(variant => {
+  variants.map((variant) => {
     const { getAllByTestId } = render(DModal, {
-      props: { variant }
+      props: { variant },
     });
     variantsHTML = getAllByTestId('modal-card');
   });
-  variantsHTML.map(function(variantHTML, i) {
+  variantsHTML.map(function (variantHTML, i) {
     expect(variantHTML).toHaveClass(`has-background-${variants[i]}`);
   });
 });
@@ -41,30 +41,54 @@ test('renders correct background variant for modal content when props.variant is
     'info',
     'link',
     'dark',
-    'light'
+    'light',
   ];
   var variantsHTML;
-  variants.map(variant => {
+  variants.map((variant) => {
     const { getAllByTestId } = render(DModal, {
-      props: { variant }
+      props: { variant },
     });
     variantsHTML = getAllByTestId('modal-content');
   });
-  variantsHTML.map(function(variantHTML, i) {
+  variantsHTML.map(function (variantHTML, i) {
     expect(variantHTML).toHaveClass(`has-background-${variants[i]}`);
+  });
+});
+
+test('renders correct top border color when props.accent is passed', () => {
+  const title = 'Card Title';
+  const accents = [
+    'primary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'link',
+    'dark',
+    'light',
+  ];
+  var accentsHTML;
+  accents.map((accent) => {
+    const { getAllByTestId } = render(DModal, {
+      props: { title, accent },
+    });
+    accentsHTML = getAllByTestId('modal-card');
+  });
+  accentsHTML.map(function (accentHTML, i) {
+    expect(accentHTML).toHaveClass(`has-border-top-${accents[i]}`);
   });
 });
 
 test('renders correct width when props.width is passed', () => {
   const widths = ['small', 'medium', 'large'];
   var widthsHTML;
-  widths.map(width => {
+  widths.map((width) => {
     const { getAllByTestId } = render(DModal, {
-      props: { width }
+      props: { width },
     });
     widthsHTML = getAllByTestId('modal-card');
   });
-  widthsHTML.map(function(widthHTML, i) {
+  widthsHTML.map(function (widthHTML, i) {
     expect(widthHTML).toHaveClass(`is-width-${widths[i]}`);
   });
 });
@@ -94,7 +118,7 @@ test('renders close button text correctly when props.closeButtonText is passed',
   const closeButtonText = 'Close';
   const closeOptions = 'footer';
   const { getByText } = render(DModal, {
-    props: { closeButtonText, closeOptions }
+    props: { closeButtonText, closeOptions },
   });
   getByText(closeButtonText.toUpperCase());
 });
