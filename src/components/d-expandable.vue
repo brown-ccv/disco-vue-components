@@ -1,5 +1,5 @@
 <template>
-  <span class="d-expandable mx-2 my-2">
+  <span aria-label="expandable" class="d-expandable mx-2 my-2">
     <header
       class="level is-mobile d-expandable-header mb-0 px-0 py-2"
       v-bind:class="[textColor]"
@@ -10,7 +10,7 @@
       @focus="setActive(true)"
       @blur="setActive(false)"
       tabindex="0"
-      role="button"
+      role="banner"
       :aria-pressed="isExpanded"
     >
       <div class="level-left">
@@ -43,9 +43,7 @@
 
 <script>
 import DIcon from '@/components/d-icon.vue';
-
 import * as utils from '@/utils.js';
-
 export default {
   name: 'Expandable',
   components: {
@@ -107,20 +105,15 @@ export default {
 .d-expandable-header {
   cursor: pointer;
 }
-
 $variants: 'primary', 'info', 'link', 'success', 'warning', 'danger', 'dark',
   'light';
-
 $sides: 'top', 'left', 'right', 'bottom';
-
 @each $variant in $variants {
   $color: --color-#{$variant};
-
   // full border
   .has-border-#{$variant} {
     border: 5px solid var($color);
   }
-
   // single side border
   @each $side in $sides {
     .has-border-#{$side}-#{$variant} {

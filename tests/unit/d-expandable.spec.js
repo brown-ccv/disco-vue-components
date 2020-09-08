@@ -4,10 +4,10 @@ import '@testing-library/jest-dom';
 
 test('has d-expandable class', () => {
   const title = 'Expandable';
-  const { getByRole } = render(DExpandable, {
+  const { getByLabelText } = render(DExpandable, {
     props: { title },
   });
-  expect(getByRole('listitem')).toHaveClass('d-expandable');
+  expect(getByLabelText('expandable')).toHaveClass('d-expandable');
 });
 
 test('has d-expandable class', () => {
@@ -15,7 +15,7 @@ test('has d-expandable class', () => {
   const { getByRole } = render(DExpandable, {
     props: { title },
   });
-  expect(getByRole('button')).toHaveClass('d-expandable-header');
+  expect(getByRole('banner')).toHaveClass('d-expandable-header');
 });
 
 test('renders correct title when props.title is passed', () => {
@@ -86,7 +86,7 @@ test('renders correct text color when props.variant and isHovered is passed', ()
     const { getAllByRole } = render(DExpandable, {
       props: { title, variant, isHovered },
     });
-    variantsHTML = getAllByRole('button');
+    variantsHTML = getAllByRole('banner');
   });
   variantsHTML.map(function (variantHTML, i) {
     expect(variantHTML).toHaveClass(`has-text-${variants[i]}`);
@@ -111,7 +111,7 @@ test('renders correct text color when props.variant and isExpanded is passed', (
     const { getAllByRole } = render(DExpandable, {
       props: { title, variant, isExpanded },
     });
-    variantsHTML = getAllByRole('button');
+    variantsHTML = getAllByRole('banner');
   });
   variantsHTML.map(function (variantHTML, i) {
     expect(variantHTML).toHaveClass(`has-text-${variants[i]}`);
