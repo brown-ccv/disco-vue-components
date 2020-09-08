@@ -4,10 +4,10 @@ import '@testing-library/jest-dom';
 
 test('has d-expandable class', () => {
   const title = 'Expandable';
-  const { getByRole } = render(DExpandable, {
+  const { getByTestId } = render(DExpandable, {
     props: { title },
   });
-  expect(getByRole('listitem')).toHaveClass('d-expandable');
+  expect(getByTestId('expandable')).toHaveClass('d-expandable');
 });
 
 test('has d-expandable class', () => {

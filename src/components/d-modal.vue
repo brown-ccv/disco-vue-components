@@ -1,5 +1,10 @@
 <template>
-  <dialog aria-live="polite" role="dialog" class="d-dialog modal is-active">
+  <dialog
+    aria-live="polite"
+    role="dialog"
+    class="d-dialog modal is-active"
+    data-testid="dialog"
+  >
     <!-- area surrounding modal -->
     <div class="modal-background"></div>
 
