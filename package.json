@@ -57,7 +57,6 @@
     "@storybook/addons": "^6.0.16",
     "@storybook/theming": "^6.0.16",
     "@storybook/vue": ">=6.0.16",
-    "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/nightwatch": "^2.0.0",
     "@testing-library/vue": "^5.0.4",
     "@vue/cli-plugin-babel": "^4.5.4",

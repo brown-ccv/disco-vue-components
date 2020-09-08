@@ -1,7 +1,7 @@
 <template>
   <section
-    class="is-card"
-    role="card"
+    class="d-card is-card"
+    data-testid="card"
     v-bind:class="[
       'is-width-' + width,
       borderColor,
@@ -10,12 +10,12 @@
     ]"
   >
     <header v-bind:class="[headerRule]">
-      <h2 class="d-subtitle">{{ title }}</h2>
+      <h2 class="subtitle is-3 pt-2">{{ title }}</h2>
     </header>
     <div class="card-content">
       <slot name="content" />
     </div>
-    <footer class="px-2 pb-2">
+    <footer class="pb-2">
       <slot name="footer" />
     </footer>
   </section>
@@ -78,6 +78,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'bulma';
 .is-card {
   display: flex;
   flex-direction: column;
@@ -87,15 +88,21 @@ export default {
 }
 
 .is-width-small {
-  width: 40vh;
+  width: 40ex;
+  @include mobile {
+    width: 60ex;
+  }
 }
 
 .is-width-medium {
-  width: 70vh;
+  width: 70ex;
+  @include mobile {
+    width: 75ex;
+  }
 }
 
 .is-width-large {
-  width: 100vh;
+  width: 100ex;
 }
 
 .header-rule::after {
