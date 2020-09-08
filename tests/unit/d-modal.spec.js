@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 
 test('has dialog role and d-modal class', () => {
   const { getByRole } = render(DModal);
-  expect(getByRole('dialog')).toHaveClass('d-modal');
+  expect(getByRole('dialog', { hidden: true })).toHaveClass('d-dialog');
 });
 
 test('renders correct background variant for modal card when props.variant is passed', () => {

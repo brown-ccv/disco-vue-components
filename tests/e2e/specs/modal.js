@@ -17,33 +17,24 @@ module.exports = {
 
     done();
   },
-  'Modal not present': function (browser) {
-    browser.assert.not.elementPresent('.d-modal');
+  'Modal is present': function (browser) {
+    browser.assert.elementPresent('.d-dialog');
   },
-  'Modal Open and Accessibility check': function (browser) {
-    browser
-      .click('.d-button')
-      .assert.elementPresent('.d-modal')
-      .initAccessibility()
-      .assert.accessibility('.d-modal', {
-        verbose: true,
-      });
+  'Modal Accessibility check': function (browser) {
+    browser.initAccessibility().assert.accessibility('.d-dialog', {
+      verbose: true,
+    });
   },
   'Modal Close Check on header': function (browser) {
-    browser
-      .click('.d-button')
-      .assert.elementPresent('.d-modal')
-      .assert.elementPresent('.delete')
+    browser.assert
+      .elementPresent('.delete')
       .click('.delete')
-      .assert.not.elementPresent('.d-modal');
+      .assert.not.elementPresent('.d-dialog');
   },
   'Modal Close Check on footer': function (browser) {
     browser.assert
-      .elementPresent('#card')
-      .click('#card')
-      .assert.elementPresent('.d-modal')
-      .assert.elementPresent('#closebutton')
+      .elementPresent('#closebutton')
       .click('#closebutton')
-      .assert.not.elementPresent('.d-modal');
+      .assert.not.elementPresent('.d-dialog');
   },
 };
