@@ -17,19 +17,19 @@ module.exports = {
 
     done();
   },
-  'Modal not present': function(browser) {
+  'Modal not present': function (browser) {
     browser.assert.not.elementPresent('.d-modal');
   },
-  'Modal Open and Accessibility check': function(browser) {
+  'Modal Open and Accessibility check': function (browser) {
     browser
       .click('.d-button')
       .assert.elementPresent('.d-modal')
       .initAccessibility()
       .assert.accessibility('.d-modal', {
-        verbose: true
+        verbose: true,
       });
   },
-  'Modal Close Check on header': function(browser) {
+  'Modal Close Check on header': function (browser) {
     browser
       .click('.d-button')
       .assert.elementPresent('.d-modal')
@@ -37,7 +37,7 @@ module.exports = {
       .click('.delete')
       .assert.not.elementPresent('.d-modal');
   },
-  'Modal Close Check on footer': function(browser) {
+  'Modal Close Check on footer': function (browser) {
     browser.assert
       .elementPresent('#card')
       .click('#card')
@@ -45,5 +45,5 @@ module.exports = {
       .assert.elementPresent('#closebutton')
       .click('#closebutton')
       .assert.not.elementPresent('.d-modal');
-  }
+  },
 };
