@@ -24,7 +24,7 @@
         v-if="closeOptions == 'header' || closeOptions == 'both'"
       >
         <button
-          class="delete is-pulled-right"
+          class="d-button-delete is-pulled-right"
           aria-label="close"
           @click="onClose"
         ></button>
@@ -119,37 +119,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-@import 'bulma';
-.d-dialog {
-  width: 100vw;
-}
-.delete {
-  border-radius: 0 !important;
-}
-.is-width-small {
-  width: 40vw;
-  @include mobile {
-    width: 60vw;
-  }
-}
-.is-width-medium {
-  width: 60vw;
-  @include mobile {
-    width: 75vw;
-  }
-}
-.is-width-large {
-  width: 90vw;
-}
-
-$variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
-  'light';
-
-@each $variant in $variants {
-  $color: --color-#{$variant};
-  .has-border-top-#{$variant} {
-    border-top: 5px solid var($color);
-  }
-}
-</style>

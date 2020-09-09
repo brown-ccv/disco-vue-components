@@ -54,33 +54,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-@import 'bulma';
-
-.d-title {
-  @extend .title;
-  font-size: $size-1 * 1.5;
-  @include mobile {
-    font-size: $size-1;
-  }
-}
-.d-subtitle {
-  @extend .subtitle;
-  font-family: $family-sans-serif;
-  font-size: $size-3;
-}
-.d-hero {
-  @extend .hero;
-  padding-left: 10rem;
-  @include mobile {
-    padding-left: 0;
-  }
-}
-.is-full-height {
-  height: 100vh;
-  padding-top: 10rem;
-  @include mobile {
-    padding-top: 2rem;
-  }
-}
-</style>

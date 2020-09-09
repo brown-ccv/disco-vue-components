@@ -102,30 +102,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.d-expandable-header {
-  cursor: pointer;
-}
-
-$variants: 'primary', 'info', 'link', 'success', 'warning', 'danger', 'dark',
-  'light';
-
-$sides: 'top', 'left', 'right', 'bottom';
-
-@each $variant in $variants {
-  $color: --color-#{$variant};
-
-  // full border
-  .has-border-#{$variant} {
-    border: 5px solid var($color);
-  }
-
-  // single side border
-  @each $side in $sides {
-    .has-border-#{$side}-#{$variant} {
-      border-#{$side}: 5px solid var($color);
-    }
-  }
-}
-</style>

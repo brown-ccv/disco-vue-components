@@ -1,6 +1,6 @@
 <template>
   <section
-    class="is-card"
+    class="d-card"
     role="card"
     v-bind:class="[
       'is-width-' + width,
@@ -76,67 +76,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.is-card {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px 0px;
-}
-
-.is-width-small {
-  width: 40vh;
-}
-
-.is-width-medium {
-  width: 70vh;
-}
-
-.is-width-large {
-  width: 100vh;
-}
-
-.header-rule::after {
-  display: block;
-  width: 50px;
-  height: 2px;
-  background-color: #ccc6b8;
-  content: '';
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-$variants: 'primary', 'success', 'danger', 'warning', 'info', 'link', 'dark',
-  'light';
-
-@each $variant in $variants {
-  $color: --color-#{$variant};
-  .has-border-top-#{$variant} {
-    border-top: 5px solid var($color);
-  }
-}
-
-@each $variant in $variants {
-  $color: --color-#{$variant};
-  .has-border-#{$variant} {
-    border: 2px solid var($color);
-  }
-}
-
-@each $variant in $variants {
-  $color: --color-#{$variant};
-  .has-header-rule-#{$variant}::after {
-    display: block;
-    width: 50px;
-    height: 2px;
-    background-color: var($color);
-    content: '';
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-</style>
