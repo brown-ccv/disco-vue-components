@@ -55,6 +55,30 @@ test('renders correct background variant for modal content when props.variant is
   });
 });
 
+test('renders correct top border color when props.accent is passed', () => {
+  const title = 'Card Title';
+  const accents = [
+    'primary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'link',
+    'dark',
+    'light',
+  ];
+  var accentsHTML;
+  accents.map((accent) => {
+    const { getAllByTestId } = render(DModal, {
+      props: { title, accent },
+    });
+    accentsHTML = getAllByTestId('modal-card');
+  });
+  accentsHTML.map(function (accentHTML, i) {
+    expect(accentHTML).toHaveClass(`has-border-top-${accents[i]}`);
+  });
+});
+
 test('renders correct width when props.width is passed', () => {
   const widths = ['small', 'medium', 'large'];
   var widthsHTML;

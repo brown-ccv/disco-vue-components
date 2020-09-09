@@ -28,12 +28,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  fill: currentColor;
-}
-</style>
