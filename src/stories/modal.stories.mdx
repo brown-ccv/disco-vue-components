@@ -34,7 +34,7 @@ export const Template = (args, { argTypes }) => ({
   template: `
         <div>
           <DButton name="Show Modal" @click="show = true" variant="link"/>
-          <DModal v-if="show" :variant="variant" :accent="accent" :width="width" :closeOptions="closeOptions" @close="show = !show">
+          <DModal v-if="show" :variant="variant" :accent="accent" :width="width" :closeOptions="closeOptions" :closeButtonText="closeButtonText" @close="show = !show">
             <template #content>
               <div class="content">
                 <h1>Lorem ipsum</h1>
@@ -47,7 +47,7 @@ export const Template = (args, { argTypes }) => ({
 });
 
 <Canvas>
-  <Story name="Modal" args={{variant: 'light', accent: 'warning', width: 'small', closeOptions: 'both' }}>
+  <Story name="Modal" args={{variant: 'light', accent: 'warning', width: 'small', closeOptions: 'both', closeButtonText: 'Close'}}>
     {Template.bind({})}
   </Story>
 </Canvas>
