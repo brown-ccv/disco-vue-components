@@ -17,8 +17,6 @@ import { COLOR_VARIANTS, SIZES } from '../utils';
 <ArgsTable story="Card" />
 
 ### DCard component
-
-
 ```html
 <DCard title="Card Title" />
 ```
@@ -42,8 +40,59 @@ export const Template = (args, { argTypes }) => ({
         `
 });
 
+export const TemplateFlex = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DCard, DButton },
+  template: `
+        <div class="columns is-multiline is-mobile">
+          <div class="column">
+            <DCard :title='title' :variant="variant" :accent="accent" :width="width" :border="border">
+              <template #content>
+                <div class="content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+              </template>
+              <template #footer>
+                <DButton name="Read more" :variant="accent"></DButton>
+              </template>
+            </DCard> 
+          </div>
+          <div class="column">
+            <DCard :title='title' :variant="variant" :accent="accent" :width="width" :border="border">
+              <template #content>
+                <div class="content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+              </template>
+              <template #footer>
+                <DButton name="Read more" :variant="accent"></DButton>
+              </template>
+            </DCard> 
+          </div>
+          <div class="column">
+            <DCard :title='title' :variant="variant" :accent="accent" :width="width" :border="border">
+              <template #content>
+                <div class="content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+              </template>
+              <template #footer>
+                <DButton name="Read more" :variant="accent"></DButton>
+              </template>
+            </DCard> 
+          </div>
+        </div>
+      `
+});
+
 <Canvas>
   <Story name="Card" args={{title: 'Card Title', variant: 'light', accent: 'warning', width: 'small', border: false}}>
     {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Card Flex" args={{title: 'Card Title', variant: 'light', accent: 'warning', width: 'small', border: false}}>
+    {TemplateFlex.bind({})}
   </Story>
 </Canvas>
