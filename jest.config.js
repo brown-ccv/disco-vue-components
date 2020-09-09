@@ -4,8 +4,8 @@ module.exports = {
   collectCoverageFrom: [
     '**/components/*.{js,vue}',
     '**/components/logos/*.{js,vue}',
-    '!**/node_modules/**'
+    '!**/node_modules/**',
   ],
   coverageReporters: ['html', 'text-summary'],
-  coverageDirectory: 'coverage'
+  coverageDirectory: 'coverage',
 };

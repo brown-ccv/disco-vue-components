@@ -1,0 +1,53 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import Navbar from '../components/d-navbar.vue';
+import CCVLogo from '../components/logos/CCVLogo.vue'
+import BrownLogo from '../components/logos/BrownLogo.vue'
+
+<Meta title="Elements/Navigation Bar" component={Navbar} />
+
+# Table of Contents
+
+<Props of={Navbar} />
+
+# DTOC component
+```jsx
+<Navbar />
+```
+
+<Preview >
+	<Story name="Navigation Bar">
+		{{
+			components: {Navbar, CCVLogo, BrownLogo},
+			template: `
+				<Navbar class="has-background-light">
+					<template v-slot:brand>
+						<a class="navbar-item" href="#">
+							<BrownLogo class="d-nav-brand" size="m" />
+							<CCVLogo size="s" />
+						</a>
+					</template>
+					<template v-slot:start>
+						<a class="navbar-item">
+							Home
+						</a>
+						<a class="navbar-item">
+							Services
+						</a>
+					</template>
+					<template v-slot:end>
+						<div class="navbar-item">
+							<div class="buttons">
+								<a class="button is-primary">
+									Search
+								</a>
+								<a class="button is-light">
+									Log-in
+								</a>
+							</div>
+						</div>
+					</template>
+				</Navbar>
+			`
+		}}
+	</Story>
+</Preview>

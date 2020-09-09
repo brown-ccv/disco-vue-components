@@ -27,8 +27,8 @@ module.exports = {
   },
   'Modal Close Check on header': function (browser) {
     browser.assert
-      .elementPresent('.delete')
-      .click('.delete')
+      .elementPresent('.d-button-delete')
+      .click('.d-button-delete')
       .assert.not.elementPresent('.d-dialog');
   },
   'Modal Close Check on footer': function (browser) {
