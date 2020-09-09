@@ -1,5 +1,5 @@
 <template>
-  <span class="d-expandable mx-2 my-2" data-testid="expandable">
+  <span aria-label="expandable" class="d-expandable mx-2 my-2">
     <header
       class="level is-mobile d-expandable-header mb-0 px-0 py-2"
       v-bind:class="[textColor]"
@@ -10,7 +10,7 @@
       @focus="setActive(true)"
       @blur="setActive(false)"
       tabindex="0"
-      role="button"
+      role="banner"
       :aria-pressed="isExpanded"
     >
       <div class="level-left">
@@ -43,9 +43,7 @@
 
 <script>
 import DIcon from '@/components/d-icon.vue';
-
 import * as utils from '@/utils.js';
-
 export default {
   name: 'Expandable',
   components: {

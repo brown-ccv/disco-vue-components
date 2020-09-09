@@ -36,6 +36,7 @@
       <div
         data-testid="modal-content"
         class="modal-card-body"
+        tabindex="0"
         v-bind:class="[textColor, 'has-background-' + variant]"
       >
         <slot name="content"> </slot>

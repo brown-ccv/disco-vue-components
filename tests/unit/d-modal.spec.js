@@ -5,8 +5,8 @@ import '@testing-library/jest-dom';
 // Behavior Driven Tests
 
 test('has dialog role and d-modal class', () => {
-  const { getByTestId } = render(DModal);
-  expect(getByTestId('dialog')).toHaveClass('d-dialog');
+  const { getByRole } = render(DModal);
+  expect(getByRole('dialog', { hidden: true })).toHaveClass('d-dialog');
 });
 
 test('renders correct background variant for modal card when props.variant is passed', () => {
@@ -52,6 +52,30 @@ test('renders correct background variant for modal content when props.variant is
   });
   variantsHTML.map(function (variantHTML, i) {
     expect(variantHTML).toHaveClass(`has-background-${variants[i]}`);
+  });
+});
+
+test('renders correct top border color when props.accent is passed', () => {
+  const title = 'Card Title';
+  const accents = [
+    'primary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'link',
+    'dark',
+    'light',
+  ];
+  var accentsHTML;
+  accents.map((accent) => {
+    const { getAllByTestId } = render(DModal, {
+      props: { title, accent },
+    });
+    accentsHTML = getAllByTestId('modal-card');
+  });
+  accentsHTML.map(function (accentHTML, i) {
+    expect(accentHTML).toHaveClass(`has-border-top-${accents[i]}`);
   });
 });
 
