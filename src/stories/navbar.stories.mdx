@@ -1,52 +1,134 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import Navbar from '../components/d-navbar.vue';
+import DNavbar from '../components/d-navbar.vue';
+import DButton from '../components/d-button.vue';
 import CCVLogo from '../components/logos/CCVLogo.vue'
 import BrownLogo from '../components/logos/BrownLogo.vue'
 
-<Meta title="Elements/Navigation Bar" component={Navbar} />
+<Meta title="Elements/Navigation Bar" component={DNavbar} />
 
 # Table of Contents
 
-<Props of={Navbar} />
+<Props of={DNavbar} />
 
-# DTOC component
+# DNavbar component
 ```jsx
-<Navbar />
+<DNavbar />
 ```
 
 <Preview >
 	<Story name="Navigation Bar">
 		{{
-			components: {Navbar, CCVLogo, BrownLogo},
+			components: {DNavbar, CCVLogo, BrownLogo, DButton},
 			template: `
-				<Navbar class="has-background-light">
+				<DNavbar>
 					<template v-slot:brand>
-						<a class="navbar-item" href="#">
+						<a class="navbar-item" href="#" aria-label="Back to Home">
 							<BrownLogo class="d-nav-brand" size="m" />
 							<CCVLogo size="s" />
 						</a>
 					</template>
 					<template v-slot:start>
-						<a class="navbar-item">
-							Home
-						</a>
-						<a class="navbar-item">
-							Services
-						</a>
+						<li tabindex="0" class="navbar-item has-dropdown is-hoverable">
+								<h2 class="navbar-link">
+									Services
+								</h2>
+								<ul class="navbar-dropdown">
+									<li class="navbar-item">
+										<a href="#" tabindex="0">
+											Classroom
+										</a>
+									</li>
+									<li class="navbar-item">
+										<a href="#" tabindex="0">
+											Computing
+										</a>
+									</li>
+									<li class="navbar-item">
+										<a href="#" tabindex="0">
+											File Storage and Transfer
+										</a>
+									</li>
+									<li class="navbar-item">
+										<a href="#" tabindex="0">
+											Visualization Systems
+										</a>
+									</li>
+									<li class="navbar-item">
+										<a href="#" tabindex="0">
+											Consulting
+										</a>
+									</li>
+								</ul>
+						</li>
+						<li tabindex="0" class="navbar-item has-dropdown is-hoverable">
+							<h2 class="navbar-link">
+								Our Work
+							</h2>
+							<ul class="navbar-dropdown">
+								<li class="navbar-item">
+									<a href="#" tabindex="0">
+										Workshops
+									</a>
+								</li>
+								<li class="navbar-item">
+									<a href="#" tabindex="0">
+										Software
+									</a>
+								</li>
+								<li class="navbar-item">
+									<a href="#" tabindex="0">
+										Publications
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li tabindex="0" class="navbar-item has-dropdown is-hoverable">
+							<h2 class="navbar-link">
+								Help
+							</h2>
+							<ul class="navbar-dropdown">
+								<li class="navbar-item">
+									<a href="#" tabindex="0" >
+										Submit a Ticket
+									</a>
+								</li>
+								<li class="navbar-item">
+									<a href="#" tabindex="0" >
+										Documentation
+									</a>
+								</li>
+								<li class="navbar-item">
+									<a href="#" tabindex="0" >
+										Slack
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="navbar-item">
+							<a href="#" tabindex="0">
+								About
+							</a>
+						</li>
 					</template>
 					<template v-slot:end>
-						<div class="navbar-item">
+						<li class="navbar-item">
 							<div class="buttons">
-								<a class="button is-primary">
-									Search
-								</a>
-								<a class="button is-light">
-									Log-in
-								</a>
+								<DButton name="search" />
 							</div>
-						</div>
+						</li>
 					</template>
-				</Navbar>
+				</DNavbar>
+			`
+		}}
+	</Story>
+</Preview>
+
+<Preview >
+	<Story name="Navigation Bar Simple">
+		{{
+			components: {DNavbar, CCVLogo, BrownLogo, DButton},
+			template: `
+				<DNavbar />
 			`
 		}}
 	</Story>

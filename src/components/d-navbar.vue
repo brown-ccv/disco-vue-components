@@ -1,5 +1,10 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar"
+    role="navigation"
+    aria-label="main navigation"
+    v-bind:class="'has-background-' + variant"
+  >
     <div class="navbar-brand">
       <slot name="brand"></slot>
       <a
@@ -7,7 +12,7 @@
         class="navbar-burger burger"
         aria-label="menu"
         :aria-expanded="expanded"
-        data-target="navbarBasicExample"
+        data-target="navbar-main"
         @click="expand"
       >
         <span aria-hidden="true"></span>
@@ -17,22 +22,33 @@
     </div>
 
     <div
-      id="navbarBasicExample"
+      id="navbar-main"
       class="navbar-menu"
       v-bind:class="{ 'is-active': expanded }"
     >
-      <div class="navbar-start">
+      <ul class="navbar-start" data-testid="navbar-start">
         <slot name="start"></slot>
-      </div>
-      <div class="navbar-end">
+      </ul>
+      <ul class="navbar-end" data-testid="navbar-end">
         <slot name="end"></slot>
-      </div>
+      </ul>
     </div>
   </nav>
 </template>
 
 <script>
+import * as utils from '@/utils.js';
+
 export default {
+  props: {
+    variant: {
+      type: String,
+      default: 'white',
+      validator(value) {
+        return utils.variantValidator(value);
+      },
+    },
+  },
   data() {
     return {
       expanded: false,
@@ -46,15 +62,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import 'bulma';
-.d-nav-brand {
-  @extend .pr-3;
-}
-.navbar-burger {
-  @include mobile {
-    align-self: center;
-  }
-}
-</style>
