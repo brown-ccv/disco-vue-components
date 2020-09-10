@@ -1,5 +1,6 @@
 <template>
   <section
+    v-bind="$attrs"
     class="d-card is-card"
     data-testid="card"
     v-bind:class="[
@@ -9,10 +10,10 @@
       'has-background-' + variant,
     ]"
   >
-    <header v-bind:class="[headerRule]">
+    <header v-if="!person" v-bind:class="[headerRule]">
       <h2 class="subtitle is-3 pt-2">{{ title }}</h2>
     </header>
-    <div class="card-content">
+    <div v-bind:class="person ? 'd-person-card-content' : 'card-content'">
       <slot name="content" />
     </div>
     <footer class="pb-2">
@@ -29,6 +30,11 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    person: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     border: {
       type: Boolean,
