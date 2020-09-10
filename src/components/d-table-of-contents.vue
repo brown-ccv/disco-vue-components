@@ -1,5 +1,5 @@
 <template>
-  <div class="d-toc-container">
+  <div class="d-toc-container box">
     <ul :name="name" class="d-toc">
       <li v-for="(entry, index) in data" :key="index">
         <a :href="entry.link" class="d-toc-content">

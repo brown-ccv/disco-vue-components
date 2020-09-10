@@ -10,9 +10,12 @@
   >
     <template #content class="d-card-content">
       <figure
+        tabindex="0"
         class="content person-image-figure"
+        @focus="active = true"
+        @blur="active = false"
         @mouseover="active = true"
-        @mouseleave="active = false"
+        @mouseout="active = false"
       >
         <img class="person-iamge" :src="active ? hoverImage : mainImage" />
       </figure>
