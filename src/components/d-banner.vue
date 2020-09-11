@@ -2,16 +2,20 @@
   <section
     role="banner"
     class="d-banner py-2 has-text-centered"
-    v-bind:class="['has-background-' + variant, textColor(variant)]"
+    v-bind:class="['has-background-' + variant]"
   >
-    <div class="subtitle">
+    <div class="subtitle" v-bind:class="[textColor(variant)]">
       {{ text }}
       <span
         class="tag"
-        v-bind:class="['is-' + tagVariant, textColor(tagVariant)]"
+        v-bind:class="[
+          'is-' + tagVariant,
+          textColor(tagVariant),
+          'is-' + tagSize,
+        ]"
       >
         <slot name="icon"></slot>
-        {{ tag }}
+        <span>{{ tag }}</span>
       </span>
     </div>
   </section>
@@ -28,7 +32,7 @@ export default {
     },
     tag: {
       type: String,
-      required: true,
+      required: false,
     },
     variant: {
       type: String,
@@ -42,6 +46,13 @@ export default {
       default: 'primary',
       validator(value) {
         return utils.variantValidator(value);
+      },
+    },
+    tagSize: {
+      type: String,
+      default: 'normal',
+      validator(value) {
+        return ['normal', 'medium', 'large'].indexOf(value) != -1;
       },
     },
   },

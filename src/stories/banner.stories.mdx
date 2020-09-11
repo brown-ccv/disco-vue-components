@@ -8,7 +8,8 @@ import { COLOR_VARIANTS } from '../utils';
     component={DBanner} 
     argTypes={{
         variant: { control: { type: 'select', options: COLOR_VARIANTS } },
-        tagVariant: { control: { type: 'select', options: COLOR_VARIANTS } }
+        tagVariant: { control: { type: 'select', options: COLOR_VARIANTS } },
+        tagSize: { control: { type: 'select', options: ['normal', 'medium', 'large'] } }
     }}
 />
 
@@ -24,11 +25,11 @@ import { COLOR_VARIANTS } from '../utils';
 export const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DBanner },
-  template: `<DBanner :text='text' :tag='tag' :variant='variant' :tagVariant='tagVariant'/>`
+  template: `<DBanner :text='text' :tag='tag' :variant='variant' :tagVariant='tagVariant' :tagSize='tagSize'/>`
 });
 
 <Canvas >
-    <Story name='Banner' args={{variant: 'primary', tag: 'Disco Design System', text: 'Powering CCV\'s Web Apps', tagVariant: 'danger'}}>
+    <Story name='Banner' args={{variant: 'primary', tag: 'Disco Design System', text: 'Powering CCV\'s Web Apps', tagVariant: 'danger', tagSize: 'normal'}}>
         {Template.bind({})}
     </Story>
 </Canvas>
@@ -36,15 +37,15 @@ export const Template = (args, { argTypes }) => ({
 export const TemplateIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DIcon, DBanner },
-  template: `<DBanner :text='text' :tag='tag' :variant='variant' :tagVariant='tagVariant'>
+  template: `<DBanner :text='text' :tag='tag' :variant='variant' :tagVariant='tagVariant' :tagSize='tagSize'>
               <template slot="icon">
-                <DIcon name="info" width=5 height=5/>
+                <DIcon name="info"/>
               </template>
             </DBanner>`
 });
 
 <Canvas >
-    <Story name='Banner Icon' args={{variant: 'primary', tag: 'Disco Design System', text: 'Powering CCV\'s Web Apps', tagVariant: 'danger'}}>
+    <Story name='Banner Icon' args={{variant: 'primary', tag: 'Disco Design System', text: 'Powering CCV\'s Web Apps', tagVariant: 'danger', tagSize: 'normal'}}>
         {TemplateIcon.bind({})}
     </Story>
 </Canvas>
