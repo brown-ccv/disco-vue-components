@@ -13,8 +13,8 @@ import { COLOR_VARIANTS, SIZES } from '../utils';
   }}
 />
 
-# Card
-<ArgsTable story="Card" />
+# Person Card
+<ArgsTable story="Person Card" />
 
 ### DCard component
 ```html
@@ -32,9 +32,9 @@ export const Template = (args, { argTypes }) => ({
           :accent="accent" 
           :width="width" 
           :border="border" 
-          name="Jane Doe" 
-          title="Software Engineer" 
-          team="engineering"
+          :name="name" 
+          :title="title" 
+          :team="team"
           mainImage="https://ccv.brown.edu/images/people/JPEG/fulcomer_main.jpg"
           hoverImage="https://ccv.brown.edu/images/people/JPEG/fulcomer_hover.jpg"
           >
@@ -46,7 +46,7 @@ export const Template = (args, { argTypes }) => ({
 });
 
 <Canvas>
-  <Story name="Person Card" args={{ variant: 'light', accent: 'warning', width: 'small', border: false}}>
+  <Story name="Person Card" args={{ variant: 'light', accent: 'warning', width: 'small', border: false, name: 'Jane Doe', title: 'Software Engineer', team: 'Engeneering'}}>
     {Template.bind({})}
   </Story>
 </Canvas>

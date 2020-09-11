@@ -17,15 +17,17 @@
         @mouseover="active = true"
         @mouseout="active = false"
       >
-        <img class="person-iamge" :src="active ? hoverImage : mainImage" />
+        <img class="person-image" :src="active ? hoverImage : mainImage" />
       </figure>
     </template>
     <template #footer>
-      <h2>{{ name }}</h2>
-      <p>
-        {{ title }} <small>| {{ team }}</small>
-      </p>
-      <slot name="icons"> </slot>
+      <footer class="py-3 px-3">
+        <h2>{{ name }}</h2>
+        <p>
+          {{ title }} <small>| {{ team }}</small>
+        </p>
+        <slot name="icons"> </slot>
+      </footer>
     </template>
   </DCard>
 </template>
@@ -98,9 +100,9 @@ export default {
   padding: 0 !important;
 }
 .person-image {
+  height: 100%;
+  object-fit: cover;
   overflow: hidden;
-  max-height: 100%;
-  max-width: 100%;
 }
 .person-image-figure {
   height: 40ex;
