@@ -42,10 +42,11 @@
 </template>
 
 <script>
-import DIcon from '@/components/d-icon.vue';
-import * as utils from '@/utils.js';
+import DIcon from '@/components/d-icon';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
+
 export default {
-  name: 'Expandable',
+  mixins: [discoBaseMixin],
   components: {
     DIcon,
   },
@@ -61,13 +62,6 @@ export default {
     isHovered: {
       type: Boolean,
       default: false,
-    },
-    variant: {
-      type: String,
-      default: 'primary',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
     },
   },
   methods: {

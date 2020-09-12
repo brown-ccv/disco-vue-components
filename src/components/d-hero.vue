@@ -1,7 +1,7 @@
 <template>
   <section
     role="banner"
-    class="d-hero is-medium is-bold"
+    class="d-hero is-medium"
     v-bind:class="['is-' + variant, { 'is-full-height': fullHeight }]"
   >
     <div class="hero-body">
@@ -18,7 +18,10 @@
 </template>
 
 <script>
+import discoBaseMixin from '@/mixins/disco-base-mixin';
+
 export default {
+  mixins: [discoBaseMixin],
   props: {
     title: {
       type: String,
@@ -31,25 +34,6 @@ export default {
     fullHeight: {
       type: Boolean,
       default: false,
-    },
-    variant: {
-      type: String,
-      default: 'warning',
-      validator: function (value) {
-        // The value must match one of these strings
-        return (
-          [
-            'primary',
-            'success',
-            'danger',
-            'warning',
-            'info',
-            'link',
-            'dark',
-            'light',
-          ].indexOf(value) !== -1
-        );
-      },
     },
   },
 };

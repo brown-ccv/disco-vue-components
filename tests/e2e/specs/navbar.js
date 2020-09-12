@@ -2,20 +2,20 @@
 // https://nightwatchjs.org/guide
 
 module.exports = {
-  Card: function (browser) {
+  Navbar: function (browser) {
     let page = browser.page.page();
 
     page
-      .navigate('/?path=/story/elements-cards-card--card')
+      .navigate('/?path=/story/elements-navigation-bar--navigation-bar')
       .waitForElementVisible('@canvas')
       .assert.elementPresent('@iframe');
 
     browser
       .frame('storybook-preview-iframe')
       .assert.elementPresent('#root')
-      .assert.elementPresent('.d-card')
+      .assert.elementPresent('.navbar')
       .initAccessibility()
-      .assert.accessibility('.d-card', {
+      .assert.accessibility('.navbar', {
         verbose: true,
       });
 

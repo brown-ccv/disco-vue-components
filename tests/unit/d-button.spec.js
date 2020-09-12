@@ -1,17 +1,38 @@
-import { render } from '@testing-library/vue';
+import { render, screen, fireEvent } from '@testing-library/vue';
 import DButton from '@/components/d-button.vue';
 import '@testing-library/jest-dom';
 
+const name = 'Button';
+const sizes = ['small', 'normal', 'medium', 'large'];
+const variants = [
+  'primary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'link',
+  'dark',
+  'light',
+];
+const darkVariants = ['danger', 'link', 'dark'];
+const lightVariants = ['primary', 'success', 'warning', 'info', 'light'];
+
 test('has d-button class', () => {
-  const name = 'Button';
   const { getByTestId } = render(DButton, {
     props: { name },
   });
   expect(getByTestId('button')).toHaveClass('d-button');
 });
 
+test('is clickable', async () => {
+  const { getByTestId } = render(DButton, {
+    props: { name },
+  });
+  await fireEvent.click(screen.getByTestId('button'));
+  expect(getByTestId('button')).toHaveClass('d-button');
+});
+
 test('renders props.name when passed', () => {
-  const name = 'Button';
   const { getByText } = render(DButton, {
     props: { name },
   });
@@ -19,7 +40,6 @@ test('renders props.name when passed', () => {
 });
 
 test('renders correct type when props.type is not passed', () => {
-  const name = 'button';
   const type = 'button';
   const { getByTestId } = render(DButton, {
     props: { name, type },
@@ -28,7 +48,6 @@ test('renders correct type when props.type is not passed', () => {
 });
 
 test('renders correct type when props.type is not passed', () => {
-  const name = 'button';
   const type = 'submit';
   const { getByTestId } = render(DButton, {
     props: { name, type },
@@ -37,8 +56,6 @@ test('renders correct type when props.type is not passed', () => {
 });
 
 test('renders correct size when props.size is passed', () => {
-  const name = 'button';
-  const sizes = ['small', 'normal', 'medium', 'large'];
   var sizesHTML;
   sizes.map((size) => {
     const { getAllByTestId } = render(DButton, {
@@ -52,17 +69,6 @@ test('renders correct size when props.size is passed', () => {
 });
 
 test('renders correct variant when props.variant is passed', () => {
-  const name = 'button';
-  const variants = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   var variantsHTML;
   variants.map((variant) => {
     const { getAllByTestId } = render(DButton, {
@@ -76,8 +82,6 @@ test('renders correct variant when props.variant is passed', () => {
 });
 
 test('renders correct light text color when dark props.variant is passed', () => {
-  const name = 'button';
-  const darkVariants = ['danger', 'link', 'dark'];
   var darkVariantsHTML;
   darkVariants.map((variant) => {
     const { getAllByTestId } = render(DButton, {
@@ -91,8 +95,6 @@ test('renders correct light text color when dark props.variant is passed', () =>
 });
 
 test('renders correct dark text color when light props.variant is passed', () => {
-  const name = 'button';
-  const lightVariants = ['primary', 'success', 'warning', 'info', 'light'];
   var lightVariantsHTML;
   lightVariants.map((variant) => {
     const { getAllByTestId } = render(DButton, {
@@ -106,18 +108,7 @@ test('renders correct dark text color when light props.variant is passed', () =>
 });
 
 test('renders correct text color when props.variant and props.outlined is passed', () => {
-  const name = 'button';
   const outlined = true;
-  const variants = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   var variantsHTML;
   variants.map((variant) => {
     const { getAllByTestId } = render(DButton, {

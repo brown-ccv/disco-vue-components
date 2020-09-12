@@ -1,5 +1,5 @@
 <template>
-  <div class="d-toc-container">
+  <div class="d-toc-container box">
     <ul :name="name" class="d-toc">
       <li v-for="(entry, index) in data" :key="index">
         <a :href="entry.link" class="d-toc-content">
@@ -16,7 +16,10 @@
 
 <script>
 import DIcon from '@/components/d-icon.vue';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
+
 export default {
+  mixins: [discoBaseMixin],
   components: {
     'd-icon': DIcon,
   },

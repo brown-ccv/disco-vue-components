@@ -19,14 +19,10 @@
 </template>
 
 <script>
-import * as utils from '@/utils.js';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
 
 export default {
-  filters: {
-    uppercase(str) {
-      return str.toUpperCase();
-    },
-  },
+  mixins: [discoBaseMixin],
   props: {
     name: {
       type: String,
@@ -43,13 +39,6 @@ export default {
         return ['small', 'normal', 'medium', 'large'].indexOf(value) !== -1;
       },
     },
-    variant: {
-      type: String,
-      default: 'primary',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
     icon: {
       type: Boolean,
       default: true,
@@ -57,18 +46,6 @@ export default {
     outlined: {
       type: Boolean,
       default: false,
-    },
-  },
-  computed: {
-    textColor() {
-      let color =
-        ['danger', 'dark', 'link'].indexOf(this.variant) !== -1
-          ? 'has-text-light'
-          : 'has-text-dark';
-      if (this.outlined) {
-        color = `has-text-${this.variant}`;
-      }
-      return color;
     },
   },
   methods: {
