@@ -4,15 +4,11 @@
     class="d-banner py-2 has-text-centered"
     v-bind:class="['has-background-' + variant]"
   >
-    <div class="subtitle" v-bind:class="[textColor(variant)]">
+    <div class="subtitle" v-bind:class="[tagTextColor(variant)]">
       {{ text }}
       <span
         class="tag"
-        v-bind:class="[
-          'is-' + tagVariant,
-          textColor(tagVariant),
-          'is-' + tagSize,
-        ]"
+        v-bind:class="['is-' + accent, tagTextColor(accent), 'is-' + tagSize]"
       >
         <slot name="icon"></slot>
         <span>{{ tag }}</span>
@@ -22,9 +18,10 @@
 </template>
 
 <script>
-import * as utils from '@/utils.js';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
 
 export default {
+  mixins: [discoBaseMixin],
   props: {
     text: {
       type: String,
@@ -33,20 +30,6 @@ export default {
     tag: {
       type: String,
       required: false,
-    },
-    variant: {
-      type: String,
-      default: 'primary',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
-    tagVariant: {
-      type: String,
-      default: 'primary',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
     },
     tagSize: {
       type: String,
@@ -57,7 +40,7 @@ export default {
     },
   },
   methods: {
-    textColor(color) {
+    tagTextColor(color) {
       let textcolor =
         ['danger', 'dark', 'link'].indexOf(color) !== -1
           ? 'has-text-light'

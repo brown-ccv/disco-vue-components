@@ -2,7 +2,8 @@
   <dialog
     aria-live="polite"
     role="dialog"
-    class="d-dialog modal is-active"
+    class="d-dialog modal"
+    v-bind:class="{ 'is-active': isActive }"
     data-testid="dialog"
   >
     <!-- area surrounding modal -->
@@ -62,22 +63,20 @@
 </template>
 
 <script>
-import DButton from '@/components/d-button.vue';
-
-import * as utils from '@/utils.js';
+import DButton from '@/components/d-button';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
 
 export default {
+  mixins: [discoBaseMixin],
   components: {
     'd-button': DButton,
   },
+  data() {
+    return {
+      isActive: true,
+    };
+  },
   props: {
-    width: {
-      type: String,
-      default: 'medium',
-      validator: function (value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1;
-      },
-    },
     closeButtonText: {
       type: String,
       default: 'Close',
@@ -89,33 +88,11 @@ export default {
         return ['header', 'footer', 'both'].indexOf(value) !== -1;
       },
     },
-    variant: {
-      type: String,
-      default: 'primary',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
-    accent: {
-      type: String,
-      default: 'danger',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
   },
   methods: {
     onClose() {
+      this.isActive = false;
       this.$emit('close');
-    },
-  },
-  computed: {
-    textColor() {
-      let color =
-        ['danger', 'dark', 'link'].indexOf(this.variant) !== -1
-          ? 'has-text-light'
-          : 'has-text-dark';
-      return color;
     },
   },
 };

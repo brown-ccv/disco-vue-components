@@ -37,18 +37,10 @@
 </template>
 
 <script>
-import * as utils from '@/utils.js';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
 
 export default {
-  props: {
-    variant: {
-      type: String,
-      default: 'white',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
-  },
+  mixins: [discoBaseMixin],
   data() {
     return {
       expanded: false,

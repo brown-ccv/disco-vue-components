@@ -19,6 +19,7 @@
         data-testid="person-image-figure"
       >
         <img
+          :alt="'Picture of' + name"
           class="person-image"
           :src="active ? hoverImage : mainImage"
           data-testid="person-image"
@@ -38,10 +39,11 @@
 </template>
 
 <script>
-import * as utils from '@/utils.js';
-import DCard from '@/components/d-card.vue';
+import DCard from '@/components/d-card';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
 
 export default {
+  mixins: [discoBaseMixin],
   data() {
     return {
       active: false,
@@ -71,27 +73,6 @@ export default {
     border: {
       type: Boolean,
       default: false,
-    },
-    width: {
-      type: String,
-      default: 'medium',
-      validator: function (value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1;
-      },
-    },
-    accent: {
-      type: String,
-      default: 'danger',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
-    variant: {
-      type: String,
-      default: 'white',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
     },
   },
   components: {

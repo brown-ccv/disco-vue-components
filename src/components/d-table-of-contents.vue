@@ -16,7 +16,10 @@
 
 <script>
 import DIcon from '@/components/d-icon.vue';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
+
 export default {
+  mixins: [discoBaseMixin],
   components: {
     'd-icon': DIcon,
   },

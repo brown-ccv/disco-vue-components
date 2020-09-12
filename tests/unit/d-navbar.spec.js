@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue';
+import { render, screen, fireEvent } from '@testing-library/vue';
 import DNavbar from '@/components/d-navbar.vue';
 import '@testing-library/jest-dom';
 
@@ -39,4 +39,17 @@ test('renders correct variant when props.variant is passed', () => {
   variantsHTML.map(function (variantHTML, i) {
     expect(variantHTML).toHaveClass(`has-background-${variants[i]}`);
   });
+});
+
+test('expands when clicked', async () => {
+  const { getByRole } = render(DNavbar);
+
+  expect(getByRole('button', { hidden: true })).not.toHaveAttribute(
+    'aria-expanded'
+  );
+  await fireEvent.click(screen.getByRole('button'));
+  expect(getByRole('button', { hidden: true })).toHaveAttribute(
+    'aria-expanded',
+    'true'
+  );
 });

@@ -23,9 +23,10 @@
 </template>
 
 <script>
-import * as utils from '@/utils.js';
+import discoBaseMixin from '@/mixins/disco-base-mixin';
 
 export default {
+  mixins: [discoBaseMixin],
   props: {
     title: {
       type: String,
@@ -39,45 +40,6 @@ export default {
     border: {
       type: Boolean,
       default: false,
-    },
-    width: {
-      type: String,
-      default: 'medium',
-      validator: function (value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1;
-      },
-    },
-    accent: {
-      type: String,
-      default: 'danger',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
-    variant: {
-      type: String,
-      default: 'primary',
-      validator(value) {
-        return utils.variantValidator(value);
-      },
-    },
-  },
-  computed: {
-    textColor() {
-      let color =
-        ['danger', 'dark', 'link'].indexOf(this.variant) !== -1
-          ? 'has-text-light'
-          : 'has-text-dark';
-      return color;
-    },
-    borderColor() {
-      let bordercolor = this.border
-        ? 'has-border-' + this.accent
-        : 'has-border-top-' + this.accent;
-      return bordercolor;
-    },
-    headerRule() {
-      return this.border ? 'has-header-rule-' + this.accent : 'header-rule';
     },
   },
 };

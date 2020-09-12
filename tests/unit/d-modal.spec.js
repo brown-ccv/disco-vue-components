@@ -1,6 +1,19 @@
-import { render } from '@testing-library/vue';
+import { render, screen, fireEvent } from '@testing-library/vue';
 import DModal from '@/components/d-modal.vue';
 import '@testing-library/jest-dom';
+
+const title = 'Card Title';
+const variants = [
+  'primary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'link',
+  'dark',
+  'light',
+];
+const widths = ['small', 'medium', 'large'];
 
 // Behavior Driven Tests
 
@@ -10,16 +23,6 @@ test('has dialog role and d-modal class', () => {
 });
 
 test('renders correct background variant for modal card when props.variant is passed', () => {
-  const variants = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   var variantsHTML;
   variants.map((variant) => {
     const { getAllByTestId } = render(DModal, {
@@ -33,16 +36,6 @@ test('renders correct background variant for modal card when props.variant is pa
 });
 
 test('renders correct background variant for modal content when props.variant is passed', () => {
-  const variants = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   var variantsHTML;
   variants.map((variant) => {
     const { getAllByTestId } = render(DModal, {
@@ -56,31 +49,19 @@ test('renders correct background variant for modal content when props.variant is
 });
 
 test('renders correct top border color when props.accent is passed', () => {
-  const title = 'Card Title';
-  const accents = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   var accentsHTML;
-  accents.map((accent) => {
+  variants.map((accent) => {
     const { getAllByTestId } = render(DModal, {
       props: { title, accent },
     });
     accentsHTML = getAllByTestId('modal-card');
   });
   accentsHTML.map(function (accentHTML, i) {
-    expect(accentHTML).toHaveClass(`has-border-top-${accents[i]}`);
+    expect(accentHTML).toHaveClass(`has-border-top-${variants[i]}`);
   });
 });
 
 test('renders correct width when props.width is passed', () => {
-  const widths = ['small', 'medium', 'large'];
   var widthsHTML;
   widths.map((width) => {
     const { getAllByTestId } = render(DModal, {
@@ -120,5 +101,19 @@ test('renders close button text correctly when props.closeButtonText is passed',
   const { getByText } = render(DModal, {
     props: { closeButtonText, closeOptions },
   });
-  getByText(closeButtonText.toUpperCase());
+  expect(getByText(closeButtonText.toUpperCase())).toHaveTextContent(
+    closeButtonText.toUpperCase()
+  );
+});
+
+test('close modal when clicked', async () => {
+  const closeButtonText = 'Close';
+  const closeOptions = 'footer';
+  const { getByRole } = render(DModal, {
+    props: { closeButtonText, closeOptions },
+  });
+
+  expect(getByRole('dialog', { hidden: true })).toHaveClass('is-active');
+  await fireEvent.click(screen.getByText(closeButtonText.toUpperCase()));
+  expect(getByRole('dialog', { hidden: true })).not.toHaveClass('is-active');
 });
