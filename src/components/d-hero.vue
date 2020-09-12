@@ -1,7 +1,7 @@
 <template>
   <section
     role="banner"
-    class="d-hero is-medium is-bold"
+    class="d-hero is-medium"
     v-bind:class="['is-' + variant, { 'is-full-height': fullHeight }]"
   >
     <div class="hero-body">

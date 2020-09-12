@@ -1067,7 +1067,7 @@
 
 "@brown-ccv/disco-styles@git+https://github.com/brown-ccv/disco-styles.git#develop":
   version "2.0.1"
-  resolved "git+https://github.com/brown-ccv/disco-styles.git#a2bb6f8597c20f1aab95f45d6966267c3b0a221c"
+  resolved "git+https://github.com/brown-ccv/disco-styles.git#cb1e44d8ecac114a33bdfae4cca89b6a0e0c5607"
   dependencies:
     bulma "^0.9.0"
     cz-conventional-changelog "^3.2.0"
@@ -2710,7 +2710,7 @@
     pretty-format "^25.1.0"
     wait-for-expect "^3.0.2"
 
-"@testing-library/dom@^7.5.7":
+"@testing-library/dom@^7.24.1", "@testing-library/dom@^7.5.7":
   version "7.24.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.24.1.tgz#0e8acd042070f2c1b183fbfe5c0d38b3194ad3c0"
   integrity sha512-TemHWY59gvzcScGiE5eooZpzYk9GaED0TuuK4WefbIc/DQg0L5wOpnj7MIEeAGF3B7Ekf1kvmVnQ97vwz4Lmhg==
@@ -2746,6 +2746,13 @@
     "@testing-library/dom" "^6.3.0"
     nightwatch "^1.2.4"
     simmerjs "^0.5.6"
+
+"@testing-library/user-event@^12.1.4":
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-12.1.4.tgz#a1f257dd2ec5fc19ca5d96ef2d096f6f5888e67a"
+  integrity sha512-vd5s43lNfyq/JEr8ndQmS+An6dEVUmjW9zqtpmMHU+rrPMaHLrUIlWZ9wDE8ALS/dFMsu6U00A5X/7Dv/2tWnw==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
 
 "@testing-library/vue@^5.0.4":
   version "5.0.4"

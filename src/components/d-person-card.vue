@@ -16,14 +16,19 @@
         @blur="active = false"
         @mouseover="active = true"
         @mouseout="active = false"
+        data-testid="person-image-figure"
       >
-        <img class="person-image" :src="active ? hoverImage : mainImage" />
+        <img
+          class="person-image"
+          :src="active ? hoverImage : mainImage"
+          data-testid="person-image"
+        />
       </figure>
     </template>
     <template #footer>
       <footer class="py-3 px-3">
         <h2>{{ name }}</h2>
-        <p>
+        <p data-testid="title-team">
           {{ title }} <small>| {{ team }}</small>
         </p>
         <slot name="icons"> </slot>
