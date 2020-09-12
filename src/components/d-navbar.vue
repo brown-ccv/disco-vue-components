@@ -48,7 +48,6 @@ export default {
   },
   methods: {
     expand() {
-      console.log('expanded');
       this.expanded = !this.expanded;
     },
   },

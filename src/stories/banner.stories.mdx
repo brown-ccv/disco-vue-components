@@ -25,11 +25,11 @@ import { COLOR_VARIANTS } from '../utils';
 export const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DBanner },
-  template: `<DBanner :text='text' :tag='tag' :variant='variant' :accent='accent' :tagSize='tagSize'/>`
+  template: `<DBanner :text='text' :variant='variant' :accent='accent' :tagSize='tagSize'/>`
 });
 
 <Canvas >
-    <Story name='Banner' args={{variant: 'primary', tag: 'Disco Design System', text: 'Powering CCV\'s Web Apps', accent: 'danger', tagSize: 'normal'}}>
+    <Story name='Banner' args={{variant: 'primary', text: 'Powering CCV\'s Web Apps', accent: 'danger', tagSize: 'normal'}}>
         {Template.bind({})}
     </Story>
 </Canvas>
@@ -37,15 +37,17 @@ export const Template = (args, { argTypes }) => ({
 export const TemplateIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DIcon, DBanner },
-  template: `<DBanner :text='text' :tag='tag' :variant='variant' :accent='accent' :tagSize='tagSize'>
-              <template slot="icon">
-                <DIcon name="info"/>
+  template: `<a href="#"><DBanner :text='text' :variant='variant' :accent='accent' :tagSize='tagSize'>
+              <template #badge>
+                <span>&#9432; Disco Design System</span>
               </template>
-            </DBanner>`
+            </DBanner></a>`
 });
 
+To add a badge to the left of the text, use the slot `#badge`. This example wraps the banner in a `a` tag to demonstrate how to create a banner with link.
+
 <Canvas >
-    <Story name='Banner Icon' args={{variant: 'primary', tag: 'Disco Design System', text: 'Powering CCV\'s Web Apps', accent: 'danger', tagSize: 'normal'}}>
+    <Story name='Banner Icon' args={{variant: 'primary', text: 'Powering CCV\'s Web Apps', accent: 'danger', tagSize: 'normal'}}>
         {TemplateIcon.bind({})}
     </Story>
 </Canvas>

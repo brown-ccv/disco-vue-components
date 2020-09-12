@@ -4,15 +4,19 @@
     class="d-banner py-2 has-text-centered"
     v-bind:class="['has-background-' + variant]"
   >
-    <div class="subtitle" v-bind:class="[tagTextColor(variant)]">
-      {{ text }}
+    <div
+      class="subtitle"
+      v-bind:class="[tagTextColor(variant)]"
+      data-testid="text"
+    >
       <span
+        v-if="$slots.badge"
         class="tag"
         v-bind:class="['is-' + accent, tagTextColor(accent), 'is-' + tagSize]"
       >
-        <slot name="icon"></slot>
-        <span>{{ tag }}</span>
+        <slot name="badge"></slot>
       </span>
+      {{ text }}
     </div>
   </section>
 </template>
@@ -26,10 +30,6 @@ export default {
     text: {
       type: String,
       required: true,
-    },
-    tag: {
-      type: String,
-      required: false,
     },
     tagSize: {
       type: String,

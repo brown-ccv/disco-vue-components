@@ -2,6 +2,17 @@ import { render, screen, fireEvent } from '@testing-library/vue';
 import DNavbar from '@/components/d-navbar.vue';
 import '@testing-library/jest-dom';
 
+const variants = [
+  'primary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'link',
+  'dark',
+  'light',
+];
+
 test('renders and has navbar class', () => {
   const { getByRole } = render(DNavbar);
   expect(getByRole('navigation')).toHaveClass('navbar');
@@ -18,17 +29,6 @@ test('has navbar-end ul', () => {
 });
 
 test('renders correct variant when props.variant is passed', () => {
-  const variants = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
-
   let variantsHTML;
   variants.map((variant) => {
     const { getAllByRole } = render(DNavbar, {
