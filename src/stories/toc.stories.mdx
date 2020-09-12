@@ -1,26 +1,36 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DTOC from '../components/d-table-of-contents.vue';
+import { COLOR_VARIANTS } from '../utils';
 
-<Meta title="Elements/Table of Contents" component={DTOC} />
+<Meta 
+  title="Elements/Table of Contents" 
+  component={DTOC} 
+  argTypes={{
+      variant: { control: { type: 'select', options: COLOR_VARIANTS } },
+      accent: { control: { type: 'select', options: COLOR_VARIANTS } },
+  }}  
+/>
 
 # Table of Contents
 
-<Props of={DTOC} />
+<ArgsTable story='Table of Contents' />
 
 # DTOC component
 ```jsx
 <DTOC :data="[{name:'Mission', icon:'chatbox-line', link:'https://datasci.brown.edu/about/'}, {name: 'People', icon:'person-lines'}, {name: 'Oppurtunities', icon:'lightbulb-1'}, {name: 'How to Cite CCV', icon:'carrot-right'}]" name="newtable"/>
 ```
 
-<Preview >
-    <Story name="Table of Contents">
-        {{
-            components: {DTOC},
-            template: `
-            <div>
-                <DTOC :data="[{name:'Mission', icon:'chatbox-line' ,link:'https://datasci.brown.edu/about/'}, {name: 'People', icon:'person-lines'}, {name: 'Oppurtunities', icon:'lightbulb-1'}, {name: 'How to Cite CCV', icon:'carrot-right'}]" name="newtable"/>
+export const Template = (args, {argTypes}) => ({
+  props: Object.keys(argTypes),
+  components: { DTOC },
+  template: `<div>
+                <DTOC :variant="variant" :data="[{name:'Mission', icon:'chatbox-line', link:'https://datasci.brown.edu/about/'}, {name: 'People', icon:'person-lines'}, {name: 'Oppurtunities', icon:'lightbulb-1'}, {name: 'How to Cite CCV', icon:'carrot-right'}]" name="newtable"/>
             </div>
             `
-        }}
+})
+
+<Canvas>
+    <Story name="Table of Contents" args={{variant: 'primary'}}>
+        {Template.bind({})}
     </Story>
-</Preview>
+</Canvas>
