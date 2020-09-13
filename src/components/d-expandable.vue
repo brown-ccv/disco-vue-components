@@ -2,7 +2,7 @@
   <span aria-label="expandable" class="d-expandable mx-2 my-2">
     <header
       class="level is-mobile d-expandable-header mb-0 px-0 py-2"
-      v-bind:class="[textColor]"
+      v-bind:class="[textColor, { 'is-focused': isFocused }]"
       @click="onSelect"
       @keyup.enter="onSelect"
       @mouseover="setActive(true)"
@@ -10,7 +10,7 @@
       @focus="setActive(true)"
       @blur="setActive(false)"
       tabindex="0"
-      role="banner"
+      role="button"
       :aria-pressed="isExpanded"
     >
       <div class="level-left">
@@ -50,6 +50,11 @@ export default {
   components: {
     DIcon,
   },
+  data() {
+    return {
+      isFocused: false,
+    };
+  },
   props: {
     title: {
       type: String,
@@ -70,8 +75,10 @@ export default {
     },
     setActive(val) {
       if (val) {
+        this.isFocused = true;
         this.$emit('header-active');
       } else {
+        this.isFocused = false;
         this.$emit('header-inactive');
       }
     },
