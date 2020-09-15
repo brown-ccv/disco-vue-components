@@ -1,6 +1,7 @@
 <template>
   <footer
     class="d-footer"
+    data-testid="footer"
     v-bind:class="['has-background-' + variant, textColor]"
   >
     <div class="d-footer-content-first">

@@ -36,7 +36,7 @@ export const Template = (args, { argTypes }) => ({
                 <template #second>
                 <section style="display: flex; flex-wrap: wrap; justify-content: space-between;" class="my-5">
                   <ul class="" class="mr-6">
-                    <h2>Services</h2>
+                    <li><h2>Services</h2></li>
                     <li class="">
                       <a href="#" tabindex="0">
                         Classroom
@@ -64,7 +64,7 @@ export const Template = (args, { argTypes }) => ({
                     </li>
                   </ul>
                   <ul class="" class="mr-6">
-                    <h2>Documentation</h2>
+                    <li><h2>Documentation</h2></li>
                     <li class="">
                       <a href="#" tabindex="0">
                         Oscar
@@ -87,7 +87,7 @@ export const Template = (args, { argTypes }) => ({
                     </li>
                   </ul>
                   <ul class="" class="mr-6">
-                    <h2>Our Work</h2>
+                    <li><h2>Our Work</h2></li>
                     <li class="">
                       <a href="#" tabindex="0">
                         Workshops
@@ -105,9 +105,11 @@ export const Template = (args, { argTypes }) => ({
                     </li>
                   </ul>
                   <ul class="" class="mr-6">
-                    <h2 class="">
-                      Help
-                    </h2>
+                    <li>
+                      <h2 class="">
+                        Help
+                      </h2>
+                    </li>
                     <li class="">
                       <a href="#" tabindex="0" >
                         Submit a Ticket
@@ -130,9 +132,11 @@ export const Template = (args, { argTypes }) => ({
                     </li>
                   </ul>
                   <ul class="" class="mr-6">
-                    <h2 class="">
-                      About
-                    </h2>
+                    <li>
+                      <h2 class="">
+                        About
+                      </h2>
+                    </li>
                     <li class="">
                       <a href="#" tabindex="0" >
                         Mission
@@ -162,14 +166,14 @@ export const Template = (args, { argTypes }) => ({
                   </ul>
                 </section>
                 </template>
-                <template #third>© Center for Computation and Visualization | 2020 Brown University | 180 George St, Providence RI 02906</template>
+                <template #third>© 2020 Center for Computation and Visualization, Brown University | 180 George St, Providence RI 02906</template>
             </DFooter>
   
   `
 });
 
 <Canvas >
-    <Story name='Footer' args={{variant: 'light'}}>
+    <Story name='Footer' args={{variant: 'white'}}>
         {Template.bind({})}
     </Story>
 </Canvas>
