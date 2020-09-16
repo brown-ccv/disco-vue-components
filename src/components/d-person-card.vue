@@ -80,17 +80,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.d-person-card {
-  padding: 0 !important;
-}
-.person-image {
-  height: 100%;
-  object-fit: cover;
-  overflow: hidden;
-}
-.person-image-figure {
-  height: 40ex;
-}
-</style>

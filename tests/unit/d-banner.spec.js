@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue';
+import { render, screen, fireEvent } from '@testing-library/vue';
 import DBanner from '@/components/d-banner.vue';
 import '@testing-library/jest-dom';
 
@@ -40,4 +40,13 @@ test('renders correct text when prop.text is passed', () => {
     props: { text },
   });
   expect(getByTestId('text')).toHaveTextContent(text);
+});
+
+test('dismisses when dismiss is clicked', async () => {
+  const { getByRole } = render(DBanner, {
+    props: { text },
+  });
+  expect(getByRole('banner')).not.toBe(null);
+  await fireEvent.click(screen.getByTestId('dismiss'));
+  expect(screen.queryByRole('banner')).toBeNull();
 });

@@ -8,5 +8,6 @@ export { default as DExpandable } from './d-expandable.vue';
 export { default as DBanner } from './d-banner.vue';
 export { default as DNavbar } from './d-navbar.vue';
 export { default as DPersonCard } from './d-person-card.vue';
+export { default as DFooter } from './d-footer.vue';
 
 export { default as discoBaseMixin } from '../mixins/disco-base-mixin.js';
