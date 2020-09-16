@@ -64,11 +64,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-@import 'bulma';
-.d-banner {
-  @extend .notification;
-  border-radius: 0 !important;
-  width: 100vw;
-}
-</style>
