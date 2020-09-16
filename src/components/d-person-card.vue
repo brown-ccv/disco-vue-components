@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import DCard from '@/components/d-card';
-import discoBaseMixin from '@/mixins/disco-base-mixin';
+import DCard from '@/components/d-card.vue';
+import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {
   mixins: [discoBaseMixin],

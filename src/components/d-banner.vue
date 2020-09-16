@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import discoBaseMixin from '@/mixins/disco-base-mixin';
+import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {
   mixins: [discoBaseMixin],

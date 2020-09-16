@@ -1056,10 +1056,10 @@
   resolved "https://registry.yarnpkg.com/@base2/pretty-print-object/-/pretty-print-object-1.0.0.tgz#860ce718b0b73f4009e153541faff2cb6b85d047"
   integrity sha512-4Th98KlMHr5+JkxfcoDT//6vY8vM+iSPrLNpHhRyLx2CFYi8e2RfqPLdpbnpo0Q5lQC5hNB79yes07zb02fvCw==
 
-"@brown-ccv/disco-styles@2.1.0":
-  version "2.1.0"
-  resolved "https://npm.pkg.github.com/download/@brown-ccv/disco-styles/2.1.0/0c24be8a0cb2a2004712c5cbc9cc0de88aede7887d6a2c79215b55aa5c424626#28fab0d5c703e7bfdeb4d75f8488ec980850e9ea"
-  integrity sha512-WwKAlq3Z8x0LUrAhpXsk4BtIIVIs+m3m4v+oEYZ4//078q9U5phUGN0XOiKIdTMRUsDgUn7wFzFI5nyFt0WW8g==
+"@brown-ccv/disco-styles@2.2.0":
+  version "2.2.0"
+  resolved "https://npm.pkg.github.com/download/@brown-ccv/disco-styles/2.2.0/306d87690530f63cc1d420b00b1da3294ecf3952963dde2999068b20b813b128#14bf0d5154b33bd28d7c2fe8563f13f05c68c623"
+  integrity sha512-ooTtx84vCoxlj8IKod3ZSKXU4ryw4I6bpnRjZCv1BNJlZ3PonkdOw0jUiA/HUK+KKXufFm4KSNBxHn3rnCjp5Q==
   dependencies:
     bulma "^0.9.0"
     cz-conventional-changelog "^3.2.0"

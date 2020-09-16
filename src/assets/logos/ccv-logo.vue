@@ -103,19 +103,3 @@
     </g>
   </svg>
 </template>
-<style lang="scss" scoped>
-.ccv-logo {
-  z-index: 100;
-}
-.c1 {
-  fill: var(--color-yellow);
-}
-
-.c2 {
-  fill: var(--color-green);
-}
-
-.v {
-  fill: var(--color-yellow);
-}
-</style>
