@@ -1,33 +1,31 @@
-import { shallowMount } from '@vue/test-utils';
+import { render } from '@testing-library/vue';
 import DIcon from '@/components/d-icon.vue';
+import '@testing-library/jest-dom';
 
-describe('d-icon.vue', () => {
-  it('has icon class', () => {
-    const name = 'instagram';
-    const wrapper = shallowMount(DIcon, {
-      propsData: { name }
-    });
-    expect(wrapper.classes()).toContain('icon-wrapper');
-    expect(wrapper.find('.icon')).toBeTruthy();
+test('has icon class', () => {
+  const name = 'instagram';
+  const { getByRole } = render(DIcon, {
+    props: { name },
   });
+  expect(getByRole('img', { hidden: true })).toHaveClass('icon');
+});
 
-  it('renders default height and width', () => {
-    const name = 'instagram';
-    const wrapper = shallowMount(DIcon, {
-      propsData: { name }
-    });
-    expect(wrapper.find('svg').attributes().height).toBe('24');
-    expect(wrapper.find('svg').attributes().width).toBe('24');
+test('renders default height and width', () => {
+  const name = 'instagram';
+  const { getByRole } = render(DIcon, {
+    props: { name },
   });
+  expect(getByRole('img', { hidden: true })).toHaveAttribute('width', '24');
+  expect(getByRole('img', { hidden: true })).toHaveAttribute('height', '24');
+});
 
-  it('renders height and width when props are passed', () => {
-    const name = 'instagram';
-    const height = '50';
-    const width = '50';
-    const wrapper = shallowMount(DIcon, {
-      propsData: { name, height, width }
-    });
-    expect(wrapper.find('svg').attributes().height).toBe('50');
-    expect(wrapper.find('svg').attributes().width).toBe('50');
+test('renders height and width when props are passed', () => {
+  const name = 'instagram';
+  const width = '50';
+  const height = '50';
+  const { getByRole } = render(DIcon, {
+    props: { name, width, height },
   });
+  expect(getByRole('img', { hidden: true })).toHaveAttribute('width', '50');
+  expect(getByRole('img', { hidden: true })).toHaveAttribute('height', '50');
 });

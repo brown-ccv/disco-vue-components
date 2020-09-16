@@ -1,0 +1,53 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DButton from '../components/d-button.vue';
+import PersonCard from '../components/d-person-card.vue';
+import { COLOR_VARIANTS, SIZES } from '../utils';
+
+<Meta 
+  title="Elements/Cards/Person Card" 
+  component={PersonCard} 
+  argTypes={{
+    variant: { control: { type: 'select', options: COLOR_VARIANTS } },
+    accent: { control: { type: 'select', options: COLOR_VARIANTS } },
+    width: { control: { type: 'select', options: SIZES } }
+  }}
+/>
+
+# Person Card
+<ArgsTable story="Person Card" />
+
+### DCard component
+```html
+<PersonCard title="Card Title" />
+```
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { PersonCard },
+  template: `
+        <PersonCard 
+          @mouseover="selectedImage = hoverImage"
+          @mouseleave="selectedImage = mainImage"
+          :variant="variant" 
+          :accent="accent" 
+          :width="width" 
+          :border="border" 
+          :name="name" 
+          :title="title" 
+          :team="team"
+          mainImage="https://ccv.brown.edu/images/people/JPEG/fulcomer_main.jpg"
+          hoverImage="https://ccv.brown.edu/images/people/JPEG/fulcomer_hover.jpg"
+          >
+        <template #icons>
+          <a href="#" aria-label="information icon">&#9432;</a>
+        </template>
+        </PersonCard>
+        `
+});
+
+<Canvas>
+  <Story name="Person Card" args={{ variant: 'light', accent: 'warning', width: 'small', border: false, name: 'Jane Doe', title: 'Software Engineer', team: 'Engeneering'}}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+

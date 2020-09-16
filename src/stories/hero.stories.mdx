@@ -1,29 +1,32 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DHero from '../components/d-hero.vue';
+import { COLOR_VARIANTS } from '../utils';
 
-<Meta title="Elements|Hero" component={DHero} />
+<Meta 
+    title='Elements/Hero' 
+    component={DHero} 
+    argTypes={{
+        variant: { control: { type: 'select', options: COLOR_VARIANTS } }
+    }}
+/>
 
 # Hero
 
-<Props of={DHero} />
+<ArgsTable story='Hero' />
 
 ### DHero component
 ```jsx
 <DHero />
 ```
 
-<Preview >
-    <Story name="Hero">
-        {{
-            components: {DHero},
-            template: `
-            <div>
-                <DHero title="Disco Design System" subtitle="Powering CCV's websites and applications"/>
-                <DHero title="Disco Design System" subtitle="Powering CCV's websites and applications" variant="link"/>
-                <DHero title="Disco Design System" subtitle="Powering CCV's websites and applications" variant="light"/>
-                <DHero title="Disco Design System" subtitle="Powering CCV's websites and applications" variant="light" :fullHeight="true"/>
-            </div>
-            `
-        }}
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DHero },
+  template: `<DHero :title='title' :subtitle='subtitle' :variant='variant' :fullHeight="fullHeight"/>`
+});
+
+<Canvas >
+    <Story name='Hero' args={{variant: 'success', title: 'Disco Design System', subtitle: 'Powering CCV\'s Web Apps', fullHeight: false}}>
+        {Template.bind({})}
     </Story>
-</Preview>
+</Canvas>

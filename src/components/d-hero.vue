@@ -1,14 +1,15 @@
 <template>
   <section
-    class="d-hero is-medium is-bold"
+    role="banner"
+    class="d-hero is-medium"
     v-bind:class="['is-' + variant, { 'is-full-height': fullHeight }]"
   >
     <div class="hero-body">
       <div class="container">
-        <h1 class="d-title">
+        <h1 role="heading" aria-level="1" class="d-title">
           {{ title }}
         </h1>
-        <h2 class="d-subtitle">
+        <h2 data-testid="subtitle" class="d-subtitle">
           {{ subtitle }}
         </h2>
       </div>
@@ -17,45 +18,23 @@
 </template>
 
 <script>
+import discoBaseMixin from '@/mixins/disco-base-mixin.js';
+
 export default {
+  mixins: [discoBaseMixin],
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     subtitle: {
       type: String,
-      required: true
+      required: true,
     },
     fullHeight: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    variant: {
-      type: String,
-      default: 'warning',
-      validator: function(value) {
-        // The value must match one of these strings
-        return (
-          [
-            'primary',
-            'success',
-            'danger',
-            'warning',
-            'info',
-            'link',
-            'dark',
-            'light'
-          ].indexOf(value) !== -1
-        );
-      }
-    }
-  }
+  },
 };
 </script>
-<style lang="scss" scoped>
-.is-full-height {
-  height: 100vh;
-  padding-top: 10rem;
-}
-</style>

@@ -17,27 +17,27 @@
 export default {
   props: {
     variant: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
       prefersDark: window.matchMedia('(prefers-color-scheme: dark)').matches,
       colorCode: window.matchMedia('(prefers-color-scheme: dark)').matches
         ? this.variant.code.dark
-        : this.variant.code.light
+        : this.variant.code.light,
     };
   },
   computed: {
     variantClass() {
       return `has-background-${this.variant.name}`;
-    }
+    },
   },
   mounted() {
     // add event listener for prefers-color-scheme
     let mql = window.matchMedia('(prefers-color-scheme: dark)');
-    const onMediaChange = e => this.onMediaChange(e);
-    mql.addEventListener('change', function(e) {
+    const onMediaChange = (e) => this.onMediaChange(e);
+    mql.addEventListener('change', function (e) {
       onMediaChange(e);
     });
   },
@@ -50,12 +50,12 @@ export default {
         this.prefersDark = false;
         this.colorCode = this.variant.code.light;
       }
-    }
+    },
   },
   filters: {
     ccsvar(str) {
       return `var(--color-${str})`;
-    }
-  }
+    },
+  },
 };
 </script>

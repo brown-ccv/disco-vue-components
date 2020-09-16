@@ -2,13 +2,13 @@
   <svg
     class="brown-logo"
     version="1.1"
-    id="Layer_1"
+    id="brown-logo"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
     viewBox="0 0 576 287"
-    style="enable-background:new 0 0 576 287;"
+    style="enable-background: new 0 0 576 287"
     xml:space="preserve"
   >
     <g id="Brown_Horizontal">
@@ -412,28 +412,3 @@
     </g>
   </svg>
 </template>
-
-<style lang="scss" scoped>
-.brown-logo {
-  .st0 {
-    display: none;
-  }
-  .st1 {
-    display: inline;
-    stroke: #000000;
-    stroke-width: 0.75;
-    stroke-miterlimit: 10;
-  }
-  .st2 {
-    stroke: #000000;
-    stroke-width: 0.75;
-    stroke-miterlimit: 10;
-  }
-  .st3 {
-    fill: #ffffff;
-  }
-  .st4 {
-    fill: #ed1c24;
-  }
-}
-</style>
