@@ -13,6 +13,7 @@
           {{ subtitle }}
         </h2>
       </div>
+      <slot name="button"></slot>
     </div>
   </section>
 </template>

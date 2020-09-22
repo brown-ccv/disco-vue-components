@@ -1,26 +1,31 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DNavbar from '../components/d-navbar.vue';
 import DButton from '../components/d-button.vue';
 import CCVLogo from '../components/logos/CCVLogo.vue'
 import BrownLogo from '../components/logos/BrownLogo.vue'
 
-<Meta title="Elements/Navigation Bar" component={DNavbar} />
+import { COLOR_VARIANTS } from '../utils';
+
+<Meta title="Elements/Navigation Bar" 
+	component={DNavbar}     
+	argTypes={{
+        variant: { control: { type: 'select', options: COLOR_VARIANTS } }
+    }} 
+/>
 
 # Table of Contents
 
-<Props of={DNavbar} />
+<ArgsTable story="Navbar" />
 
 # DNavbar component
 ```jsx
 <DNavbar />
 ```
 
-<Preview >
-	<Story name="Navigation Bar">
-		{{
-			components: {DNavbar, CCVLogo, BrownLogo, DButton},
-			template: `
-				<DNavbar>
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DNavbar, CCVLogo, BrownLogo, DButton },
+  template: `<DNavbar :variant="variant">
 					<template v-slot:brand>
 						<a class="navbar-item" href="#" aria-label="Back to Home">
 							<BrownLogo class="d-nav-brand" size="m" />
@@ -118,12 +123,16 @@ import BrownLogo from '../components/logos/BrownLogo.vue'
 						</li>
 					</template>
 				</DNavbar>
-			`
-		}}
-	</Story>
-</Preview>
+  `
+});
 
-<Preview >
+<Canvas>
+	<Story name="Navigation Bar" args={{variant: 'light'}}>
+    {Template.bind({})}
+	</Story>
+</Canvas>
+
+<Canvas>
 	<Story name="Navigation Bar Simple">
 		{{
 			components: {DNavbar, CCVLogo, BrownLogo, DButton},
@@ -132,4 +141,4 @@ import BrownLogo from '../components/logos/BrownLogo.vue'
 			`
 		}}
 	</Story>
-</Preview>
+</Canvas>
