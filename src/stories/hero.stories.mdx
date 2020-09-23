@@ -1,12 +1,15 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DHero from '../components/d-hero.vue';
+import DButton from '../components/d-button.vue';
+
 import { COLOR_VARIANTS } from '../utils';
 
 <Meta 
     title='Elements/Hero' 
     component={DHero} 
     argTypes={{
-        variant: { control: { type: 'select', options: COLOR_VARIANTS } }
+        variant: { control: { type: 'select', options: COLOR_VARIANTS } },
+        accent: { control: { type: 'select', options: COLOR_VARIANTS } }
     }}
 />
 
@@ -21,12 +24,16 @@ import { COLOR_VARIANTS } from '../utils';
 
 export const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { DHero },
-  template: `<DHero :title='title' :subtitle='subtitle' :variant='variant' :fullHeight="fullHeight"/>`
+  components: { DHero, DButton },
+  template: `<DHero :title='title' :subtitle='subtitle' :variant='variant' :fullHeight="fullHeight">
+                <template #button>
+                    <DButton :variant='accent' name="Learn about CCV's services" />
+                </template>
+  `
 });
 
 <Canvas >
-    <Story name='Hero' args={{variant: 'success', title: 'Disco Design System', subtitle: 'Powering CCV\'s Web Apps', fullHeight: false}}>
+    <Story name='Hero' args={{variant: 'warning', accent: 'success', title: 'Disco Design System', subtitle: 'Powering CCV\'s Web Apps', fullHeight: false}}>
         {Template.bind({})}
     </Story>
 </Canvas>
