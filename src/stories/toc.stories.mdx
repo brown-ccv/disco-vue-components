@@ -24,7 +24,7 @@ export const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: { DTOC },
   template: `<div>
-                <DTOC :variant="variant" :data="[{name:'Mission', icon:'chatbox-line', link:'https://datasci.brown.edu/about/'}, {name: 'People', icon:'person-lines'}, {name: 'Oppurtunities', icon:'lightbulb-1'}, {name: 'How to Cite CCV', icon:'carrot-right'}]" name="newtable"/>
+                <DTOC :variant="variant" :data="[{name:'Mission', icon:{name:'chatbox-line', family: 'brown'}, link:'https://datasci.brown.edu/about/'}, {name: 'People', icon:{family: 'light', name: 'users'}}, {name: 'Oppurtunities', icon:{family: 'brands', name: 'github'}}, {name: 'How to Cite CCV', icon:{family: 'solid', name: 'arrow-right'}}]" name="newtable"/>
             </div>
             `
 })

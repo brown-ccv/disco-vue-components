@@ -11,7 +11,7 @@
     ]"
   >
     <header v-if="!person" v-bind:class="[headerRule]">
-      <h2 class="subtitle is-3 pt-2">{{ title }}</h2>
+      <slot name="header"> </slot>
     </header>
     <div v-bind:class="person ? 'd-person-card-content' : 'card-content'">
       <slot name="content" />
@@ -28,10 +28,6 @@ import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 export default {
   mixins: [discoBaseMixin],
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
     person: {
       type: Boolean,
       required: false,

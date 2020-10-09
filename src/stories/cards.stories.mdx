@@ -1,6 +1,8 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import DButton from '../components/d-button.vue';
 import DCard from '../components/d-card.vue';
+import DIcon from '../components/d-icon.vue';
+
 import { COLOR_VARIANTS, SIZES } from '../utils';
 
 <Meta 
@@ -18,7 +20,11 @@ import { COLOR_VARIANTS, SIZES } from '../utils';
 
 ### DCard component
 ```html
-<DCard title="Card Title" />
+<DCard>
+  <template #header></template>
+  <template #content></template>
+  <template #footer></template>
+</DCard>
 ```
 
 export const Template = (args, { argTypes }) => ({
@@ -42,11 +48,14 @@ export const Template = (args, { argTypes }) => ({
 
 export const TemplateFlex = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { DCard, DButton },
+  components: { DCard, DButton, DIcon },
   template: `
         <div class="columns is-multiline is-mobile">
           <div class="column">
-            <DCard :title='title' :variant="variant" :accent="accent" :width="width" :border="border">
+            <DCard :variant="variant" :accent="accent" :width="width" :border="border">
+              <template #header>
+                    <h2 class="subtitle is-3 pt-2 has-text-black">Card Title</h2>
+              </template>
               <template #content>
                 <div class="content">
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -58,7 +67,10 @@ export const TemplateFlex = (args, { argTypes }) => ({
             </DCard> 
           </div>
           <div class="column">
-            <DCard :title='title' :variant="variant" :accent="accent" :width="width" :border="border">
+            <DCard :variant="variant" :accent="accent" :width="width" :border="border">
+              <template #header>
+                <h2 class="subtitle is-3 pt-2 has-text-black">Card Title</h2>
+              </template>
               <template #content>
                 <div class="content">
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -70,7 +82,11 @@ export const TemplateFlex = (args, { argTypes }) => ({
             </DCard> 
           </div>
           <div class="column">
-            <DCard :title='title' :variant="variant" :accent="accent" :width="width" :border="border">
+            <DCard :variant="variant" :accent="accent" :width="width" :border="border">
+              <template #header>
+                <DIcon family="light" name="university" />
+                <h2 class="subtitle is-3 pt-2 has-text-black">Card Title</h2>
+              </template>
               <template #content>
                 <div class="content">
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -86,13 +102,13 @@ export const TemplateFlex = (args, { argTypes }) => ({
 });
 
 <Canvas>
-  <Story name="Card" args={{title: 'Card Title', variant: 'light', accent: 'warning', width: 'small', border: false}}>
+  <Story name="Card" args={{variant: 'light', accent: 'warning', width: 'small', border: false}}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
 <Canvas>
-  <Story name="Card Flex" args={{title: 'Card Title', variant: 'light', accent: 'warning', width: 'small', border: false}}>
+  <Story name="Card Flex" args={{variant: 'light', accent: 'warning', width: 'small', border: false}}>
     {TemplateFlex.bind({})}
   </Story>
 </Canvas>
