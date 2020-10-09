@@ -12,7 +12,11 @@
           v-bind:class="[textColor]"
           tabindex="0"
         >
-          <d-icon class="d-toc-icon" :name="entry.icon"></d-icon>
+          <d-icon
+            class="d-toc-icon"
+            :name="entry.icon.name"
+            :family="entry.icon.family"
+          ></d-icon>
           <span class="d-toc-start">
             {{ entry['name'] }}
           </span>

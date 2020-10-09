@@ -129,5 +129,5 @@ export const icons = [
   'videocamera',
   'vimeo',
   'wheelchair',
-  'youtube'
+  'youtube',
 ];

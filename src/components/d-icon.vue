@@ -7,7 +7,7 @@
       aria-hidden="true"
       role="img"
     >
-      <use v-bind="{ 'xlink:href': '/icons/brown-icons.svg#' + name }" />
+      <use v-bind="{ 'xlink:href': `/icons/${family}.svg#${name}` }" />
     </svg>
   </div>
 </template>
@@ -16,7 +16,14 @@
 export default {
   name: 'Icon',
   props: {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    },
+    family: {
+      type: String,
+      default: 'regular',
+    },
     width: {
       type: [Number, String],
       default: 24,

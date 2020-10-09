@@ -5,12 +5,12 @@ import '@testing-library/jest-dom';
 const data = [
   {
     name: 'Mission',
-    icon: 'chatbox-line',
+    icon: { family: 'brown', name: 'chatbox-line' },
     link: '#',
   },
-  { name: 'People', icon: 'person-lines' },
-  { name: 'Oppurtunities', icon: 'lightbulb-1' },
-  { name: 'How to Cite CCV', icon: 'carrot-right' },
+  { name: 'People', icon: { family: 'brown', name: 'person-lines' } },
+  { name: 'Oppurtunities', icon: { family: 'brown', name: 'lightbulb-1' } },
+  { name: 'How to Cite CCV', icon: { family: 'brown', name: 'carrot-right' } },
 ];
 
 const variants = [

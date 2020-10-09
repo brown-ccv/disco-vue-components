@@ -4,79 +4,58 @@ import '@testing-library/jest-dom';
 
 // Behavior Driven Tests
 
+const variants = [
+  'primary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'link',
+  'dark',
+  'light',
+];
+const darkVariants = ['danger', 'link', 'dark'];
+const lightVariants = ['primary', 'success', 'warning', 'info', 'light'];
+const widths = ['small', 'medium', 'large'];
+
 test('has d-card class', () => {
-  const title = 'Card Title';
-  const { getByTestId } = render(DCard, {
-    props: { title },
-  });
+  const { getByTestId } = render(DCard);
   expect(getByTestId('card')).toHaveClass('d-card');
 });
 
-test('renders correct title when props.title is passed', () => {
-  const title = 'Card Title';
-  const { getByRole } = render(DCard, {
-    props: { title },
-  });
-  expect(getByRole('heading')).toHaveTextContent(title);
-});
-
 test('renders all borders color when props.border is set true', () => {
-  const title = 'Card Title';
-  const accents = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   const border = true;
   var accentsHTML;
-  accents.map((accent) => {
+  variants.map((accent) => {
     const { getAllByTestId } = render(DCard, {
-      props: { title, accent, border },
+      props: { accent, border },
     });
     accentsHTML = getAllByTestId('card');
   });
   accentsHTML.map(function (accentHTML, i) {
-    expect(accentHTML).toHaveClass(`has-border-${accents[i]}`);
+    expect(accentHTML).toHaveClass(`has-border-${variants[i]}`);
   });
 });
 
 test('renders only top border color when props.border is set false', () => {
-  const title = 'Card Title';
-  const accents = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   const border = false;
   var accentsHTML;
-  accents.map((accent) => {
+  variants.map((accent) => {
     const { getAllByTestId } = render(DCard, {
-      props: { title, accent, border },
+      props: { accent, border },
     });
     accentsHTML = getAllByTestId('card');
   });
   accentsHTML.map(function (accentHTML, i) {
-    expect(accentHTML).toHaveClass(`has-border-top-${accents[i]}`);
+    expect(accentHTML).toHaveClass(`has-border-top-${variants[i]}`);
   });
 });
 
 test('renders correct width when props.width is passed', () => {
-  const title = 'Card Title';
-  const widths = ['small', 'medium', 'large'];
   var widthsHTML;
   widths.map((width) => {
     const { getAllByTestId } = render(DCard, {
-      props: { title, width },
+      props: { width },
     });
     widthsHTML = getAllByTestId('card');
   });
@@ -86,21 +65,10 @@ test('renders correct width when props.width is passed', () => {
 });
 
 test('renders correct background variant for card when props.variant is passed', () => {
-  const title = 'Card Title';
-  const variants = [
-    'primary',
-    'success',
-    'danger',
-    'warning',
-    'info',
-    'link',
-    'dark',
-    'light',
-  ];
   var variantsHTML;
   variants.map((variant) => {
     const { getAllByTestId } = render(DCard, {
-      props: { title, variant },
+      props: { variant },
     });
     variantsHTML = getAllByTestId('card');
   });
@@ -110,12 +78,10 @@ test('renders correct background variant for card when props.variant is passed',
 });
 
 test('renders correct light text color when dark props.variant is passed', () => {
-  const title = 'Card Title';
-  const darkVariants = ['danger', 'link', 'dark'];
   var darkVariantsHTML;
   darkVariants.map((variant) => {
     const { getAllByTestId } = render(DCard, {
-      props: { title, variant },
+      props: { variant },
     });
     darkVariantsHTML = getAllByTestId('card');
   });
@@ -125,12 +91,10 @@ test('renders correct light text color when dark props.variant is passed', () =>
 });
 
 test('renders correct dark text color when light props.variant is passed', () => {
-  const title = 'Card Title';
-  const lightVariants = ['primary', 'success', 'warning', 'info', 'light'];
   var lightVariantsHTML;
   lightVariants.map((variant) => {
     const { getAllByTestId } = render(DCard, {
-      props: { title, variant },
+      props: { variant },
     });
     lightVariantsHTML = getAllByTestId('card');
   });

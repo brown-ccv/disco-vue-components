@@ -8,15 +8,16 @@ import { icons } from './icons';
 
 <Props of={DIcon} />
 
-### University Theme Icons
+The Icon component is built using SVG Sprites. There are 6 families of icons to choose from. Five of them are part of FontAwesome:
+`solid`, `regular`, `light`, `brands` and `duotone`. Brown University provides an icon family `brown`. You can find the icons available
+under the `brown` family here. For FontAwesome icons, check https://fontawesome.com.
 
-Brown provides an icon font. We converted it to SVG and created a Icon component. 
  > To use it:
 ```jsx
-<DIcon name='icon-name' />
+<DIcon name='icon-name' family='brown'/>
 ```
 
-### Available icons: 
+### Available `brown` family icons: 
 <Preview>
     <Story name="Icon">
         {{
@@ -25,7 +26,7 @@ Brown provides an icon font. We converted it to SVG and created a Icon component
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                 ${icons.map(icon => `
                 <div style="display: flex; flex-direction: column; align-content: center; justify-content: center; margin: 1rem;">
-                    <DIcon name=${icon} />
+                    <DIcon name=${icon} family="brown"/>
                     <code style="margin-top: 1rem;">${icon}</code>
                 </div>`).join("")}
             </div>
@@ -33,10 +34,3 @@ Brown provides an icon font. We converted it to SVG and created a Icon component
         }}
     </Story>
 </Preview>
-
-### FontAwesome
-
-The icon library provided by Brown's University Theme is limited.
-To expand the icons available, CCV has a Font Awesome license that includes all free and pro icons. To use FontAwesome with Vue, follow
-the instructions [here](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs). 
-If you want to use the pro icons, you can ask Fernando or Mary for a license key.
