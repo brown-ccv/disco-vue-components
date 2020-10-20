@@ -1,0 +1,94 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DChartContainer from '../components/d-chart-container.vue';
+import DHeatMap from '../components/d-chart-heatmap.vue';
+
+<Meta
+    title="Elements/Charts/Heat Map"
+    component={DHeatMap}
+/>
+
+
+# Heat Map
+<ArgsTable story="Heat Map" />
+
+## DHeatMap component
+
+```html
+<DHeatMap
+  id="heatmap"
+  :dataset="[
+    { month: 1, station: 'A', temp: 2, depth: 3},
+    { month: 1, station: 'B', temp: 3, depth: 3.5},
+    { month: 1, station: 'C', temp: 1.5, depth: 3.2},
+    { month: 2, station: 'A', temp: 4, depth: 3.1},
+    { month: 2, station: 'B', temp: 2.5, depth: 3.7},
+    { month: 2, station: 'C', temp: 3, depth: 3.4},
+    { month: 3, station: 'A', temp: 1, depth: 3.4},
+    { month: 3, station: 'B', temp: 2, depth: 3.2},
+    { month: 3, station: 'C', temp: 2.3, depth: 3.9}
+  ]"
+  :min-width="400"
+  x="month"
+  x-label="Month"
+  y="station"
+  y-label="Buoy ID"
+  :variable="variable"
+  :include-actions="true"
+/>
+```
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DChartContainer, DHeatMap },
+  template: `
+        <DChartContainer width="full">
+          <template #title>Heat Map</template>
+          <template #description>
+            This heatmap shows the temp of observations at month and buoy.
+          </template
+          >
+          <template #chart>
+            <DHeatMap
+              id="heatmap"
+              :dataset="dataset"
+              :min-width="minWidth"
+              :height="height"
+              :x="x"
+              :x-label="xLabel"
+              :y="y"
+              :y-label="yLabel"
+              :variable="variable"
+              :include-actions="includeActions"
+              :spec-override="specOverride"
+            />
+          </template>
+        </DChartContainer>
+    `
+});
+
+<Canvas>
+  <Story name="Heat Map" args={{
+    variable: 'temp',
+    includeActions: true,
+    minWidth: 400,
+    height: 300,
+    x: 'month',
+    y: 'station',
+    xLabel: 'Month',
+    yLabel: 'Buoy ID',
+    dataset: [
+      { month: 1, station: 'A', temp: 2, depth: 3},
+      { month: 1, station: 'B', temp: 3, depth: 3.5},
+      { month: 1, station: 'C', temp: 1.5, depth: 3.2},
+      { month: 2, station: 'A', temp: 4, depth: 3.1},
+      { month: 2, station: 'B', temp: 2.5, depth: 3.7},
+      { month: 2, station: 'C', temp: 3, depth: 3.4},
+      { month: 3, station: 'A', temp: 1, depth: 3.4},
+      { month: 3, station: 'B', temp: 2, depth: 3.2},
+      { month: 3, station: 'C', temp: 2.3, depth: 3.9}
+    ],
+    specOverride: {axes: [{orient: 'top'}]}
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

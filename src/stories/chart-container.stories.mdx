@@ -1,0 +1,111 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DChartContainer from '../components/d-chart-container.vue';
+import DMultiLineChart from '../components/d-chart-multiline.vue';
+import DHeatMap from '../components/d-chart-heatmap.vue';
+import DBaseDashboard from '../components/d-base-dashboard.vue';
+
+<Meta
+    title="Elements/Charts/Chart Container"
+    component={DChartContainer}
+    argTypes={{
+      width: { control: { type: 'select', options: ['full', 'one-third', 'half', 'two-thirds'] } }
+    }}
+/>
+
+
+# Chart Container
+<ArgsTable story="Chart Container" />
+
+## DChartContainer component
+
+```html
+<DChartContainer width="full">
+  <template #title>A Chart Container</template>
+  <template #description>Charts have a title, a description, and a chart</template>
+  <template #chart>
+    <DHeatMap id="mychart" x="x_col" x-label="X Axis" y="y_col" y-label="Y Axis" variable="count" />
+  </template>
+</DChartContainer>
+```
+
+export const ChartContainerTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DBaseDashboard, DChartContainer, DMultiLineChart, DHeatMap },
+  template: `
+    <DBaseDashboard>
+      <template #main-nav>
+        You are here
+      </template>
+      <template #main-header>
+        A Chart Story
+      </template>
+      <template #main-section>
+        <DChartContainer :width="width">
+          <template #title>HeatMap</template>
+          <template #subtitle>
+            This heatmap shows the count of observations at x and y.
+          </template
+          >
+          <template #chart>
+            <DHeatMap
+              id="heatmap"
+              :dataset="[
+                { month: 1, station: 'A', temp: 2, depth: 3},
+                { month: 1, station: 'B', temp: 3, depth: 3.5},
+                { month: 1, station: 'C', temp: 1.5, depth: 3.2},
+                { month: 2, station: 'A', temp: 4, depth: 3.1},
+                { month: 2, station: 'B', temp: 2.5, depth: 3.7},
+                { month: 2, station: 'C', temp: 3, depth: 3.4},
+                { month: 3, station: 'A', temp: 1, depth: 3.4},
+                { month: 3, station: 'B', temp: 2, depth: 3.2},
+                { month: 3, station: 'C', temp: 2.3, depth: 3.9}
+              ]"
+              :min-width="400"
+              x="month"
+              x-label="Month"
+              y="station"
+              y-label="Buoy ID"
+              variable="temp"
+            />
+          </template>
+        </DChartContainer>
+        <DChartContainer :width="width">
+          <template #title>Multi Line Chart</template>
+          <template #subtitle>
+            This linechart shows the temperature of observations at x and y.
+          </template
+          >
+          <template #chart>
+            <DMultiLineChart
+              id="linechart"
+              :dataset="[
+                { month: 1, station: 'A', temp: 2, depth: 3},
+                { month: 1, station: 'B', temp: 3, depth: 3.5},
+                { month: 1, station: 'C', temp: 1.5, depth: 3.2},
+                { month: 2, station: 'A', temp: 4, depth: 3.1},
+                { month: 2, station: 'B', temp: 2.5, depth: 3.7},
+                { month: 2, station: 'C', temp: 3, depth: 3.4},
+                { month: 3, station: 'A', temp: 1, depth: 3.4},
+                { month: 3, station: 'B', temp: 2, depth: 3.2},
+                { month: 3, station: 'C', temp: 2.3, depth: 3.9}
+              ]"
+              :min-width="200"
+              x="month"
+              x-label="Month"
+              y="temp"
+              y-label="Temperature"
+              variable="station"
+              variable-label="Buoy ID"
+            />
+          </template>
+        </DChartContainer>
+      </template>
+    </DBaseDashboard>
+    `
+});
+
+<Canvas>
+  <Story name="Chart Container" args={{width: 'full'}}>
+    {ChartContainerTemplate.bind({})}
+  </Story>
+</Canvas>
