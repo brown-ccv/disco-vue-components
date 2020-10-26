@@ -33,13 +33,13 @@ export const ChartContainerTemplate = (args, { argTypes }) => ({
   components: { DBaseDashboard, DChartContainer, DMultiLineChart, DHeatMap },
   template: `
     <DBaseDashboard>
-      <template #main-nav>
+      <template #nav>
         You are here
       </template>
-      <template #main-header>
+      <template #header>
         A Chart Story
       </template>
-      <template #main-section>
+      <template #section>
         <DChartContainer :width="width">
           <template #title>HeatMap</template>
           <template #subtitle>
