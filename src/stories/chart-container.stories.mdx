@@ -5,7 +5,7 @@ import DHeatMap from '../components/d-chart-heatmap.vue';
 import DBaseDashboard from '../components/d-base-dashboard.vue';
 
 <Meta
-    title="Elements/Charts/Chart Container"
+    title="Visualization/Chart Container"
     component={DChartContainer}
     argTypes={{
       width: { control: { type: 'select', options: ['full', 'one-third', 'half', 'two-thirds'] } }
@@ -33,13 +33,13 @@ export const ChartContainerTemplate = (args, { argTypes }) => ({
   components: { DBaseDashboard, DChartContainer, DMultiLineChart, DHeatMap },
   template: `
     <DBaseDashboard>
-      <template #main-nav>
+      <template #nav>
         You are here
       </template>
-      <template #main-header>
+      <template #header>
         A Chart Story
       </template>
-      <template #main-section>
+      <template #section>
         <DChartContainer :width="width">
           <template #title>HeatMap</template>
           <template #subtitle>
