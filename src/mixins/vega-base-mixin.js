@@ -1,8 +1,11 @@
 import embed from 'vega-embed';
 import * as _ from 'lodash';
 
+//TODO: make background transparent by default
 const vegaBaseMixin = {
-  template: '<div :id="fullId"></div>',
+  render(h) {
+    return h('div', { attrs: { id: this.fullId } });
+  },
   props: {
     id: {
       type: String,
@@ -17,15 +20,15 @@ const vegaBaseMixin = {
       required: false,
       default: 200,
     },
-    includeActions: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
     height: {
       type: Number,
       required: false,
       default: 300,
+    },
+    includeActions: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
     specOverride: {
       type: Object,
@@ -62,9 +65,8 @@ const vegaBaseMixin = {
     };
   },
   mounted() {
-    console.log(this.fullId);
     const el = document.querySelector('#' + this.fullId);
-    this.parentElement = el.closest('.chart');
+    this.parentElement = el.parentElement;
 
     this.updatePlot();
 
@@ -99,9 +101,13 @@ const vegaBaseMixin = {
           autosize: 'fit',
         },
         logLevel: 3,
-      }).then((res) => {
-        this.view = res.view;
-      });
+      })
+        .then((res) => {
+          this.view = res.view;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     resizePlot() {
       if (this.view) {
