@@ -13,7 +13,7 @@ module.exports = {
     browser
       .frame('storybook-preview-iframe')
       .assert.elementPresent('#root')
-      .assert.elementPresent('.vega-visualization')
+      // .assert.elementPresent('.vega-visualization')
       .initAccessibility()
       .assert.accessibility('.dashboard-section', {
         verbose: true,
