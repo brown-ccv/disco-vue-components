@@ -8,6 +8,7 @@
     <button
       @click="dismiss()"
       class="d-button-delete is-pulled-right"
+      aria-label="dismiss"
       data-testid="dismiss"
     ></button>
     <div
