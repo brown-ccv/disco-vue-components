@@ -1,0 +1,99 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DChartContainer from '../components/d-chart-container.vue';
+import DMultiLineChart from '../components/d-chart-multiline.vue';
+
+<Meta
+    title="Visualization/Charts/Multi Line Chart"
+    component={DMultiLineChart}
+/>
+
+
+# Multi Line Chart
+
+A Multi Line Chart shows several variables over the same x and y coordinates.
+
+<ArgsTable story="Multi Line Chart" />
+
+## DMultiLineChart component
+
+```html
+<DMultiLineChart
+  id="linechart"
+  :dataset="[
+    { month: 1, station: 'A', temp: 2, depth: 3},
+    { month: 1, station: 'B', temp: 3, depth: 3.5},
+    { month: 1, station: 'C', temp: 1.5, depth: 3.2},
+    { month: 2, station: 'A', temp: 4, depth: 3.1},
+    { month: 2, station: 'B', temp: 2.5, depth: 3.7},
+    { month: 2, station: 'C', temp: 3, depth: 3.4},
+    { month: 3, station: 'A', temp: 1, depth: 3.4},
+    { month: 3, station: 'B', temp: 2, depth: 3.2},
+    { month: 3, station: 'C', temp: 2.3, depth: 3.9}
+  ]"
+  :min-width="400"
+  x="month"
+  x-label="Month"
+  y="station"
+  y-label="Buoy ID"
+  :variable="variable"
+  :include-actions="true"
+/>
+```
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DChartContainer, DMultiLineChart },
+  template: `
+        <DChartContainer width="full">
+          <template #title>Multi Line Chart</template>
+          <template #description>
+            A line chart shows the temp of observations at each month by buoy.
+          </template
+          >
+          <template #chart>
+            <DMultiLineChart
+              id="linechart"
+              :dataset="dataset"
+              :min-width="minWidth"
+              :height="height"
+              :x="x"
+              :x-label="xLabel"
+              :y="y"
+              :y-label="yLabel"
+              :variable="variable"
+              :variable-label="variableLabel"
+              :include-actions="includeActions"
+              :spec-override="specOverride"
+            />
+          </template>
+        </DChartContainer>
+    `
+});
+
+<Canvas>
+  <Story name="Multi Line Chart" args={{
+    includeActions: true,
+    minWidth: 400,
+    height: 300,
+    x: 'month',
+    y: 'temp',
+    variable: 'station',
+    xLabel: 'Month',
+    yLabel: 'Temperature (C)',
+    variableLabel: 'Buoy ID',
+    dataset: [
+      { month: 1, station: 'A', temp: 2, depth: 3},
+      { month: 1, station: 'B', temp: 3, depth: 3.5},
+      { month: 1, station: 'C', temp: 1.5, depth: 3.2},
+      { month: 2, station: 'A', temp: 4, depth: 3.1},
+      { month: 2, station: 'B', temp: NaN, depth: 3.7},
+      { month: 2, station: 'C', temp: 3, depth: 3.4},
+      { month: 3, station: 'A', temp: 1, depth: 3.4},
+      { month: 3, station: 'B', temp: 2, depth: 3.2},
+      { month: 3, station: 'C', temp: 2.3, depth: 3.9}
+    ],
+    specOverride: {axes: [{orient: 'top'}]},
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

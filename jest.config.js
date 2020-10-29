@@ -8,4 +8,5 @@ module.exports = {
   ],
   coverageReporters: ['html', 'text-summary'],
   coverageDirectory: 'coverage',
+  setupFiles: ['jest-canvas-mock'],
 };

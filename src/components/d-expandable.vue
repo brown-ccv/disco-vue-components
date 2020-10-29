@@ -1,6 +1,6 @@
 <template>
   <span aria-label="expandable" class="d-expandable mx-2 my-2">
-    <header
+    <div
       class="level is-mobile d-expandable-header mb-0 px-0 py-2"
       v-bind:class="[textColor, { 'is-focused': isFocused }]"
       @click="onSelect"
@@ -28,7 +28,7 @@
           <DIcon v-else class="level-item" name="plus" aria-label="show" />
         </span>
       </div>
-    </header>
+    </div>
 
     <div
       v-show="isExpanded"

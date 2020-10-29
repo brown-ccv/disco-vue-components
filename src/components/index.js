@@ -11,5 +11,10 @@ export { default as DPersonCard } from './d-person-card.vue';
 export { default as DFooter } from './d-footer.vue';
 export { default as DCard } from './d-card.vue';
 export { default as DModal } from './d-modal.vue';
+export { default as DChartContainer } from './d-chart-container.vue';
+export { default as DBaseDashboard } from './d-base-dashboard.vue';
+export { default as DHeatMap } from './d-chart-heatmap.vue';
+export { default as DMultiLineChart } from './d-chart-multiline.vue';
 
 export { default as discoBaseMixin } from '../mixins/disco-base-mixin.js';
+export { default as vegaBaseMixin } from '../mixins/vega-base-mixin.js';

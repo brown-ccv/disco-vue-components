@@ -2,20 +2,20 @@
 // https://nightwatchjs.org/guide
 
 module.exports = {
-  Buttons: function (browser) {
+  Dashboard: function (browser) {
     let page = browser.page.page();
 
     page
-      .navigate('/?path=/story/elements-buttons--buttons')
+      .navigate('/?path=/story/visualization-chart-container--chart-container')
       .waitForElementVisible('@canvas')
       .assert.elementPresent('@iframe');
 
     browser
       .frame('storybook-preview-iframe')
       .assert.elementPresent('#root')
-      .assert.elementPresent('.d-button')
+      .assert.elementPresent('.vega-embed')
       .initAccessibility()
-      .assert.accessibility('.d-button', {
+      .assert.accessibility('.dashboard-section', {
         verbose: true,
       });
 

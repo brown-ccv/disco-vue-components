@@ -16,6 +16,6 @@ module.exports = {
   // A page object can have elements
   elements: {
     canvas: '#root',
-    iframe: '#storybook-preview-iframe'
-  }
+    iframe: '#storybook-preview-iframe',
+  },
 };

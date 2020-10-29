@@ -1,0 +1,47 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DBaseDashboard from '../components/d-base-dashboard.vue';
+
+<Meta
+    title="Visualization/Dashboard"
+    component={DBaseDashboard}
+/>
+
+# Dashboard
+
+Dashboards are a simple organization tool, with some styling for flexibly arranging containers in the dashboard to fit the space.
+
+<ArgsTable story="Dashboard" />
+
+## DBaseDashboard component
+
+```html
+<DBaseDashboard>
+  <template #nav></template>
+  <template #header></template>
+  <template #section></template>
+</DBaseDashboard>
+```
+
+export const DashboardTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DBaseDashboard },
+  template: `
+    <DBaseDashboard>
+      <template #nav>
+        You are here
+      </template>
+      <template #header>
+        A Chart Story
+      </template>
+      <template #section>
+        This is where the dashboard contents go.
+      </template>
+    </DBaseDashboard>
+    `
+});
+
+<Canvas>
+  <Story name="Dashboard">
+    {DashboardTemplate.bind({})}
+  </Story>
+</Canvas>
