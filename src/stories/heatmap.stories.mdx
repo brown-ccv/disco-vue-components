@@ -33,6 +33,7 @@ import DHeatMap from '../components/d-chart-heatmap.vue';
   y="station"
   y-label="Buoy ID"
   :variable="variable"
+  variable-label="Temp. (C)"
   :include-actions="true"
 />
 ```
@@ -58,6 +59,7 @@ export const Template = (args, { argTypes }) => ({
               :y="y"
               :y-label="yLabel"
               :variable="variable"
+              :variable-label="variableLabel"
               :include-actions="includeActions"
               :spec-override="specOverride"
             />
@@ -69,6 +71,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
   <Story name="Heat Map" args={{
     variable: 'temp',
+    variableLabel: 'Temp. (C)',
     includeActions: true,
     minWidth: 400,
     height: 300,

@@ -8,6 +8,10 @@ export default {
       type: String,
       required: true,
     },
+    variableLabel: {
+      type: String,
+      required: true,
+    },
     x: {
       type: String,
       required: true,
@@ -74,7 +78,7 @@ export default {
         ],
         legends: [
           {
-            title: this.variable,
+            title: this.variableLabel,
             fill: 'color',
             type: 'gradient',
             gradientLength: { signal: 'height' },
@@ -91,7 +95,7 @@ export default {
                 width: { scale: 'x', band: 1 },
                 height: { scale: 'y', band: 1 },
                 tooltip: {
-                  signal: `{'${this.xLabel}': datum.${this.x}, '${this.yLabel}': datum.${this.y}, 'Count': datum.${this.variable}}`,
+                  signal: `{'${this.xLabel}': datum.${this.x}, '${this.yLabel}': datum.${this.y}, '${this.variableLabel}': datum.${this.variable}}`,
                 },
               },
               update: {
