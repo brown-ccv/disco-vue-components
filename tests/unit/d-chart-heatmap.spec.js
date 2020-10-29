@@ -6,7 +6,7 @@ import ResizeObserver from '../__mocks__/ResizeObserver'; // eslint-disable-line
 let props = {
   id: 'heatmap',
   variable: 'temp',
-  variableLabel: 'Temperatuer (C)',
+  variableLabel: 'Temp. (C)',
   minWidth: 400,
   height: 300,
   x: 'month',
