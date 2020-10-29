@@ -2,7 +2,7 @@
 // https://nightwatchjs.org/guide
 
 module.exports = {
-  Hero: function(browser) {
+  Hero: function (browser) {
     let page = browser.page.page();
 
     page
@@ -16,9 +16,9 @@ module.exports = {
       .assert.elementPresent('.d-hero')
       .initAccessibility()
       .assert.accessibility('.d-hero', {
-        verbose: true
+        verbose: true,
       });
 
     browser.end();
-  }
+  },
 };

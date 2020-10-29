@@ -90,7 +90,6 @@ export default {
           {
             orient: 'bottom',
             scale: 'xscale',
-            labelAngle: 15,
             title: this.xLabel,
           },
           { orient: 'left', scale: 'yscale', title: this.yLabel },

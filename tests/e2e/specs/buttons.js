@@ -2,7 +2,7 @@
 // https://nightwatchjs.org/guide
 
 module.exports = {
-  Buttons: function(browser) {
+  Buttons: function (browser) {
     let page = browser.page.page();
 
     page
@@ -16,9 +16,9 @@ module.exports = {
       .assert.elementPresent('.d-button')
       .initAccessibility()
       .assert.accessibility('.d-button', {
-        verbose: true
+        verbose: true,
       });
 
     browser.end();
-  }
+  },
 };
