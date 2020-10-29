@@ -62,11 +62,37 @@ const vegaBaseMixin = {
       view: null,
       resizeObserver: null,
       parentElement: null,
+      darkmodeConfig: {},
     };
   },
   mounted() {
     const el = document.querySelector('#' + this.fullId);
     this.parentElement = el.parentElement;
+
+    // check for dark mode, if so, make labels/axes and such white
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      const contrastColor = 'white';
+      this.darkmodeConfig = {
+        axis: {
+          domainColor: contrastColor,
+          gridColor: contrastColor,
+          labelColor: contrastColor,
+          tickColor: contrastColor,
+          titleColor: contrastColor,
+        },
+        legend: {
+          labelColor: contrastColor,
+          titleColor: contrastColor,
+        },
+        title: {
+          color: contrastColor,
+          subtitleColor: contrastColor,
+        },
+      };
+    }
 
     this.updatePlot();
 
@@ -97,8 +123,10 @@ const vegaBaseMixin = {
         theme: 'vox',
         renderer: 'svg',
         config: {
-          width: this.getWidth(),
+          background: null,
           autosize: 'fit',
+          width: this.getWidth(),
+          ...this.darkmodeConfig,
         },
         logLevel: 3,
       })
