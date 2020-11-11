@@ -1,7 +1,7 @@
 import embed from 'vega-embed';
 import * as _ from 'lodash';
 
-//TODO: make background transparent by default
+// TODO: make background transparent by default
 const vegaBaseMixin = {
   render(h) {
     return h('div', { attrs: { id: this.fullId } });
@@ -33,7 +33,7 @@ const vegaBaseMixin = {
     specOverride: {
       type: Object,
       required: false,
-      default: function () {
+      default() {
         return {};
       },
     },
@@ -41,9 +41,6 @@ const vegaBaseMixin = {
   computed: {
     actionsWidth() {
       return this.includeActions ? 28 : 0;
-    },
-    fullId() {
-      return this.id + Math.floor(Math.random() * Math.floor(1000));
     },
     spec() {
       return _.merge({}, this.baseSpec, this.specOverride);
@@ -60,14 +57,15 @@ const vegaBaseMixin = {
   data() {
     return {
       view: null,
+      fullId: null,
       resizeObserver: null,
       parentElement: null,
       darkmodeConfig: {},
     };
   },
   mounted() {
-    const el = document.querySelector('#' + this.fullId);
-    this.parentElement = el.parentElement;
+    // add random number to id to ensure uniqueness - important for storybook
+    this.fullId = this.id + Math.floor(Math.random() * Math.floor(1000));
 
     // check for dark mode, if so, make labels/axes and such white
     if (
@@ -94,9 +92,12 @@ const vegaBaseMixin = {
       };
     }
 
-    this.updatePlot();
-
     this.$nextTick(() => {
+      const el = document.querySelector('#' + this.fullId);
+      this.parentElement = el.parentElement;
+
+      this.updatePlot();
+
       this.resizeObserver = new ResizeObserver(this.resizePlot);
       this.resizeObserver.observe(this.parentElement);
     });
