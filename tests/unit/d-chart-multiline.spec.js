@@ -26,10 +26,12 @@ let props = {
   ],
 };
 
-test('has id passed in props', () => {
+test('has id passed in props', async () => {
   const { container } = render(DMultiLineChart, { props });
   const main = container.firstElementChild;
-  expect(main).toHaveAttribute('id', expect.stringContaining(props.id));
+  await waitFor(() =>
+    expect(main).toHaveAttribute('id', expect.stringContaining(props.id))
+  );
 });
 
 test('has vizualization rendered', async () => {
