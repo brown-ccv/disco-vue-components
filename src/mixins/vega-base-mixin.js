@@ -37,6 +37,11 @@ const vegaBaseMixin = {
         return {};
       },
     },
+    enableDarkmode: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
   computed: {
     actionsWidth() {
@@ -44,6 +49,36 @@ const vegaBaseMixin = {
     },
     spec() {
       return _.merge({}, this.baseSpec, this.specOverride);
+    },
+    darkmodeConfig() {
+      // check for dark mode, if so, make labels/axes and such white
+      if (this.enableDarkmode) {
+        if (
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        ) {
+          const contrastColor = 'white';
+          return {
+            axis: {
+              domainColor: contrastColor,
+              gridColor: contrastColor,
+              labelColor: contrastColor,
+              tickColor: contrastColor,
+              titleColor: contrastColor,
+            },
+            legend: {
+              labelColor: contrastColor,
+              titleColor: contrastColor,
+            },
+            title: {
+              color: contrastColor,
+              subtitleColor: contrastColor,
+            },
+          };
+        }
+      }
+
+      return {};
     },
   },
   watch: {
@@ -53,6 +88,9 @@ const vegaBaseMixin = {
     includeActions() {
       this.updatePlot();
     },
+    darkmodeConfig() {
+      this.updatePlot();
+    },
   },
   data() {
     return {
@@ -60,37 +98,11 @@ const vegaBaseMixin = {
       fullId: null,
       resizeObserver: null,
       parentElement: null,
-      darkmodeConfig: {},
     };
   },
   mounted() {
     // add random number to id to ensure uniqueness - important for storybook
     this.fullId = this.id + Math.floor(Math.random() * Math.floor(1000));
-
-    // check for dark mode, if so, make labels/axes and such white
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      const contrastColor = 'white';
-      this.darkmodeConfig = {
-        axis: {
-          domainColor: contrastColor,
-          gridColor: contrastColor,
-          labelColor: contrastColor,
-          tickColor: contrastColor,
-          titleColor: contrastColor,
-        },
-        legend: {
-          labelColor: contrastColor,
-          titleColor: contrastColor,
-        },
-        title: {
-          color: contrastColor,
-          subtitleColor: contrastColor,
-        },
-      };
-    }
 
     this.$nextTick(() => {
       const el = document.querySelector('#' + this.fullId);

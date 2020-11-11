@@ -64,6 +64,7 @@ export const Template = (args, { argTypes }) => ({
               :variable-label="variableLabel"
               :include-actions="includeActions"
               :spec-override="specOverride"
+              :enable-darkmode="enableDarkmode"
             />
           </template>
         </DChartContainer>
@@ -93,6 +94,7 @@ export const Template = (args, { argTypes }) => ({
       { month: 3, station: 'C', temp: 2.3, depth: 3.9}
     ],
     specOverride: {axes: [{orient: 'top'}]},
+    enableDarkmode: true,
   }}>
     {Template.bind({})}
   </Story>
