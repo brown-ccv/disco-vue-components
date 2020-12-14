@@ -1,0 +1,84 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DChartContainer from '../components/d-chart-container.vue';
+import DLineChart from '../components/d-chart-line.vue';
+
+<Meta
+    title="Visualization/Charts/Line Chart"
+    component={DLineChart}
+/>
+
+
+# Line Chart
+
+A Line Chart shows a variables over x and y coordinates.
+
+<ArgsTable story="Line Chart" />
+
+## DLineChart component
+
+```html
+<DLineChart
+  id="linechart"
+  :dataset="[
+    { month: 1, temp: 2, depth: 3},
+    { month: 2, temp: 4, depth: 3.1},
+    { month: 3, temp: 1, depth: 3.4},
+  ]"
+  :min-width="400"
+  x="month"
+  x-label="Month"
+  y="depth"
+  y-label="Water Depth"
+  :include-actions="true"
+/>
+```
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DChartContainer, DLineChart },
+  template: `
+        <DChartContainer width="full">
+          <template #title>Line Chart</template>
+          <template #description>
+            A line chart shows the temp of observations at each month.
+          </template
+          >
+          <template #chart>
+            <DLineChart
+              id="linechart"
+              :dataset="dataset"
+              :min-width="minWidth"
+              :height="height"
+              :x="x"
+              :x-label="xLabel"
+              :y="y"
+              :y-label="yLabel"
+              :include-actions="includeActions"
+              :spec-override="specOverride"
+              :enable-darkmode="enableDarkmode"
+            />
+          </template>
+        </DChartContainer>
+    `
+});
+
+<Canvas>
+  <Story name="Line Chart" args={{
+    includeActions: true,
+    minWidth: 400,
+    height: 300,
+    x: 'month',
+    y: 'temp',
+    xLabel: 'Month',
+    yLabel: 'Temperature (C)',
+    dataset: [
+      { month: 1, temp: 2, depth: 3},
+      { month: 2, temp: 4, depth: 3.1},
+      { month: 3, temp: 1, depth: 3.4},
+    ],
+    specOverride: {axes: [{orient: 'top'}]},
+    enableDarkmode: true,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
