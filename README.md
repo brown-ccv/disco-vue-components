@@ -8,6 +8,7 @@ Components are Vue Single File Components (SFC). Stories are written in MDX and 
 Note: This library is in active development with `@brown-ccv/disco-styles`.
 
 ## Project setup
+
 ```
 yarn install
 ```

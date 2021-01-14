@@ -151,7 +151,7 @@ export default {
             },
             marks: [
               {
-                type: 'line',
+                type: 'rect',
                 from: { data: 'series' },
                 encode: {
                   enter: {
