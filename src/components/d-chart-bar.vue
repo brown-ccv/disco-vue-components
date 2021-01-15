@@ -4,7 +4,7 @@ import vegaBaseMixin from '@/mixins/vega-base-mixin.js';
 export default {
   mixins: [vegaBaseMixin],
   props: {
-    category: {
+    x: {
       type: String,
       required: true,
     },
@@ -12,7 +12,7 @@ export default {
       type: String,
       required: true,
     },
-    amount: {
+    y: {
       type: String,
       required: true,
     },
@@ -29,22 +29,6 @@ export default {
           'A basic bar chart example, with value labels shown upon mouse hover.',
         height: this.height,
         padding: 5,
-        signals: [
-          {
-            name: 'tooltip',
-            value: null,
-            on: [
-              {
-                events: 'rect:mouseover',
-                update: 'datum',
-              },
-              {
-                events: 'rect:mouseout',
-                update: '{}',
-              },
-            ],
-          },
-        ],
         data: [
           {
             name: 'data',
@@ -55,14 +39,14 @@ export default {
           {
             name: 'xscale',
             type: 'band',
-            domain: { data: 'data', field: this.category },
+            domain: { data: 'data', field: this.x },
             range: 'width',
             round: true,
             zero: false,
           },
           {
             name: 'yscale',
-            domain: { data: 'data', field: this.amount },
+            domain: { data: 'data', field: this.y },
             nice: true,
             zero: false,
             range: 'height',
@@ -75,6 +59,29 @@ export default {
             title: this.xLabel,
           },
           { orient: 'left', scale: 'yscale', title: this.yLabel },
+        ],
+        marks: [
+          {
+            type: 'rect',
+            from: { data: 'data' },
+            encode: {
+              enter: {
+                x: { scale: 'xscale', field: this.x },
+                width: { scale: 'xscale', band: 1 },
+                y: { scale: 'yscale', field: this.y },
+                y2: { scale: 'yscale', value: 0 },
+                tooltip: {
+                  signal: `{'${this.xLabel}': datum.${this.x}, '${this.yLabel}': datum.${this.y}}`,
+                },
+              },
+              update: {
+                fill: { value: 'steelblue' },
+              },
+              hover: {
+                fill: { value: 'red' },
+              },
+            },
+          },
         ],
       };
     },
