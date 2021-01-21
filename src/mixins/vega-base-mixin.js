@@ -4,7 +4,6 @@ import * as _ from 'lodash';
 // TODO: make background transparent by default
 const vegaBaseMixin = {
   render(h) {
-    console.log(`rendering vega chart with id: ${this.fullId}`);
     return h('div', { attrs: { id: this.fullId } });
   },
   props: {
@@ -107,7 +106,6 @@ const vegaBaseMixin = {
   },
   mounted() {
     this.$nextTick(() => {
-      console.log(this.fullId);
       const el = document.querySelector('#' + this.fullId);
       if (el) {
         this.parentElement = el.parentElement;
