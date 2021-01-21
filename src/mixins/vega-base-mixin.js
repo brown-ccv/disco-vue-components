@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 // TODO: make background transparent by default
 const vegaBaseMixin = {
   render(h) {
+    console.log(`rendering vega chart with id: ${this.fullId}`);
     return h('div', { attrs: { id: this.fullId } });
   },
   props: {
@@ -100,18 +101,22 @@ const vegaBaseMixin = {
       parentElement: null,
     };
   },
-  mounted() {
+  created() {
     // add random number to id to ensure uniqueness - important for storybook
     this.fullId = this.id + Math.floor(Math.random() * Math.floor(1000));
-
+  },
+  mounted() {
     this.$nextTick(() => {
+      console.log(this.fullId);
       const el = document.querySelector('#' + this.fullId);
-      this.parentElement = el.parentElement;
+      if (el) {
+        this.parentElement = el.parentElement;
 
-      this.updatePlot();
+        this.updatePlot();
 
-      this.resizeObserver = new ResizeObserver(this.resizePlot);
-      this.resizeObserver.observe(this.parentElement);
+        this.resizeObserver = new ResizeObserver(this.resizePlot);
+        this.resizeObserver.observe(this.parentElement);
+      }
     });
   },
   beforeDestory() {
