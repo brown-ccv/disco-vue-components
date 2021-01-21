@@ -26,9 +26,10 @@ export default {
       return {
         $schema: 'https://vega.github.io/schema/vega/v5.json',
         description:
-          'A basic bar chart example, with value labels shown upon mouse hover.',
+          'A basic line chart example, with value labels shown upon mouse hover.',
         height: this.height,
         padding: 5,
+
         data: [
           {
             name: 'data',
@@ -38,18 +39,18 @@ export default {
         scales: [
           {
             name: 'xscale',
-            type: 'band',
+            type: 'linear',
             domain: { data: 'data', field: this.x },
             range: 'width',
-            padding: 0.05,
             round: true,
             zero: false,
           },
           {
             name: 'yscale',
+            type: 'linear',
             domain: { data: 'data', field: this.y },
             nice: true,
-            zero: true,
+            zero: false,
             range: 'height',
           },
         ],
@@ -63,24 +64,20 @@ export default {
         ],
         marks: [
           {
-            type: 'rect',
+            type: 'line',
             from: { data: 'data' },
             encode: {
               enter: {
                 x: { scale: 'xscale', field: this.x },
-                width: { scale: 'xscale', band: 1 },
                 y: { scale: 'yscale', field: this.y },
-                y2: { scale: 'yscale', value: 0 },
+                strokeCap: { value: 'round' },
                 tooltip: {
-                  signal: `{'${this.xLabel}': datum.${this.x}, '${this.yLabel}': datum.${this.y}}`,
+                  signal: `{ '${this.xLabel}': datum.${this.x}, '${this.yLabel}': datum.${this.y} }`,
                 },
               },
               update: {
-                fill: { value: 'steelblue' },
-                fillOpacity: { value: 0.85 },
-              },
-              hover: {
-                fillOpacity: { value: 1.0 },
+                interpolate: 'linear',
+                defined: { signal: `isValid(datum.${this.y})` },
               },
             },
           },

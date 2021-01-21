@@ -16,6 +16,7 @@ export { default as DBaseDashboard } from './d-base-dashboard.vue';
 export { default as DHeatMap } from './d-chart-heatmap.vue';
 export { default as DMultiLineChart } from './d-chart-multiline.vue';
 export { default as DBarChart } from './d-chart-bar.vue';
+export { default as DLineChart } from './d-chart-line.vue';
 
 export { default as discoBaseMixin } from '../mixins/disco-base-mixin.js';
 export { default as vegaBaseMixin } from '../mixins/vega-base-mixin.js';
