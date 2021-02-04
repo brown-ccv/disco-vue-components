@@ -48,7 +48,7 @@ export default {
             name: 'yscale',
             domain: { data: 'data', field: this.y },
             nice: true,
-            zero: false,
+            zero: true,
             range: 'height',
           },
         ],
@@ -76,9 +76,10 @@ export default {
               },
               update: {
                 fill: { value: 'steelblue' },
+                opacity: { value: 1 },
               },
               hover: {
-                fill: { value: 'red' },
+                opacity: { value: 0.5 },
               },
             },
           },
