@@ -15,20 +15,26 @@ A Stacked Bar Chart shows aggregated data over categorical values on the x axis.
 <ArgsTable story="Stacked Bar Chart" />
 
 ## DStackedBarChart component
-
+#this is just a markdown code chunk.
 ```html
 <DStackedBarChart
   id="stackedbarchart"
   :dataset="[
-    { category: 'A', amount: 28},
-    { category: 'B', amount: 55},
-    { category: 'C', amount: 43}
+    { month: 1, group: 'A', amount:25},
+    { month: 1, group: 'B', amount:25},
+    { month: 1, group: 'C', amount:25},
+    { month: 2, group: 'A', amount:25},
+    { month: 2, group: 'B', amount:25},
+    { month: 2, group: 'C', amount:25},
+    { month: 3, group: 'A', amount:25},
+    { month: 3, group: 'B', amount:25},
+    { month: 3, group: 'C', amount:25}
   ]"
   :min-width="400"
-  x="category"
-  x-label="Letters"
-  y="amount"
-  y-label="Amount"
+  x="month"
+  x-label="Month"
+  y="group"
+  y-label="Group"
   :include-actions="true"
 />
 ```
