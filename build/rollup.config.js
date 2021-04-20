@@ -1,7 +1,7 @@
 // rollup.config.js
 import fs from 'fs';
 import path from 'path';
-import vue from 'rollup-plugin-vue';
+import vue from 'rollup-plugin-vue2';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
