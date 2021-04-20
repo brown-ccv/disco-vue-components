@@ -87,11 +87,7 @@ export default {
           },
         ],
         axes: [
-          {
-            orient: 'bottom',
-            scale: 'xscale',
-            title: this.xLabel,
-          },
+          { orient: 'bottom', scale: 'xscale', title: this.xLabel },
           { orient: 'left', scale: 'yscale', title: this.yLabel },
         ],
         legends: [

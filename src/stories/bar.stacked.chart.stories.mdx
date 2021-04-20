@@ -1,0 +1,99 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DChartContainer from '../components/d-chart-container.vue';
+import DBarStackedChart from '../components/d-chart-bar-stacked.vue';
+
+<Meta
+    title="Visualization/Charts/Stacked Bar Chart"
+    component={DBarStackedChart}
+/>
+
+
+# Stacked Bar Chart
+
+A Stacked Bar Chart example.
+
+<ArgsTable story="Stacked Bar Chart" />
+
+## DBarStackedChart component
+
+
+
+```html
+<DBarStackedChart
+  id="barstackedchart"
+  :dataset="[
+        {category: 'A', amount: 28, c: 0}, {category: 'A', amount: 55, c: 1},
+        {category: 'B', amount: 43, c: 0}, {category: 'B', amount: 91, c: 1},
+        {category: 'C', amount: 19, c: 0}, {category: 'C', amount: 87, c: 1},
+        {category: 'D', amount: 52, c: 0}, {category: 'D', amount: 48, c: 1},
+        {category: 'A', amount: 24, c: 2}, 
+        {category: 'B', amount: 87, c: 2}, 
+        {category: 'C', amount: 17, c: 2}, 
+        {category: 'D', amount: 68, c: 2}, 
+  ]"
+  :min-width="400"
+  x="category"
+  x-label="Letters"
+  y="amount"
+  y-label="Amount"
+  :variable="variable"
+  :include-actions="true"
+/>
+```
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DChartContainer, DBarStackedChart },
+  template: `
+        <DChartContainer width="full">
+          <template #title>Stacked Bar Chart</template>
+          <template #description>
+            A stacked bar chart shows the amount for different categories.
+          </template
+          >
+          <template #chart>
+            <DBarStackedChart
+              id="barchart"
+              :dataset="dataset"
+              :min-width="minWidth"
+              :height="height"
+              :x="x"
+              :x-label="xLabel"
+              :y="y"
+              :y-label="yLabel"
+              :variable="variable"
+              :variable-label="variableLabel"
+              :include-actions="includeActions"
+              :enable-darkmode="enableDarkmode"
+            />
+          </template>
+        </DChartContainer>
+    `
+});
+
+<Canvas>
+  <Story name="Stacked Bar Chart" args={{
+    includeActions: true,
+    minWidth: 400,
+    height: 300,
+    x: 'category',
+    y: 'amount',
+    variable : 'c',
+    xLabel: 'Letter',
+    yLabel: 'Amount',
+    variableLabel: 'Bar',
+    dataset: [
+        {category: 'A', amount: 28, c: 0}, {category: 'A', amount: 55, c: 1},
+        {category: 'B', amount: 43, c: 0}, {category: 'B', amount: 91, c: 1},
+        {category: 'C', amount: 19, c: 0}, {category: 'C', amount: 87, c: 1},
+        {category: 'D', amount: 52, c: 0}, {category: 'D', amount: 48, c: 1},
+        {category: 'A', amount: 24, c: 2}, 
+        {category: 'B', amount: 44, c: 2}, 
+        {category: 'C', amount: 17, c: 2}, 
+        {category: 'D', amount: 68, c: 2}, 
+      ],
+    enableDarkmode: true,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
