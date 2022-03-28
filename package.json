@@ -91,7 +91,7 @@
     "git-cz": "^4.7.0",
     "jest-canvas-mock": "^2.3.0",
     "lint-staged": "^10.2.11",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "nightwatch-accessibility": "^1.8.0",
     "prettier": "^2.0.5",
     "rollup": "^2.7.3",
