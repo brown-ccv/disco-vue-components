@@ -1,5 +1,9 @@
 # Vue Component Library for CCV with Disco Design System.
 
+![Static Badge](https://img.shields.io/badge/ARCHIVED-red)
+
+**This repo was acrhived February, 2026, due to inactivity. We moved from Vue in favor of React.**
+
 This repo contains the Disco Design System components. The components are packaged as an NPM package and published to Brown CCV's GitHub Package Registry.
 
 The components are built under `src/components` and documented using Storybook under `src/stories`. 
