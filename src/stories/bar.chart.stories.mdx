@@ -1,0 +1,82 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DChartContainer from '../components/d-chart-container.vue';
+import DBarChart from '../components/d-chart-bar.vue';
+
+<Meta
+    title="Visualization/Charts/Bar Chart"
+    component={DBarChart}
+/>
+
+
+# Bar Chart
+
+A Bar Chart shows aggregated data over categorical values on the x axis.
+
+<ArgsTable story="Bar Chart" />
+
+## DBarChart component
+
+```html
+<DBarChart
+  id="barchart"
+  :dataset="[
+    { category: 'A', amount: 28},
+    { category: 'B', amount: 55},
+    { category: 'C', amount: 43}
+  ]"
+  :min-width="400"
+  x="category"
+  x-label="Letters"
+  y="amount"
+  y-label="Amount"
+  :include-actions="true"
+/>
+```
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DChartContainer, DBarChart },
+  template: `
+        <DChartContainer width="full">
+          <template #title>Bar Chart</template>
+          <template #description>
+            A bar chart shows the amount for different categories.
+          </template
+          >
+          <template #chart>
+            <DBarChart
+              id="barchart"
+              :dataset="dataset"
+              :min-width="minWidth"
+              :height="height"
+              :x="x"
+              :x-label="xLabel"
+              :y="y"
+              :y-label="yLabel"
+              :include-actions="includeActions"
+              :enable-darkmode="enableDarkmode"
+            />
+          </template>
+        </DChartContainer>
+    `
+});
+
+<Canvas>
+  <Story name="Bar Chart" args={{
+    includeActions: true,
+    minWidth: 400,
+    height: 300,
+    x: 'category',
+    y: 'amount',
+    xLabel: 'Letters',
+    yLabel: 'Amount',
+    dataset: [
+      { category: 'A', amount: 28},
+      { category: 'B', amount: 55},
+      { category: 'C', amount: 43}
+    ],
+    enableDarkmode: true,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
